@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Jogador;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JogadorController extends Controller
 {
@@ -14,7 +15,7 @@ class JogadorController extends Controller
      */
     public function index()
     {
-        //
+        return view('jogador/index');
     }
 
     /**
