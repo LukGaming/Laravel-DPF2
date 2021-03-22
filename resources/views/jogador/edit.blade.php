@@ -42,36 +42,53 @@
             <label for="funcao_primaria">Função Primária em jogo</label>
             <div class="col-2 d-flex">
                 <select class="form-control " id="funcao_primaria" name="funcao_primaria">
-                    <option @if (old('funcao_primaria') == 'Capitão/IGL') selected @endif @if ($jogador->funcao_primaria == 'Capitão/IGL') selected @endif>Capitão/IGL</option>                           
-                    <option @if (old('funcao_primaria') == 'Entry Fragger') selected @endif @if ($jogador->funcao_primaria == 'Entry Fragger') selected @endif>Entry Fragger</option>
-                    <option @if (old('funcao_primaria') == 'Awper') selected @endif @if ($jogador->funcao_primaria == 'Awper') selected @endif>Awper</option>
-                    <option @if (old('funcao_primaria') == 'Trader') selected @endif @if ($jogador->funcao_primaria == 'Trader') selected @endif>Trader</option>
-                    <option @if (old('funcao_primaria') == 'Suporte') selected @endif @if ($jogador->funcao_primaria == 'Suporte') selected @endif>Suporte</option>
-                    <option @if (old('funcao_primaria') == 'Rifler') selected @endif @if ($jogador->funcao_primaria == 'Rifler') selected @endif>Rifler</option>
+                    <option @if (old('funcao_primaria') == 'Capitão/IGL') selected @endif @if ($jogador->funcao_primaria == 'Capitão/IGL')
+                        selected @endif>Capitão/IGL</option>
+                    <option @if (old('funcao_primaria') == 'Entry Fragger') selected @endif @if ($jogador->funcao_primaria == 'Entry Fragger')
+                        selected @endif>Entry Fragger</option>
+                    <option @if (old('funcao_primaria') == 'Awper') selected @endif @if ($jogador->funcao_primaria == 'Awper')
+                        selected @endif>Awper</option>
+                    <option @if (old('funcao_primaria') == 'Trader') selected @endif @if ($jogador->funcao_primaria == 'Trader')
+                        selected @endif>Trader</option>
+                    <option @if (old('funcao_primaria') == 'Suporte') selected @endif @if ($jogador->funcao_primaria == 'Suporte')
+                        selected @endif>Suporte</option>
+                    <option @if (old('funcao_primaria') == 'Rifler') selected @endif @if ($jogador->funcao_primaria == 'Rifler')
+                        selected @endif>Rifler</option>
                 </select>
             </div>
             <div class="form-group ">
                 <label for="funcao_secundaria">Função Secundária em jogo</label>
                 <div class="col-2 d-flex">
                     <select class="form-control " id="funcao_secundaria" name="funcao_secundaria">
-                        <option @if (old('funcao_secundaria') == 'Capitão/IGL') selected @endif @if ($jogador->funcao_primaria == 'Capitão/IGL') selected @endif>Capitão/IGL</option>                           
-                        <option @if (old('funcao_secundaria') == 'Entry Fragger') selected @endif @if ($jogador->funcao_secundaria == 'Entry Fragger') selected @endif>Entry Fragger</option>
-                        <option @if (old('funcao_secundaria') == 'Awper') selected @endif @if ($jogador->funcao_secundaria == 'Awper') selected @endif>Awper</option>
-                        <option @if (old('funcao_secundaria') == 'Trader') selected @endif @if ($jogador->funcao_secundaria == 'Trader') selected @endif>Trader</option>
-                        <option @if (old('funcao_secundaria') == 'Suporte') selected @endif @if ($jogador->funcao_secundaria == 'Suporte') selected @endif>Suporte</option>
-                        <option @if (old('funcao_secundaria') == 'Rifler') selected @endif @if ($jogador->funcao_secundaria == 'Rifler') selected @endif>Rifler</option>
+                        <option @if (old('funcao_secundaria') == 'Capitão/IGL') selected @endif @if ($jogador->funcao_primaria == 'Capitão/IGL') selected @endif
+                            >Capitão/IGL</option>
+                        <option @if (old('funcao_secundaria') == 'Entry Fragger') selected @endif @if ($jogador->funcao_secundaria == 'Entry Fragger') selected @endif
+                            >Entry Fragger</option>
+                        <option @if (old('funcao_secundaria') == 'Awper') selected @endif @if ($jogador->funcao_secundaria == 'Awper')
+                            selected @endif>Awper</option>
+                        <option @if (old('funcao_secundaria') == 'Trader') selected @endif @if ($jogador->funcao_secundaria == 'Trader')
+                            selected @endif>Trader</option>
+                        <option @if (old('funcao_secundaria') == 'Suporte') selected @endif @if ($jogador->funcao_secundaria == 'Suporte')
+                            selected @endif>Suporte</option>
+                        <option @if (old('funcao_secundaria') == 'Rifler') selected @endif @if ($jogador->funcao_secundaria == 'Rifler')
+                            selected @endif>Rifler</option>
                     </select>
                 </div>
                 <div class="form-group ">
                     <label for="funcao_adicional">Função Adicional em jogo</label>
                     <div class="col-2 d-flex">
                         <select class="form-control " id="funcao_adicional" name="funcao_adicional">
-                            <option @if (old('funcao_adicional') == 'Capitão/IGL') selected @endif @if ($jogador->funcao_primaria == 'Capitão/IGL') selected @endif>Capitão/IGL</option>                           
-                        <option @if (old('funcao_adicional') == 'Entry Fragger') selected @endif @if ($jogador->funcao_adicional == 'Entry Fragger') selected @endif>Entry Fragger</option>
-                        <option @if (old('funcao_adicional') == 'Awper') selected @endif @if ($jogador->funcao_adicional == 'Awper') selected @endif>Awper</option>
-                        <option @if (old('funcao_adicional') == 'Trader') selected @endif @if ($jogador->funcao_adicional == 'Trader') selected @endif>Trader</option>
-                        <option @if (old('funcao_adicional') == 'Suporte') selected @endif @if ($jogador->funcao_adicional == 'Suporte') selected @endif>Suporte</option>
-                        <option @if (old('funcao_adicional') == 'Rifler') selected @endif @if ($jogador->funcao_adicional == 'Rifler') selected @endif>Rifler</option>
+                            <option @if (old('funcao_adicional') == 'Capitão/IGL') selected @endif @if ($jogador->funcao_primaria == 'Capitão/IGL') selected @endif
+                                >Capitão/IGL</option>
+                            <option @if (old('funcao_adicional') == 'Entry Fragger') selected @endif @if ($jogador->funcao_adicional == 'Entry Fragger') selected @endif>Entry Fragger</option>
+                            <option @if (old('funcao_adicional') == 'Awper') selected @endif @if ($jogador->funcao_adicional == 'Awper') selected @endif
+                                >Awper</option>
+                            <option @if (old('funcao_adicional') == 'Trader') selected @endif @if ($jogador->funcao_adicional == 'Trader') selected @endif
+                                >Trader</option>
+                            <option @if (old('funcao_adicional') == 'Suporte') selected @endif @if ($jogador->funcao_adicional == 'Suporte') selected @endif
+                                >Suporte</option>
+                            <option @if (old('funcao_adicional') == 'Rifler') selected @endif @if ($jogador->funcao_adicional == 'Rifler') selected @endif
+                                >Rifler</option>
                         </select>
                     </div>
                 </div>
@@ -126,7 +143,7 @@
                     <input type="text" class="form-control" id="steam" placeholder="Link do seu perfil da Steam"
                         name="steam" value="{{ $jogador->steam }}">
                 </div>
-               <label for="basic-url">Twitch</label>
+                <label for="basic-url">Twitch</label>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon3">twitch.tv/</span>
@@ -140,7 +157,7 @@
                         placeholder="Email para que outros usuários possam ver e entrarem em contato." name="email_contato"
                         value="{{ $jogador->email_contato }}">
                 </div>
-                
+
                 <br>
                 <div class="row">
                     <div class="col-4">
@@ -161,5 +178,106 @@
     </div>
     </div>
     <br><br><br>
+    @if ($jogador->caminho_imagem_perfil_jogador)
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal-5">
+            Editar Imagem de Perfil
+        </button>
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal-5">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Sua Imagem</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form action="{{ route('ImagePerifilJogadorController.editarImagem') }}" method="post"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <label for="imagem_contato">Escolha uma nova imagem para o seu perfil de jogador</label><br>
+                            <br>
+                            
+                            <input type="file" name="image" id="imagem_contato">
+                            <button type="submit" class="btn btn-danger"> Enviar</button><br>
+                            <br>
+                        </form>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal-2">
+           Remover Imagem de Perfil
+        </button>
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal-2">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Remover sua imagem</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form action="{{ route('ImagePerifilJogadorController.removerImagem') }}" method="post"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <img src="{{ URL::asset($jogador->caminho_imagem_perfil_jogador) }}" class="w-100" >
+                            <br><br>
+                            <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-danger ">Remover</button>
+                        </div>
+                        
+                            <br>
+                        </form>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @else
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal-5">
+        Adicionar uma imagem ao seu perfil
+    </button>
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal-5">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Sua Imagem</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form action="{{ route('ImagePerifilJogadorController.adicionandoImagem') }}" method="post"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <label for="imagem_contato">Escolha uma nova imagem para o seu perfil de jogador</label><br>
+                        <br>
+                        <input type="file" name="image" id="imagem_contato">
+                        <button type="submit" class="btn btn-danger"> Enviar</button><br>
+                        <br>
+                    </form>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+
+
     <script src="{{ asset('js/options.js') }}"></script>
 @endsection

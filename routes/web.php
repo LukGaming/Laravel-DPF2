@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\ImagePerifilJogadorController;
 use App\Http\Controllers\JogadorController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +27,9 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::resource('jogador', JogadorController::class);//->middleware('auth');
-//Route::get('jogador/edit',  JogadorController::class);
-Route::any('editar-jogador', [JogadorController::class, 'editar'])->name('jogador.editar');
-Route::any('VerificaSeUsuarioTemJogador', [JogadorController::class, 'VerificaSeUsuarioTemJogador'])->name('jogador.VerificaSeUsuarioTemJogador');
+Route::any('editar-jogador', [JogadorController::class, 'editar'])->name('jogador.editar')->middleware('auth');
+Route::any('VerificaSeUsuarioTemJogador', [JogadorController::class, 'VerificaSeUsuarioTemJogador'])->name('jogador.VerificaSeUsuarioTemJogador')->middleware('auth');
+Route::any('removerImagem', [ImagePerifilJogadorController::class, 'removerImagem'])->name('ImagePerifilJogadorController.removerImagem')->middleware('auth');
+Route::any('editarImagem', [ImagePerifilJogadorController::class, 'editarImagem'])->name('ImagePerifilJogadorController.editarImagem')->middleware('auth');
+Route::any('adicionandoImagem', [ImagePerifilJogadorController::class, 'adicionandoImagem'])->name('ImagePerifilJogadorController.adicionandoImagem')->middleware('auth');
+

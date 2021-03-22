@@ -6,20 +6,20 @@
 
 @section('conteudo')
     @if ($jogador)
-        <div class="bg-warning text-dark" style="padding-bottom: 30px; margin-top: 40px">
+        <div class="w-100 text-white border border-white rounded" style="padding-bottom: 30px; margin-top: 40px ;background-color: rgb(22, 20, 20);" >
             <h1 class="d-flex justify-content-center" style="padding-bottom: 20px">
                 {{ $jogador->nick_jogador }}</h1>
             <div class="container-fluid ">
-                <div class=" ">
+                <div class="">
                     <div >
                         <p class="h5">Frase de Perfil:
                             <br>{{ $jogador->frase_perfil }}
                         </p>
-                        <div class="d-flex justify-content-start w-30" style="padding: 15px">
+                        <div class="d-flex justify-content-start w-30 " style="padding: 15px">
                             
                             <pre style="margin-right: 200">
                                 <p class="h5">Descricao: <br>
-                                        <div class="descricao_jogador w-30"> {{ $jogador->descricao_perfil_jogador }}</div>
+                                        <div class="descricao_jogador w-30 "> {{ $jogador->descricao_perfil_jogador }}</div>
                                             </pre>
                             </p>
                             <div class="w-30 justify-content-end">
