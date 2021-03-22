@@ -14,6 +14,7 @@
         }
 
 </style>
+    
     <div class="d-flex justify-content-start " style="padding-top: 40px; ">
         
         <div class="card text-white  mb-3 mx-auto card-itens card-title " style="max-width: 18rem; padding: 3px">
@@ -135,7 +136,6 @@
             border-color: #3E872E;
             border-width: 3px;"><h5>Criar perfil de jogador</h5></a>
         </div>
-
     </div>
 
     @endsection

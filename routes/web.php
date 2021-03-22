@@ -24,4 +24,7 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::resource('jogador', JogadorController::class)->middleware('auth');
+Route::resource('jogador', JogadorController::class);//->middleware('auth');
+//Route::get('jogador/edit',  JogadorController::class);
+Route::any('editar-jogador', [JogadorController::class, 'editar'])->name('jogador.editar');
+Route::any('VerificaSeUsuarioTemJogador', [JogadorController::class, 'VerificaSeUsuarioTemJogador'])->name('jogador.VerificaSeUsuarioTemJogador');

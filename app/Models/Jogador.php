@@ -9,9 +9,7 @@ class Jogador extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'user_id',
         'nick_jogador',
         'frase_perfil',
         'descricao_perfil_jogador',
@@ -27,6 +25,9 @@ class Jogador extends Model
         'steam',
         'twitch',
         'email_contato',
-        'user_id', 
-    ];            
+        'caminho_imagem_perfil_jogador',
+        'user_id',
+        'created_at',
+        'updated_at'
+    ];    
 }
