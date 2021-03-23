@@ -31,7 +31,7 @@ class CreateJogadorsTable extends Migration
             $table->string('twitch')->nullable();
             $table->string('caminho_imagem_perfil_jogador')->nullable();
             $table->string('email_contato')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

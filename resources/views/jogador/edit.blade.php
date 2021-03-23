@@ -277,6 +277,62 @@
         </div>
     </div>
     @endif
+   <br><br>
+
+   <form method="POST" action="" enctype="multipart/form-data">
+    @csrf
+    <div class="form-group">
+        <label for="monitor">Monitor</label>
+        <input type="text" class="form-control" id="monitor" name="monitor" value="{{$config_pc_jogador->monitor}}">
+    </div>
+    <div class="form-group">
+        <label for="teclado">Teclado</label>
+        <input type="text" class="form-control" id="teclado" name="teclado" value="{{$config_pc_jogador->teclado}}">
+    </div>
+    <div class="form-group">
+        <label for="mouse">Mouse</label>
+        <input type="text" class="form-control" id="mouse" name="mouse" value="{{$config_pc_jogador->mouse}}">
+    </div>
+    <div class="form-group">
+        <label for="mousepad">Mousepad</label>
+        <input type="text" class="form-control" id="mousepad" name="mousepad" value="{{$config_pc_jogador->mousepad}}">
+    </div>
+    <div class="form-group">
+        <label for="processador">Processador</label>
+        <input type="text" class="form-control" id="processador" name="processador" value="{{$config_pc_jogador->processador}}">
+    </div>
+    <div class="form-group">
+        <label for="placa_mae">Placa Mãe</label>
+        <input type="text" class="form-control" id="placa_mae" name="placa_mae" value="{{$config_pc_jogador->placa_mae}}">
+    </div>
+    <div class="form-group">
+        <label for="placa_de_video">Placa de Vídeo</label>
+        <input type="text" class="form-control" id="placa_de_video" name="placa_de_video"
+            value="{{$config_pc_jogador->placa_mae}}">
+    </div>
+    <div class="form-group">
+        <label for="memoria_ram">Memória Ram</label>
+        <input type="text" class="form-control" id="memoria_ram" name="memoria_ram" value="{{$config_pc_jogador->memoria_ram}}">
+    </div>
+    <div class="form-group">
+        <label for="fonte">Fonte</label>
+        <input type="text" class="form-control" id="fonte" name="fonte" value="{{$config_pc_jogador->fonte}}">
+    </div>
+    <div class="form-group">
+        <label for="gabinete">Gabinete</label>
+        <input type="text" class="form-control" id="gabinete" name="gabinete" value="{{$config_pc_jogador->gabinete}}">
+    </div>
+    <div class="form-group">
+        <label for="caminho_imagem_pc_jogador">Imagem do seu computador</label><br>
+        <input type="file" id="caminho_imagem_pc_jogador" name="caminho_imagem_pc_jogador">
+        <br><br>
+    </div>
+    <div class="d-flex justify-content-center">
+    <button type="submit" class="btn btn-primary" id="btnCriar">Atualizar dados de computador</button>
+</div>
+    </div>
+</form>
+<br><br><br>
 
 
     <script src="{{ asset('js/options.js') }}"></script>

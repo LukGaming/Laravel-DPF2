@@ -6,10 +6,13 @@ use App\Http\Requests\StoreUpdateJogador;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use App\Models\Jogador;
+use App\Models\ConfigPcJogador;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ImagePerifilJogadorController;
+use App\Http\Controllers\ConfigPcJogadorController;
+
 
 class JogadorController extends Controller
 {
@@ -29,7 +32,7 @@ class JogadorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()//É obrigatório estar logado para acessar essa rota!
+    public function create() //É obrigatório estar logado para acessar essa rota!
     {
         $jogador = DB::table('jogadors')
             ->where('user_id', Auth::id())
@@ -48,12 +51,11 @@ class JogadorController extends Controller
      */
     public function store(StoreUpdateJogador $request) //É obrigatório estar logado 
     {
-        if(count($request->files)>0){//Salvando imagem do usuário
+        if (count($request->files) > 0) { //Salvando imagem do usuário
             $cria_imagem = new ImagePerifilJogadorController();
             $upload = $cria_imagem->salvandoImagem($request->imagem_perfil_jogador);
             $request['caminho_imagem_perfil_jogador'] = $upload;
-        }
-        else{            
+        } else {
             $request['caminho_imagem_perfil_jogador'] = null;
         }
         Jogador::create([
@@ -73,13 +75,13 @@ class JogadorController extends Controller
             'twitch' => $request->twitch,
             'email_contato' => $request->email_contato,
             'updated_at' => Carbon::now(),
-            'user_id'=> Auth::Id(),
+            'user_id' => Auth::Id(),
             'created_at' => Carbon::now(),
-            'updated_at'=> null,
-            "caminho_imagem_perfil_jogador"=> $request['caminho_imagem_perfil_jogador']
+            'updated_at' => null,
+            "caminho_imagem_perfil_jogador" => $request['caminho_imagem_perfil_jogador']
         ]);
-        $mensagem = "Perfil criado com sucesso";
-        return redirect('jogador/' . Auth::id())->with('mensagem', $mensagem);
+        $mensagem = "Perfil criado com sucesso, agora cadastre dados de seu computador opcionalmente";
+        return redirect('configpcjogador/create')->with('mensagem', $mensagem);
     }
     /**
      * Display the specified resource.
@@ -92,6 +94,19 @@ class JogadorController extends Controller
         $jogador = DB::table('jogadors')
             ->where('user_id', $id_jogador)
             ->first();
+        $string = $jogador->descricao_perfil_jogador;
+        $count_espacos = 0;
+        $texto_array = explode(" ", $string);
+        $conta = 0;
+
+        for ($i = 0; $i < count($texto_array); $i++) {
+            if ($i > 7 && $i % 8 == 0) {
+                $texto_array[$i] = $texto_array[$i] . "\r\n";
+            }
+        }
+        $nova_string = implode("+", $texto_array);
+        $nova_string = str_replace("+", " ", $nova_string);
+        $jogador->descricao_perfil_jogador = $nova_string;        
         if ($jogador) {
             return view('jogador/show', ['jogador' => $jogador]); //Se existir um jogador
         } else {
@@ -108,11 +123,17 @@ class JogadorController extends Controller
     public function edit($id_jogador)
     {
         if ($id_jogador == Auth::id()) {
+            $config_pc_jogador = DB::table('config_pc_jogadors')
+            ->where('id_jogador', Auth::id())
+            ->first();
+            
+
+            
             $jogador = DB::table('jogadors')
                 ->where('user_id', Auth::id())
                 ->first();
             if ($jogador) {
-                return view('jogador/edit', ['jogador' => $jogador]);
+                return view('jogador/edit', ['jogador' => $jogador, 'config_pc_jogador'=>$config_pc_jogador]);
             } else {
                 $mensagem = "Voce ainda não tem um perfil de jogador para ser editado, crie um aqui";
                 return redirect('jogador/create')->with('mensagem', $mensagem);
@@ -162,7 +183,9 @@ class JogadorController extends Controller
     public function destroy($id_jogador)
     {
         if ($id_jogador == Auth::id()) {
-            Jogador::where('user_id', $id_jogador)->delete();
+            ConfigPcJogador::where('id_jogador', $id_jogador)->delete();//Primeiro eu removo a configuração
+            Jogador::where('user_id', $id_jogador)->delete();//Depois eu removo o perfil
+            
             $mensagem = "Perfil de jogador excluido com sucesso!";
             return redirect('/jogador')->with('mensagem', $mensagem);
         } else {

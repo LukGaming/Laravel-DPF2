@@ -3,12 +3,6 @@
 @section('titulo', 'Home')
 
 @section('conteudo')
-    @if (session('mensagem'))
-        <div class="alert alert-success">
-            {{ session('mensagem') }}
-        </div>
-    @endif
-
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>

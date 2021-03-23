@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\ConfigPcJogadorController;
 use App\Http\Controllers\ImagePerifilJogadorController;
 use App\Http\Controllers\JogadorController;
 use Illuminate\Support\Facades\Route;
+
 
 
 /*
@@ -32,4 +34,4 @@ Route::any('VerificaSeUsuarioTemJogador', [JogadorController::class, 'VerificaSe
 Route::any('removerImagem', [ImagePerifilJogadorController::class, 'removerImagem'])->name('ImagePerifilJogadorController.removerImagem')->middleware('auth');
 Route::any('editarImagem', [ImagePerifilJogadorController::class, 'editarImagem'])->name('ImagePerifilJogadorController.editarImagem')->middleware('auth');
 Route::any('adicionandoImagem', [ImagePerifilJogadorController::class, 'adicionandoImagem'])->name('ImagePerifilJogadorController.adicionandoImagem')->middleware('auth');
-
+Route::resource('configpcjogador', ConfigPcJogadorController::class);

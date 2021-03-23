@@ -35,7 +35,6 @@ class StoreUpdateJogador extends FormRequest
             'steam' => 'nullable|max:20',
             'twitch' => 'nullable|max:20',
             'email_contato' => 'nullable'
-
         ];
     }
 }
