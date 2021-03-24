@@ -23,7 +23,6 @@ class JogadorController extends Controller
      */
     public function index()
     {
-
         return view('jogador/index');
     }
 
@@ -94,19 +93,21 @@ class JogadorController extends Controller
         $jogador = DB::table('jogadors')
             ->where('user_id', $id_jogador)
             ->first();
-        $string = $jogador->descricao_perfil_jogador;
-        $count_espacos = 0;
-        $texto_array = explode(" ", $string);
-        $conta = 0;
+        if ($jogador) {
+            $string = $jogador->descricao_perfil_jogador;
+            $count_espacos = 0;
+            $texto_array = explode(" ", $string);
+            $conta = 0;
 
-        for ($i = 0; $i < count($texto_array); $i++) {
-            if ($i > 7 && $i % 8 == 0) {
-                $texto_array[$i] = $texto_array[$i] . "\r\n";
+            for ($i = 0; $i < count($texto_array); $i++) {
+                if ($i > 7 && $i % 8 == 0) {
+                    $texto_array[$i] = $texto_array[$i] . "\r\n";
+                }
             }
+            $nova_string = implode("+", $texto_array);
+            $nova_string = str_replace("+", " ", $nova_string);
+            $jogador->descricao_perfil_jogador = $nova_string;
         }
-        $nova_string = implode("+", $texto_array);
-        $nova_string = str_replace("+", " ", $nova_string);
-        $jogador->descricao_perfil_jogador = $nova_string;        
         if ($jogador) {
             return view('jogador/show', ['jogador' => $jogador]); //Se existir um jogador
         } else {
@@ -124,16 +125,16 @@ class JogadorController extends Controller
     {
         if ($id_jogador == Auth::id()) {
             $config_pc_jogador = DB::table('config_pc_jogadors')
-            ->where('id_jogador', Auth::id())
-            ->first();
-            
+                ->where('id_jogador', Auth::id())
+                ->first();
 
-            
+
+
             $jogador = DB::table('jogadors')
                 ->where('user_id', Auth::id())
                 ->first();
             if ($jogador) {
-                return view('jogador/edit', ['jogador' => $jogador, 'config_pc_jogador'=>$config_pc_jogador]);
+                return view('jogador/edit', ['jogador' => $jogador, 'config_pc_jogador' => $config_pc_jogador]);
             } else {
                 $mensagem = "Voce ainda não tem um perfil de jogador para ser editado, crie um aqui";
                 return redirect('jogador/create')->with('mensagem', $mensagem);
@@ -183,9 +184,9 @@ class JogadorController extends Controller
     public function destroy($id_jogador)
     {
         if ($id_jogador == Auth::id()) {
-            ConfigPcJogador::where('id_jogador', $id_jogador)->delete();//Primeiro eu removo a configuração
-            Jogador::where('user_id', $id_jogador)->delete();//Depois eu removo o perfil
-            
+            ConfigPcJogador::where('id_jogador', $id_jogador)->delete(); //Primeiro eu removo a configuração
+            Jogador::where('user_id', $id_jogador)->delete(); //Depois eu removo o perfil
+
             $mensagem = "Perfil de jogador excluido com sucesso!";
             return redirect('/jogador')->with('mensagem', $mensagem);
         } else {

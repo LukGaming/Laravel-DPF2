@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ConfigPcJogadorController;
+use App\Http\Controllers\ImagemPcJogadorController;
 use App\Http\Controllers\ImagePerifilJogadorController;
 use App\Http\Controllers\JogadorController;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('jogador/index');
 });
 
 Route::get('/dashboard', function () {
@@ -35,3 +36,6 @@ Route::any('removerImagem', [ImagePerifilJogadorController::class, 'removerImage
 Route::any('editarImagem', [ImagePerifilJogadorController::class, 'editarImagem'])->name('ImagePerifilJogadorController.editarImagem')->middleware('auth');
 Route::any('adicionandoImagem', [ImagePerifilJogadorController::class, 'adicionandoImagem'])->name('ImagePerifilJogadorController.adicionandoImagem')->middleware('auth');
 Route::resource('configpcjogador', ConfigPcJogadorController::class);
+Route::any('removerImagempcjogador', [ImagemPcJogadorController::class, 'removerImagem'])->name('ImagemPcJogadorController.removerImagem')->middleware('auth');
+Route::any('editarImagempcjogador', [ImagemPcJogadorController::class, 'editarImagem'])->name('ImagemPcJogadorController.editarImagem')->middleware('auth');
+Route::any('adicionandoImagempcjogador', [ImagemPcJogadorController::class, 'adicionandoImagem'])->name('ImagemPcJogadorController.adicionandoImagem')->middleware('auth');

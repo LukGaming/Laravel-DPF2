@@ -62,8 +62,8 @@
             <input type="text" class="form-control" id="gabinete" name="gabinete" value="{{ old('gabinete') }}">
         </div>
         <div class="form-group">
-            <label for="caminho_imagem_pc_jogador">Imagem do seu computador</label><br>
-            <input type="file" id="caminho_imagem_pc_jogador" name="caminho_imagem_pc_jogador">
+            <label for="imagem_pc_jogador">Imagem do seu computador</label><br>
+            <input type="file" id="imagem_pc_jogador" name="imagem_pc_jogador">
             <br><br>
         </div>
         <div class="d-flex justify-content-center">
