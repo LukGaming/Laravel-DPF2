@@ -1,21 +1,23 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
     <title>@yield('titulo') - Jogador</title>
     <style>
-        .cor-verde{
-            color: #42f56c;
+        .cor-texto-site {
+            color: black;
         }
 
+        .corBtnNav {
+            background-color: white;
+        }
 
     </style>
 </head>
@@ -24,59 +26,58 @@ use App\Http\Controllers\JogadorController;
 $user_has_jogador = JogadorController::VerificaSeUsuarioTemJogador();
 @endphp
 
-<body style="background-color:  black;">
-    <nav class="navbar navbar-expand-md navbar-dark border border-white " style="background-color: black">
-        <a class="navbar-brand" href="{{ route('jogador.index') }}" style="padding-left: 10px; color: #42f56c;">Home</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark border border-dark corBtnNav">
+        <a class="navbar-brand " href="{{ route('jogador.index') }}" style="padding-left: 10px;color: black;">Home</a>
+        <button class="navbar-toggler corBtnNav" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon corBtnNav"></span>
         </button>
         @if (Route::has('login'))
             @auth
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="collapse navbar-collapse corBtnNav" id="navbarNav">
                     <ul class="navbar-nav mr-auto">
                         @if (Auth::user())
-                        @if ($user_has_jogador)
-                            <a class="dropdown-item " style="background-color: black; color: #42f56c"
-                                href="{{ '/jogador/' . Auth::id() }}">Seu Perfil de jogador</a>
-                        @else
-                            <a class="dropdown-item cor-verde" style=" background-color: black"
-                                href="{{ route('jogador.create') }}">
-                                Criar um Perfil de jogador</a>
+                            @if ($user_has_jogador)
+                                <a class="dropdown-item corBtnNav" href="{{ '/jogador/' . Auth::id() }}">Seu Perfil de
+                                    jogador</a>
+                            @else
+                                <a class="dropdown-item corBtnNav" 
+                                    href="{{ route('jogador.create') }}">
+                                    Criar um Perfil de jogador</a>
+                            @endif
                         @endif
-                    @endif
                     </ul>
-                    <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+                    <div class="collapse navbar-collapse justify-content-end corBtnNav" id="navbarCollapse">
                         <ul class="navbar-nav">
-                            <li class="nav-item dropdown">
-                                <a class="dropdown-toggle navbar-brand " href="http://example.com"
+                            <li class="nav-item dropdown corBtnNav">
+                                <a class="dropdown-toggle navbar-brand corBtnNav" href="http://example.com"
                                     id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false" style="color: #42f56c">
+                                    aria-expanded="false" style="color: black">
                                     {{ Auth::user()->name }}
                                 </a>
-                                <div class="dropdown-menu cor-verde border border-white" style="background-color: black"
+                                <div class="dropdown-menu corBtnNav border border-dark"
                                     aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item cor-verde" style="background-color: black"
-                                        href="#">Configurações</a>
-                                    <a class="dropdown-item cor-verde" style="background-color: black" href="#">Another
+                                    <a class="dropdown-item  corBtnNav" href="#">Configurações</a>
+                                    <a class="dropdown-item  corBtnNav" href="#">Another
                                         action</a>
                                     <form action="{{ route('logout') }}" method="post">
                                         @csrf
-                                        <button class="dropdown-item cor-verde">Sair</button>
+                                        <button class="dropdown-item corBtnNav">Sair</button>
                                     </form>
                                 </div>
                             </li>
                         </ul>
                     </div>
-                </div>            
+                </div>
             @else
                 <a href="{{ route('login') }}"
-                    class="collapse navbar-collapse justify-content-end text-sm cor-verde underline nav-link  navbar-brand cor-verde"
-                    style="padding-right: 10px">Log in</a>
+                    class="collapse navbar-collapse justify-content-end  underline nav-link  cor-texto-site h5"
+                    style="padding-right: 10px;">Log in</a>
 
                 @if (Route::has('register'))
                     <a href="{{ route('register') }}"
-                        class=" text-sm cor-verde underline nav-link  navbar-brand cor-verde"
-                        style="padding-right: 10px">Register</a>
+                        class="text-lg underline  nav-link  cor-texto-site h5"
+                        style="padding-right: 10px">Registrar-se</a>
                 @endif
             @endauth
             </div>
@@ -101,6 +102,9 @@ $user_has_jogador = JogadorController::VerificaSeUsuarioTemJogador();
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
+    </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     </script>

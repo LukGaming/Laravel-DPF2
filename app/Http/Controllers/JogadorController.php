@@ -93,6 +93,11 @@ class JogadorController extends Controller
         $jogador = DB::table('jogadors')
             ->where('user_id', $id_jogador)
             ->first();
+
+
+        $config_pc_jogador = DB::table('config_pc_jogadors')
+            ->where('id_jogador', Auth::id())
+            ->first();
         if ($jogador) {
             $string = $jogador->descricao_perfil_jogador;
             $count_espacos = 0;
@@ -109,7 +114,7 @@ class JogadorController extends Controller
             $jogador->descricao_perfil_jogador = $nova_string;
         }
         if ($jogador) {
-            return view('jogador/show', ['jogador' => $jogador]); //Se existir um jogador
+            return view('jogador/show', ['jogador' => $jogador, 'config_pc_jogador'=>$config_pc_jogador]); //Se existir um jogador
         } else {
             $mensagem = "Este jogador não está cadastrado em nosso sistema";
             return view('jogador/show', ['jogador' => $jogador]);

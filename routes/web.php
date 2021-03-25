@@ -1,11 +1,14 @@
 <?php
 
-use App\Http\Controllers\ConfigPcJogadorController;
-use App\Http\Controllers\ImagemPcJogadorController;
-use App\Http\Controllers\ImagePerifilJogadorController;
-use App\Http\Controllers\JogadorController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{
+    configCsJogadorController,
+    ConfigPcJogadorController,
+    ImagemPcJogadorController,
+    ImagePerifilJogadorController,
+    JogadorController
+};
 
+use Illuminate\Support\Facades\Route;
 
 
 /*
@@ -27,9 +30,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
-Route::resource('jogador', JogadorController::class);//->middleware('auth');
+Route::resource('jogador', JogadorController::class); //->middleware('auth');
 Route::any('editar-jogador', [JogadorController::class, 'editar'])->name('jogador.editar')->middleware('auth');
 Route::any('VerificaSeUsuarioTemJogador', [JogadorController::class, 'VerificaSeUsuarioTemJogador'])->name('jogador.VerificaSeUsuarioTemJogador')->middleware('auth');
 Route::any('removerImagem', [ImagePerifilJogadorController::class, 'removerImagem'])->name('ImagePerifilJogadorController.removerImagem')->middleware('auth');
@@ -39,3 +42,5 @@ Route::resource('configpcjogador', ConfigPcJogadorController::class);
 Route::any('removerImagempcjogador', [ImagemPcJogadorController::class, 'removerImagem'])->name('ImagemPcJogadorController.removerImagem')->middleware('auth');
 Route::any('editarImagempcjogador', [ImagemPcJogadorController::class, 'editarImagem'])->name('ImagemPcJogadorController.editarImagem')->middleware('auth');
 Route::any('adicionandoImagempcjogador', [ImagemPcJogadorController::class, 'adicionandoImagem'])->name('ImagemPcJogadorController.adicionandoImagem')->middleware('auth');
+Route::any('configcsjogador/create', [configCsJogadorController::class, 'create'])->name('configcsjogador.create')->middleware('auth');
+Route::any('configcsjogador/store', [configCsJogadorController::class, 'store'])->name('configcsjogador.store')->middleware('auth');
