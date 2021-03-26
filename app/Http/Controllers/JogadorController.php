@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ImagePerifilJogadorController;
 use App\Http\Controllers\ConfigPcJogadorController;
-
+use App\Models\configCsJogador;
 
 class JogadorController extends Controller
 {
@@ -90,14 +90,18 @@ class JogadorController extends Controller
      */
     public function show($id_jogador) //Não é obrigatório estar logado para acessar essa rota!!!!
     {
-        $jogador = DB::table('jogadors')
+        $jogador = DB::table('jogadors') //Buscando dados do jogador
             ->where('user_id', $id_jogador)
             ->first();
 
-
-        $config_pc_jogador = DB::table('config_pc_jogadors')
-            ->where('id_jogador', Auth::id())
+        $config_pc_jogador = DB::table('config_pc_jogadors') //Buscando dados do computador do jogador
+            ->where('id_jogador', $id_jogador)
             ->first();
+
+        $config_cs_jogador = DB::table('config_cs_jogadors') //Buscando dados do computador do jogador
+            ->where('id_jogador', $id_jogador)
+            ->first();
+        // dd($config_pc_jogador);
         if ($jogador) {
             $string = $jogador->descricao_perfil_jogador;
             $count_espacos = 0;
@@ -114,7 +118,7 @@ class JogadorController extends Controller
             $jogador->descricao_perfil_jogador = $nova_string;
         }
         if ($jogador) {
-            return view('jogador/show', ['jogador' => $jogador, 'config_pc_jogador'=>$config_pc_jogador]); //Se existir um jogador
+            return view('jogador/show', ['jogador' => $jogador, 'config_pc_jogador' => $config_pc_jogador, 'config_cs_jogador' => $config_cs_jogador]); //Se existir um jogador
         } else {
             $mensagem = "Este jogador não está cadastrado em nosso sistema";
             return view('jogador/show', ['jogador' => $jogador]);
@@ -129,17 +133,19 @@ class JogadorController extends Controller
     public function edit($id_jogador)
     {
         if ($id_jogador == Auth::id()) {
-            $config_pc_jogador = DB::table('config_pc_jogadors')
-                ->where('id_jogador', Auth::id())
-                ->first();
-
 
 
             $jogador = DB::table('jogadors')
                 ->where('user_id', Auth::id())
                 ->first();
             if ($jogador) {
-                return view('jogador/edit', ['jogador' => $jogador, 'config_pc_jogador' => $config_pc_jogador]);
+                $config_pc_jogador = DB::table('config_pc_jogadors')
+                    ->where('id_jogador', Auth::id())
+                    ->first();
+                $config_cs_jogador = DB::table('config_cs_jogadors') //Buscando dados do computador do jogador
+                    ->where('id_jogador', $id_jogador)
+                    ->first();
+                return view('jogador/edit', ['jogador' => $jogador, 'config_pc_jogador' => $config_pc_jogador, 'config_cs_jogador' => $config_cs_jogador]);
             } else {
                 $mensagem = "Voce ainda não tem um perfil de jogador para ser editado, crie um aqui";
                 return redirect('jogador/create')->with('mensagem', $mensagem);
@@ -189,8 +195,10 @@ class JogadorController extends Controller
     public function destroy($id_jogador)
     {
         if ($id_jogador == Auth::id()) {
+            configCsJogador::where('id_jogador', $id_jogador)->delete();
             ConfigPcJogador::where('id_jogador', $id_jogador)->delete(); //Primeiro eu removo a configuração
             Jogador::where('user_id', $id_jogador)->delete(); //Depois eu removo o perfil
+            
 
             $mensagem = "Perfil de jogador excluido com sucesso!";
             return redirect('/jogador')->with('mensagem', $mensagem);

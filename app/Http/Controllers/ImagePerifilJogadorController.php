@@ -36,7 +36,6 @@ class ImagePerifilJogadorController extends Controller
     public function editarImagem(Request $request)
     {
         if ($request->image) {
-            $this->removerFoto(); //Removendo Foto antiga
             $upload = $request->image->store('images/jogador');
             $request->image->move(public_path('images/jogador'), $upload);
             //Mudando no banco de dados o caminho da imagem
@@ -54,7 +53,6 @@ class ImagePerifilJogadorController extends Controller
     public function adicionandoImagem(Request $request)
     {
         if ($request->image) {
-            //$this->removerFoto();//Removendo Foto antiga
             $upload = $request->image->store('images/jogador');
             $request->image->move(public_path('images/jogador'), $upload);
             //Mudando no banco de dados o caminho da imagem

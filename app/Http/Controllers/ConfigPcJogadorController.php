@@ -32,8 +32,8 @@ class ConfigPcJogadorController extends Controller
     {
         $congfiguração_computador = DB::table('config_pc_jogadors')
             ->where('id_jogador', Auth::id())
-            ->first();//buscando se o jogador já cadastrou algum computador
-        if ($congfiguração_computador) {//Se tiver cadastrado, mostrar a pagina de show jogador
+            ->first(); //buscando se o jogador já cadastrou algum computador
+        if ($congfiguração_computador) { //Se tiver cadastrado, mostrar a pagina de show jogador
             $mensagem = "Voce já tem uma configuração de computador cadastrada!";
             return redirect('jogador/' . Auth::id())->with('mensagem', $mensagem);
         }
@@ -48,19 +48,18 @@ class ConfigPcJogadorController extends Controller
      */
     public function store(validateConfigPcUsuario $request)
     {
-        if(count($request->files) > 0){
+        if (count($request->files) > 0) {
             $cria_imagem = new ImagemPcJogadorController();
             $upload = $cria_imagem->salvandoImagem($request->imagem_pc_jogador);
             $request["caminho_imagem_pc_jogador"] = $upload;
-        }
-        else{
+        } else {
             $request["caminho_imagem_pc_jogador"] = null; //Se nao tiver imagem
         }
 
         $request['id_jogador'] = Auth::id(); //Colocando id do jogador        
         ConfigPcJogador::create($request->all());
-        $mensagem = "Configuração  de Computador Salva com sucesso!"; //Mudar mensagem
-        return redirect("configpcjogador/create")->with('mensagem',  $mensagem); //Redirecionar para a página de criar configuração de cs
+        $mensagem = "Salvo! Agora adiciona a configuração de jogo!"; //Mudar mensagem
+        return redirect("configcsjogador/create")->with('mensagem',  $mensagem); //Redirecionar para a página de criar configuração de cs
 
     }
 
@@ -72,7 +71,7 @@ class ConfigPcJogadorController extends Controller
      */
     public function show($configPcJogador)
     {
-        return redirect('jogador/'.$configPcJogador);
+        return redirect('jogador/' . $configPcJogador);
     }
 
     /**
@@ -83,7 +82,7 @@ class ConfigPcJogadorController extends Controller
      */
     public function edit(ConfigPcJogador $configPcJogador)
     {
-        return redirect('jogador/'.Auth::id().'/edit');
+        return redirect('jogador/' . Auth::id() . '/edit');
     }
 
     /**
@@ -102,7 +101,7 @@ class ConfigPcJogadorController extends Controller
             "mousepad"      => $request->mousepad,
             "processador"   => $request->processador,
             "placa_mae"     => $request->placa_mae,
-            "placa_de_video"=> $request->placa_de_video,
+            "placa_de_video" => $request->placa_de_video,
             "memoria_ram"   => $request->memoria_ram,
             "fonte"         => $request->fonte,
             "gabinete"      => $request->gabinete,

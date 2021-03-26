@@ -3,6 +3,7 @@
 @section('titulo', 'Home')
 
 @section('conteudo')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -42,12 +43,16 @@
             <option value="1">Sim</option>
         </select><br>
         <br>
+        <span class="badge badge-primary bg-danger" style="padding: 10px; margin: 10px" id="spanCfg"></span>
+        <br>
         <label for="cfg">Fazer Upload de Cfg</label><br>
-        <input type="file" name="cfg">
+        <input type="file" name="cfg" id="cfg">
+
         <div class="d-flex justify-content-center">
-        <button type="submit" class="btn btn-primary" id="btnCriar">Cadastrar dados de computador</button>
+        <button type="submit" class="btn btn-primary" id="btnSalvar">Cadastrar configuração de jogo</button>
     </div>
         </div>
     </form>
     <br><br><br>
+    <script src="{{ asset('js/valida_extensao_imagem.js') }}"></script>
 @endsection

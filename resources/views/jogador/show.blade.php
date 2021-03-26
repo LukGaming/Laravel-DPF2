@@ -18,12 +18,12 @@
                         <div class="d-flex justify-content-start w-30 " style="padding: 15px">
 
                             <pre style="margin-right: 200">
-                                                                                                                <p class="h5 cor-texto-site">Descricao: <br>
-                                                                                                                        <div class="descricao_jogador w-30 cor-texto-site"> {{ $jogador->descricao_perfil_jogador }}</div>
-                                                                                                                            </pre>
+                                                                                                                        <p class="h5 cor-texto-site">Descricao: <br>
+                                                                                                                                <div class="descricao_jogador w-30 cor-texto-site"> {{ $jogador->descricao_perfil_jogador }}</div>
+                                                                                                                                    </pre>
                             </p>
                             <div class="w-30 justify-content-end ">
-                                <img src="{{ URL::asset($jogador->caminho_imagem_perfil_jogador) }}"
+                                <img src="{{ URL::asset($jogador->caminho_imagem_perfil_jogador) }}" class="w-75"
                                     class="border border-dark rounded">
                             </div>
                         </div>
@@ -144,6 +144,41 @@
                 </div>
             </div>
         </div>
+
+        <div class="accordion accordion-flush cor-texto-site border border-dark rounded" id="accordionFlushExample2">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne2">
+                    <button class="accordion-button collapsed cor-texto-site" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseOne2" aria-expanded="false" aria-controls="flush-collapseOne2">
+                        Configuração de jogo do jogador
+                    </button>
+                </h2>
+                <div id="flush-collapseOne2" class="accordion-collapse collapse" aria-labelledby="flush-headingOne2"
+                    data-bs-parent="#accordionFlushExample2">
+                    <div class="accordion-body">
+                        @if ($config_cs_jogador)
+                            <h5 class="cor-texto-site border border-dark rounded" style="padding: 5px">Resolução :
+                                {{ $config_cs_jogador->resolucao }} </h5>
+                            <h5 class="cor-texto-site border border-dark rounded" style="padding: 5px">Sensibilidade :
+                                {{ $config_cs_jogador->sensibilidade }} </h5>
+                            <h5 class="cor-texto-site border border-dark rounded" style="padding: 5px">Crosshair/Mira :
+                                {{ $config_cs_jogador->crosshair }} </h5>
+                            <h5 class="cor-texto-site border border-dark rounded" style="padding: 5px">Viewmodel :
+                                {{ $config_cs_jogador->viewmodel }} </h5>
+                                @if($config_cs_jogador->caminho_cfg)
+                                <form action="{{ route('configcsjogadorController.downloadcfg', $config_cs_jogador->id_jogador) }}" method="POST">
+                                    @csrf
+                                    <button class="btn btn-primary" type="submit">Baixar Cfg</button>
+                                </form>
+                                @endif
+                            
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <br><br>
         </div>
     @else

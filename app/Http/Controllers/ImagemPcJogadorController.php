@@ -42,6 +42,7 @@ class ImagemPcJogadorController extends Controller
     }
     public function editarImagem(Request $request)
     {
+        //dd($request->image);
         if ($request->image) {
             //Remover Imagem Antiga
             $jogador = DB::table('config_pc_jogadors')

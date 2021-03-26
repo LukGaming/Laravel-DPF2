@@ -27,7 +27,7 @@ class validateconfigcs extends FormRequest
             "resolucao" => 'nullable|max:20',
             "sensibilidade" => 'nullable|max:5',
             "crosshair" => 'nullable|max:500',
-            "viewmodel" => 'nullable|max:500',
+            "viewmodel" => 'nullable|max:500',   
         ];
     }
 }
