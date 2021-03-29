@@ -5,7 +5,9 @@ use App\Http\Controllers\{
     ConfigPcJogadorController,
     ImagemPcJogadorController,
     ImagePerifilJogadorController,
-    JogadorController
+    JogadorController,
+    TimeController,
+    nomeTimes
 };
 
 use Illuminate\Support\Facades\Route;
@@ -61,7 +63,11 @@ Route::any('adicionarcfgjogador', [configCsJogadorController::class, 'adicionarc
 Route::any('downloadcfg/{id_jogador}', [configCsJogadorController::class, 'downloadcfg'])->name('configcsjogadorController.downloadcfg')->middleware('auth');
 
 
+/* Rotas para Times */
+Route::resource('time', TimeController::class);
 
+
+Route::any('nometimes', [nomeTimes::class, 'retrieve_team_names']);
 
 
 

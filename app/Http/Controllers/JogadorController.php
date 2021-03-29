@@ -198,7 +198,6 @@ class JogadorController extends Controller
             configCsJogador::where('id_jogador', $id_jogador)->delete();
             ConfigPcJogador::where('id_jogador', $id_jogador)->delete(); //Primeiro eu removo a configuração
             Jogador::where('user_id', $id_jogador)->delete(); //Depois eu removo o perfil
-            
 
             $mensagem = "Perfil de jogador excluido com sucesso!";
             return redirect('/jogador')->with('mensagem', $mensagem);

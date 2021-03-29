@@ -568,27 +568,6 @@
     </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <div class="d-flex justify-content-end">
         <form action="{{ route('jogador.destroy', $jogador->user_id) }}" method="post">
             @csrf

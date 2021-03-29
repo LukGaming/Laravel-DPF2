@@ -18,9 +18,9 @@
                         <div class="d-flex justify-content-start w-30 " style="padding: 15px">
 
                             <pre style="margin-right: 200">
-                                                                                                                        <p class="h5 cor-texto-site">Descricao: <br>
-                                                                                                                                <div class="descricao_jogador w-30 cor-texto-site"> {{ $jogador->descricao_perfil_jogador }}</div>
-                                                                                                                                    </pre>
+                                                                                                                            <p class="h5 cor-texto-site">Descricao: <br>
+                                                                                                                                    <div class="descricao_jogador w-30 cor-texto-site"> {{ $jogador->descricao_perfil_jogador }}</div>
+                                                                                                                                        </pre>
                             </p>
                             <div class="w-30 justify-content-end ">
                                 <img src="{{ URL::asset($jogador->caminho_imagem_perfil_jogador) }}" class="w-75"
@@ -165,20 +165,20 @@
                                 {{ $config_cs_jogador->crosshair }} </h5>
                             <h5 class="cor-texto-site border border-dark rounded" style="padding: 5px">Viewmodel :
                                 {{ $config_cs_jogador->viewmodel }} </h5>
-                                @if($config_cs_jogador->caminho_cfg)
-                                <form action="{{ route('configcsjogadorController.downloadcfg', $config_cs_jogador->id_jogador) }}" method="POST">
+                            @if ($config_cs_jogador->caminho_cfg)
+                                <form
+                                    action="{{ route('configcsjogadorController.downloadcfg', $config_cs_jogador->id_jogador) }}"
+                                    method="POST">
                                     @csrf
                                     <button class="btn btn-primary" type="submit">Baixar Cfg</button>
                                 </form>
-                                @endif
-                            
+                            @endif
+
                         @endif
                     </div>
                 </div>
             </div>
         </div>
-
-
         <br><br>
         </div>
     @else
