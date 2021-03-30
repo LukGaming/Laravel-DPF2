@@ -12,10 +12,14 @@ function validando_nomes_enquanto_digita() {
             if ($count > 0) {
                 $(".nome_igual").html("Já existe um time com este nome!");
                 $(".nome_igual").addClass("btn btn-danger")
+                $("#btnCriarTime").prop( "disabled", true );
+                $("#btnCriarTime").hide();
             }
             else {
                 $(".nome_igual").html("");
-                $(".nome_igual").removeClass("btn btn-danger")
+                $(".nome_igual").removeClass("btn btn-danger");
+                $("#btnCriarTime").prop( "disabled", false );
+                $("#btnCriarTime").show();
             }
         }
     });
