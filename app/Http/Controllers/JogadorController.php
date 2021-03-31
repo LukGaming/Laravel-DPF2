@@ -16,6 +16,10 @@ use App\Models\configCsJogador;
 
 class JogadorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('show');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -102,7 +106,7 @@ class JogadorController extends Controller
             ->where('id_jogador', $id_jogador)
             ->first();
         // dd($config_pc_jogador);
-        if ($jogador) {
+        /*if ($jogador) {
             $string = $jogador->descricao_perfil_jogador;
             $count_espacos = 0;
             $texto_array = explode(" ", $string);
@@ -116,7 +120,7 @@ class JogadorController extends Controller
             $nova_string = implode("+", $texto_array);
             $nova_string = str_replace("+", " ", $nova_string);
             $jogador->descricao_perfil_jogador = $nova_string;
-        }
+        }*/
         if ($jogador) {
             return view('jogador/show', ['jogador' => $jogador, 'config_pc_jogador' => $config_pc_jogador, 'config_cs_jogador' => $config_cs_jogador]); //Se existir um jogador
         } else {

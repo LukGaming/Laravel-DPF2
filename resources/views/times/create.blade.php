@@ -111,7 +111,7 @@
         </div>
         <br>
         <label for="imagem_time" class="h5">Selecione uma imagem de seu time</label><br>
-        <input type="file" id="imagem_imagem_timer" name="imagem_imagem_time">
+        <input type="file" id="imagem_time" name="imagem_time" >
         <div class="d-flex justify-content-center">
             <button type="submit" class="btn btn-primary" id="btnCriarTime">Criar Perfil de
                 Jogador</button>

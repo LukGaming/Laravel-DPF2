@@ -18,14 +18,12 @@
                         <div class="d-flex justify-content-start w-30 " style="padding: 15px">
 
                             <pre style="margin-right: 200">
-                                {{$time->descricao}}                                                                                                    <p class="h5 cor-texto-site">Descricao: <br>
-                                                                                                                                                        <div class="descricao_jogador w-30 cor-texto-site"> {{ $time->descricao_perfil_jogador }}</div>
-                                                                                                                                                            </pre>
-                            
-                            @if ($time->caminho_imagem_perfil_time)
+                                {{$time->descricao}} 
+                            </pre>
+                            @if ($time->caminho_imagem_time)
                                 <div class="w-30 justify-content-end ">
-                                    <img src="{{ URL::asset($time->caminho_imagem_perfil_time) }}" class="w-75"
-                                        class="border border-dark rounded">
+                                    <img src="{{ URL::asset($time->caminho_imagem_time) }}" class="w-75"
+                                        class="border border-dark rounded" style="border-radius: 50%">
                                 </div>
                             @endif
                         </div>

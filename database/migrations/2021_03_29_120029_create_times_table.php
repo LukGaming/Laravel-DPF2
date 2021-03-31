@@ -27,6 +27,7 @@ class CreateTimesTable extends Migration
             $table->string("steam")->nullable();
             $table->string("twitch")->nullable();
             $table->string("twitter")->nullable();
+            $table->string("caminho_imagem_time")->nullable();
             $table->string("email")->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

@@ -7,7 +7,8 @@ use App\Http\Controllers\{
     ImagePerifilJogadorController,
     JogadorController,
     TimeController,
-    nomeTimes
+    nomeTimes,
+    ImagemTimeController
 };
 
 use Illuminate\Support\Facades\Route;
@@ -65,15 +66,12 @@ Route::any('downloadcfg/{id_jogador}', [configCsJogadorController::class, 'downl
 
 /* Rotas para Times */
 Route::resource('time', TimeController::class);
+/*Rotas para editar Imagem do time*/
+Route::any('editarImagem/{id_time}', [ImagemTimeController::class, 'editarImagem'])->name('imagemtimecontroller.editarimagem');
+Route::any('removerImagem/{id_time}', [ImagemTimeController::class, 'removerImagem'])->name('imagemtimecontroller.removerImagem');
+Route::any('adicionaImagemonEdit/{id_time}', [ImagemTimeController::class, 'adicionaImagemonEdit'])->name('imagemtimecontroller.adicionaImagemonEdit');
 
 
+
+/*Api para procurar os nomes de times já existentes*/
 Route::any('nometimes', [nomeTimes::class, 'retrieve_team_names']);
-
-
-
-
-
-
-
-
-

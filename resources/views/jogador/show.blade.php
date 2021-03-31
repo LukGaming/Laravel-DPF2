@@ -9,35 +9,36 @@
         <div class="w-100 cor-texto-site border border-dark rounded " style="padding-bottom: 30px; margin-top: 40px ;">
             <h1 class="d-flex justify-content-center cor-texto-site" style="padding-bottom: 20px">
                 {{ $jogador->nick_jogador }}</h1>
-            <div class="container-fluid ">
-                <div class="">
-                    <div>
-                        <p class="h5 cor-texto-site">Frase de Perfil:
-                            <br>{{ $jogador->frase_perfil }}
-                        </p>
-                        <div class="d-flex justify-content-start w-30 " style="padding: 15px">
+                <div class="border-top border-dark"></div>
+            <div class=" ">
 
-                            <pre style="margin-right: 200">
-                                                                                                                            <p class="h5 cor-texto-site">Descricao: <br>
-                                                                                                                                    <div class="descricao_jogador w-30 cor-texto-site"> {{ $jogador->descricao_perfil_jogador }}</div>
-                                                                                                                                        </pre>
-                            </p>
-                            <div class="w-30 justify-content-end ">
-                                <img src="{{ URL::asset($jogador->caminho_imagem_perfil_jogador) }}" class="w-75"
-                                    class="border border-dark rounded">
-                            </div>
-                        </div>
-                    </div>
+
+                <p class="h5 cor-texto-site" style="margin: 10px">Frase de Perfil:
+                    {{ $jogador->frase_perfil }}
+                </p>
+                <div class="border-top border-dark"></div>
+                <div class="w-100">
+                    <p class="h5 cor-texto-site"  style="margin: 10px">Descricao: </p><br>
+                    <pre  style="margin: 10px">
+                                              {{ $jogador->descricao_perfil_jogador }}
+                                    </pre>
                 </div>
-                <div class="col">
+                <div class="border-top border-dark"></div>
+
+                <div class="d-flex justify-content-center ">
+                    <img src="{{ URL::asset($jogador->caminho_imagem_perfil_jogador) }}" class="w-25"
+                         style="border-radius: 50%  ; border: solid black; margin: 10px">
+                </div>
+                <div class="border-top border-dark"></div>
+                <div class="col" style="margin: 10px">
                     <p class="h5 cor-texto-site">Funcao Primária: {{ $jogador->funcao_primaria }}</p>
                     <p class="h5 cor-texto-site">Funcao Secundária: {{ $jogador->funcao_secundaria }}</p>
                     <p class="h5 cor-texto-site">Funcao Adicional: {{ $jogador->funcao_adicional }}</p>
-                    <p class="h5 cor-texto-site">Jogador Ativo:
+                    <p class="h5 cor-texto-site cor-texto-site" >Jogador Ativo:
                         @if ($jogador->ativo == 0)
-                            <div class="cor-texto-site"> Não</div>
+                            Não
                         @else
-                            <div class="cor-texto-site"> Sim</div>
+                            Sim
                         @endif
                     </p>
                 </div>

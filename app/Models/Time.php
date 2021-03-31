@@ -24,6 +24,7 @@ class Time extends Model
         "twitter",
         "twitch",
         "email",
+        "caminho_imagem_time",
         "user_id"
     ];
 }
