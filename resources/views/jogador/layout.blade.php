@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <title>@yield('titulo') - Jogador</title>
     <style>
@@ -28,13 +28,14 @@ $user_has_jogador = JogadorController::VerificaSeUsuarioTemJogador();
 @endphp
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark border border-dark corBtnNav">
-        <a class="navbar-brand " href="{{ route('jogador.index') }}" style="padding-left: 10px;color: black;">Home</a>
-        <button class="navbar-toggler corBtnNav" type="button" data-toggle="collapse" data-target="#navbarNav">
-            <span class="navbar-toggler-icon corBtnNav"></span>
-        </button>
-        @if (Route::has('login'))
-            @auth
+    @if (Route::has('login'))
+        @auth
+            <nav class="navbar navbar-expand-md navbar-dark border border-dark corBtnNav">
+                <a class="navbar-brand " href="{{ route('jogador.index') }}"
+                    style="padding-left: 10px;color: black;">Home</a>
+                <button class="navbar-toggler corBtnNav" type="button" data-toggle="collapse" data-target="#navbarNav">
+                    <span class="navbar-toggler-icon corBtnNav" style="color: black; background-color: black;"></span>
+                </button>
                 <div class="collapse navbar-collapse corBtnNav" id="navbarNav">
                     <ul class="navbar-nav mr-auto">
                         @if (Auth::user())
@@ -42,11 +43,11 @@ $user_has_jogador = JogadorController::VerificaSeUsuarioTemJogador();
                                 <a class="dropdown-item corBtnNav" href="{{ '/jogador/' . Auth::id() }}">Seu Perfil de
                                     jogador</a>
                             @else
-                                <a class="dropdown-item corBtnNav" 
-                                    href="{{ route('jogador.create') }}">
+                                <a class="dropdown-item corBtnNav" href="{{ route('jogador.create') }}">
                                     Criar um Perfil de jogador</a>
                             @endif
                         @endif
+
                     </ul>
                     <div class="collapse navbar-collapse justify-content-end corBtnNav" id="navbarCollapse">
                         <ul class="navbar-nav">
@@ -71,18 +72,15 @@ $user_has_jogador = JogadorController::VerificaSeUsuarioTemJogador();
                     </div>
                 </div>
             @else
-                <a href="{{ route('login') }}"
-                    class="collapse navbar-collapse justify-content-end  underline nav-link  cor-texto-site h5"
-                    style="padding-right: 10px;">Log in</a>
 
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}"
-                        class="text-lg underline  nav-link  cor-texto-site h5"
-                        style="padding-right: 10px">Registrar-se</a>
-                @endif
-            @endauth
-            </div>
-        @endif
+
+
+
+            
+                @endauth
+
+
+    @endif
     </nav>
 
 

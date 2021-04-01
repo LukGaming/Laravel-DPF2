@@ -72,6 +72,9 @@ Route::any('removerImagem/{id_time}', [ImagemTimeController::class, 'removerImag
 Route::any('adicionaImagemonEdit/{id_time}', [ImagemTimeController::class, 'adicionaImagemonEdit'])->name('imagemtimecontroller.adicionaImagemonEdit');
 
 
+/*Rota para procurar um time pelo nome*/
+Route::any("searchtime", [TimeController::class, "searchtime"])->name("time.searchtime");
+
 
 /*Api para procurar os nomes de times já existentes*/
 Route::any('nometimes', [nomeTimes::class, 'retrieve_team_names']);

@@ -7,6 +7,11 @@ use App\Models\Time;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ImagemTimeController;
+use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Support\Facades\DB;
+
+
+
 
 class TimeController extends Controller
 {
@@ -17,10 +22,12 @@ class TimeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('show');
+        $this->middleware('auth')->except('show', 'index');
     }
     public function index()
     {
+        $times = Time::paginate(12);
+        return view('times/index', ['times'=>$times]);
     }
 
     /**
@@ -134,7 +141,7 @@ class TimeController extends Controller
         //Verificando se este usuário é administrador para poder editar o time
         //A primeira verificação é se foi ele que criou o time
         if($time->user_id == Auth::id()){
-            return view('times/edit',['time'=>$time]);
+            return view('times/edit',['time'=>$time, 'admin'=>2]);
         }
         //Verificar se este usuário é administrador deste time quando for feito os participantes do time
     }
@@ -161,6 +168,21 @@ class TimeController extends Controller
      */
     public function destroy(Time $time)
     {
-        //
+        //Primeiramente remover relacionamentos com demais jogadores
+
+        //Removendo time
+        $time->delete();
+        $mensagem = "Time excluido com sucesso!";
+        return redirect('/')->with('mensagem', $mensagem);
+    }
+    public function searchtime(Request $request){
+        if($request->nometime == "" || $request->nometime == null){
+            $mensagem = "Preencha o campo para procurar por um time!";
+            return redirect('time')->with('mensagem', $mensagem);
+        }
+        else{
+            $times = DB::table('times')->where('nome','like', '%'.$request->nometime.'%')->paginate(12);
+            return view('times/index', ['times'=>$times]);
+        }
     }
 }
