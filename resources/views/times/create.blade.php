@@ -48,7 +48,7 @@
                 value="{{ old('nome') }}@if (session('ultimo_request_nome')) {{ session('ultimo_request_nome') }} @endif">
         </div>
 
-        <span class="nome_igual"></span>
+        <span class="nome_igual">aaaaaaaaaaaa</span>
         <div class="form-group">
             <label for="frase">Frase de Perfil</label>
             <input type="text" class="form-control inputfieldsofsite inputfieldsofsite" id="frase"
