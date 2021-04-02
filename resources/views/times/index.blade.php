@@ -12,6 +12,15 @@
 
             background-color: #61C44B;
         }
+        .inputfieldsofsite{
+            box-shadow: 0 0 0 0.2rem rgba(95, 90, 230,1);
+            border: none;
+            border-radius: 5px;
+        }
+        .inputfieldsofsite:focus{
+            border: none;
+            outline: none;
+        }
 
     </style>
 
@@ -20,10 +29,12 @@
         <form action="{{route('time.searchtime')}}" method="post">
             @csrf
             <div class="row" style="padding-left: 10px">
-            <label for="buscarTime" style="padding-left: 10px">Buscar Times</label>
-            <input type="text" class="col-8" id="exampleInputEmail1" aria-describedby="emailHelp"
-                placeholder="Digite o nome do time" name="nometime" id="buscarTime" style="padding: 5px; margin: 10px" >
-            <input type="submit" value="Buscar" class="col-1 btn btn-primary" style="margin: 10px">
+            <label for="nometime" style="padding-left: 10px">Buscar Times</label>
+            <input type="text" class="col-7 inputfieldsofsite" id="nometime" aria-describedby="emailHelp"
+                placeholder="Digite o nome do time" name="nometime"  style="padding: 5px; margin: 10px" >
+                <div class="col-4">
+            <input type="submit" value="Buscar" class=" btn btn-primary" style="margin: 10px">
+        </div>
         </div>
         </form>
         <div class="row ">

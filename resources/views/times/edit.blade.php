@@ -3,6 +3,32 @@
 @section('titulo', 'Time')
 
 @section('conteudo')
+<style>
+    .inputfieldsofsite {
+        box-shadow: 0 0 0 0.2rem rgba(95, 90, 230, 1);
+        border: none;
+        border-radius: 5px;
+        margin: 5px;
+    }
+
+    .inputfieldsofsite:focus {
+        border: none;
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgb(236, 5, 5);
+    }
+
+    label {
+        font-size: 20px
+    }
+    .border-azul-site{
+        border: 5px solid rgba(95, 90, 230, 1);
+    }
+    .inputfieldsofsite:focus-within::before  {
+       background-color: blue;
+    }
+    
+
+</style>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -17,91 +43,91 @@
         <h1>Cadastrando Time</h1>
 
     </div>
-    <div class="border border-dark rounded " style="padding: 10px">
+    <div class="" style="padding: 10px">
         <form method="POST" action="{{ route('time.update', $time->id) }}" enctype="multipart/form-data">
             @csrf
             @method("PATCH")
             <div class="form-group" style="margin-bottom: 10px">
                 <label for="nome">Nome do time </label>
-                <input type="text" class="form-control" id="nome" placeholder="Nome para seu time" name="nome"
+                <input type="text" class="form-control inputfieldsofsite" id="nome" placeholder="Nome para seu time" name="nome"
                     value="{{ $time->nome }}">
             </div>
 
             <span class="nome_igual"></span>
             <div class="form-group">
                 <label for="frase">Frase de Perfil</label>
-                <input type="text" class="form-control" id="frase"
+                <input type="text" class="form-control inputfieldsofsite" id="frase"
                     placeholder="Uma Frase de perfil que exibirá quando verem o Perfil do time (Opcional)" name="frase"
                     value="{{ $time->frase }}">
             </div>
             <div class="form-group">
                 <label for="descricao">Descrição do perfil do Time (Opcional)</label>
-                <textarea class="form-control" id="descricao" rows="3" name="descricao">{{ $time->descricao }}</textarea>
+                <textarea class="form-control inputfieldsofsite" id="descricao" rows="3" name="descricao">{{ $time->descricao }}</textarea>
             </div>
             <label for="basic-url">Facebook</label>
             <div class="input-group mb-3">
-                <div class="input-group-prepend">
+                <div class="input-group-prepend inputfieldsofsite">
                     <span class="input-group-text" id="basic-addon3">facebook.com/</span>
                 </div>
-                <input type="text" class="form-control" id="facebook" placeholder="Link do facebook do seu time (Opcional)"
+                <input type="text" class="form-control inputfieldsofsite" id="facebook" placeholder="Link do facebook do seu time (Opcional)"
                     name="facebook" value="{{ $time->facebook }}">
             </div>
             <label for="basic-url">Instagram</label>
             <div class="input-group mb-3">
-                <div class="input-group-prepend">
+                <div class="input-group-prepend inputfieldsofsite">
                     <span class="input-group-text" id="basic-addon3">instagram.com/</span>
                 </div>
-                <input type="text" class="form-control" id="instagram" placeholder="Link  do Instagram seu time  (Opcional)"
+                <input type="text" class="form-control inputfieldsofsite" id="instagram" placeholder="Link  do Instagram seu time  (Opcional)"
                     name="instagram" value="{{ $time->instagram }}">
             </div>
             <label for="basic-url">Gamersclub</label>
             <div class="input-group mb-3">
-                <div class="input-group-prepend">
+                <div class="input-group-prepend inputfieldsofsite">
                     <span class="input-group-text" id="basic-addon3">gamersclub.com.br/time/</span>
                 </div>
-                <input type="text" class="form-control" id="gamersclub"
+                <input type="text" class="form-control inputfieldsofsite" id="gamersclub"
                     placeholder="Link  do seu time na gamersclub (Opcional)" name="gamersclub"
                     value="{{ $time->gamersclub }}">
             </div>
 
             <label for="basic-url">Faceit</label>
             <div class="input-group mb-3">
-                <div class="input-group-prepend">
+                <div class="input-group-prepend inputfieldsofsite">
                     <span class="input-group-text" id="basic-addon3">faceit.com/en/players/</span>
                 </div>
-                <input type="text" class="form-control" id="faceit"
+                <input type="text" class="form-control inputfieldsofsite" id="faceit"
                     placeholder="Link do perfil  do seu time na faceit (Opcional)" name="faceit"
                     value="{{ $time->faceit }}">
             </div>
 
             <label for="basic-url">Twitter</label>
             <div class="input-group mb-3">
-                <div class="input-group-prepend">
+                <div class="input-group-prepend inputfieldsofsite">
                     <span class="input-group-text" id="basic-addon3">twitter.com/</span>
                 </div>
-                <input type="text" class="form-control" id="twitter" placeholder="Link do Twitter do seu time (Opcional)"
+                <input type="text" class="form-control inputfieldsofsite" id="twitter" placeholder="Link do Twitter do seu time (Opcional)"
                     name="twitter" value="{{ $time->twitter }}">
             </div>
 
             <label for="basic-url">Steam</label>
             <div class="input-group mb-3">
-                <div class="input-group-prepend">
+                <div class="input-group-prepend inputfieldsofsite">
                     <span class="input-group-text" id="basic-addon3">steamcommunity.com/id/</span>
                 </div>
-                <input type="text" class="form-control" id="steam" placeholder="Link da Steam do seu time (Opcional)"
+                <input type="text" class="form-control inputfieldsofsite" id="steam" placeholder="Link da Steam do seu time (Opcional)"
                     name="steam" value="{{ $time->steam }}">
             </div>
             <label for="basic-url">Twitch</label>
             <div class="input-group mb-3">
-                <div class="input-group-prepend">
+                <div class="input-group-prepend inputfieldsofsite">
                     <span class="input-group-text" id="basic-addon3">twitch.tv/</span>
                 </div>
-                <input type="text" class="form-control" id="twitch" placeholder="Link da twitch do seu time (Opcional)"
+                <input type="text" class="form-control inputfieldsofsite" id="twitch" placeholder="Link da twitch do seu time (Opcional)"
                     name="twitch" value="{{ $time->twitch }}">
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email"
+                <input type="email" class="form-control inputfieldsofsite" id="email"
                     placeholder="Email para que outros usuários possam ver e entrarem em contato. (Opcional)" name="email"
                     value="{{ $time->email }}">
             </div>
@@ -111,7 +137,7 @@
             </div>
         </form>
         <br><br>
-        <div class="border border-dark">
+        <div class="border-azul-site">
             <div class="d-flex justify-content-center">
                 <h3>Editando Imagem do time</h3>
             </div>
