@@ -73,10 +73,10 @@ Route::any('adicionaImagemonEdit/{id_time}', [ImagemTimeController::class, 'adic
 
 
 /*Rota para procurar um time pelo nome*/
-Route::any("searchtime", [TimeController::class, "searchtime"])->name("time.searchtime");
+Route::any("search/times", [TimeController::class, "searchtime"])->name("time.searchtime");
 
 
 /*Api para procurar os nomes de times já existentes*/
 Route::any('nometimes', [nomeTimes::class, 'retrieve_team_names']);
 
-Route::any('search/jogador', [JogadorController::class , 'search'])->name('searchJogador');
+Route::any('search/jogador', [JogadorController::class , 'search'])->name('search');

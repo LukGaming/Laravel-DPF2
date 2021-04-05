@@ -71,9 +71,9 @@
                 </div>
             @endif
         @else
-        <div class="alert alert-warning" role="alert" style="margin-top: 30px">
-            Nenhum Jogador Encontrado
-        </div>
+            <div class="alert alert-warning" role="alert" style="margin-top: 30px">
+                Nenhum Jogador Encontrado
+            </div>
         @endif
     @endif
 </div>

@@ -22,7 +22,7 @@ class TimeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('show', 'index');
+        $this->middleware('auth')->except('show', 'index','searchtime');
     }
     public function index()
     {
@@ -174,14 +174,8 @@ class TimeController extends Controller
         $mensagem = "Time excluido com sucesso!";
         return redirect('/')->with('mensagem', $mensagem);
     }
-    public function searchtime(Request $request)
+    public function searchtime()
     {
-        if ($request->nometime == "" || $request->nometime == null) {
-            $mensagem = "Preencha o campo para procurar por um time!";
-            return redirect('time')->with('mensagem', $mensagem);
-        } else {
-            $times = DB::table('times')->where('nome', 'like', '%' . $request->nometime . '%')->paginate(12);
-            return view('times/index', ['times' => $times]);
-        }
+       return view('times/search');
     }
 }
