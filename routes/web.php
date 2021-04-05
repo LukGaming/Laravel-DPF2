@@ -78,3 +78,5 @@ Route::any("searchtime", [TimeController::class, "searchtime"])->name("time.sear
 
 /*Api para procurar os nomes de times já existentes*/
 Route::any('nometimes', [nomeTimes::class, 'retrieve_team_names']);
+
+Route::any('search/jogador', [JogadorController::class , 'search'])->name('searchJogador');

@@ -27,7 +27,7 @@ class TimeController extends Controller
     public function index()
     {
         $times = Time::paginate(12);
-        return view('times/index', ['times'=>$times]);
+        return view('times/index', ['times' => $times]);
     }
 
     /**
@@ -60,8 +60,7 @@ class TimeController extends Controller
             // imagem poder salvar essa imagem
             $upload = (new ImagemTimeController())->adicionarImagem($request);
             $request['caminho_imagem_time'] = $upload;
-        }
-        else{
+        } else {
             $request['caminho_imagem_time'] = null;
         }
         /*Verificando se existe algum time com este nome*/
@@ -140,8 +139,8 @@ class TimeController extends Controller
     {
         //Verificando se este usuário é administrador para poder editar o time
         //A primeira verificação é se foi ele que criou o time
-        if($time->user_id == Auth::id()){
-            return view('times/edit',['time'=>$time, 'admin'=>2]);
+        if ($time->user_id == Auth::id()) {
+            return view('times/edit', ['time' => $time, 'admin' => 2]);
         }
         //Verificar se este usuário é administrador deste time quando for feito os participantes do time
     }
@@ -157,7 +156,7 @@ class TimeController extends Controller
     {
         $time->update($request->except(['user_id', 'caminho_imagem_time']));
         $mensagem = "Time editado com sucesso!";
-        return redirect('time/'.$time->id.'/edit')->with('mensagem', $mensagem);
+        return redirect('time/' . $time->id . '/edit')->with('mensagem', $mensagem);
     }
 
     /**
@@ -175,14 +174,14 @@ class TimeController extends Controller
         $mensagem = "Time excluido com sucesso!";
         return redirect('/')->with('mensagem', $mensagem);
     }
-    public function searchtime(Request $request){
-        if($request->nometime == "" || $request->nometime == null){
+    public function searchtime(Request $request)
+    {
+        if ($request->nometime == "" || $request->nometime == null) {
             $mensagem = "Preencha o campo para procurar por um time!";
             return redirect('time')->with('mensagem', $mensagem);
-        }
-        else{
-            $times = DB::table('times')->where('nome','like', '%'.$request->nometime.'%')->paginate(12);
-            return view('times/index', ['times'=>$times]);
+        } else {
+            $times = DB::table('times')->where('nome', 'like', '%' . $request->nometime . '%')->paginate(12);
+            return view('times/index', ['times' => $times]);
         }
     }
 }

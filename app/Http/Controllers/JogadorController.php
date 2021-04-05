@@ -18,7 +18,7 @@ class JogadorController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except('show');
+        $this->middleware('auth')->except('show', 'search');
     }
     /**
      * Display a listing of the resource.
@@ -234,5 +234,8 @@ class JogadorController extends Controller
         } else {
             return false;
         }
+    }
+    public function search(){
+        return view('jogador/search-jogador');
     }
 }

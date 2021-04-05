@@ -40,15 +40,14 @@
         </div>
     @endif
     <form method="POST" action="{{ route('time.store') }}" enctype="multipart/form-data">
-        @csrf
-
-        <div class="form-group" style="margin-bottom: 10px">
+        @csrf   
+             <div class="form-group" style="margin-bottom: 10px">
             <label for="nome">Nome do time </label>
             <input type="text" class="form-control inputfieldsofsite" id="nome" placeholder="Nome para seu time" name="nome"
                 value="{{ old('nome') }}@if (session('ultimo_request_nome')) {{ session('ultimo_request_nome') }} @endif">
         </div>
 
-        <span class="nome_igual">aaaaaaaaaaaa</span>
+        <span class="nome_igual"></span>
         <div class="form-group">
             <label for="frase">Frase de Perfil</label>
             <input type="text" class="form-control inputfieldsofsite inputfieldsofsite" id="frase"
