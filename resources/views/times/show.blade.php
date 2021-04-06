@@ -18,8 +18,8 @@
                         <div class="d-flex justify-content-start w-30 " style="padding: 15px">
 
                             <pre style="margin-right: 200">
-                                {{$time->descricao}} 
-                            </pre>
+                                                {{ $time->descricao }} 
+                                            </pre>
                             @if ($time->caminho_imagem_time)
                                 <div class="w-30 justify-content-end ">
                                     <img src="{{ URL::asset($time->caminho_imagem_time) }}" class="w-75"
@@ -83,18 +83,42 @@
                     </div>
                     <div class="d-flex justify-content-center" style="padding-top: 20px">
                         @if ($time->email)
-                            <p class="h5"> Contato: {{ $time->email}}</p>
+                            <p class="h5"> Contato: {{ $time->email }}</p>
                         @endif
                     </div>
                     @if ($time_admin == 1)
                         <div class="d-flex justify-content-end">
-                            <a href="{{url('time/'.$time->id.'/edit')}}">
-                            <button class="btn btn-success">Editar Time</button>
-                        </a>
+                            <a href="{{ url('time/' . $time->id . '/edit') }}">
+                                <button class="btn btn-success">Editar Time</button>
+                            </a>
                         </div>
                     @endif
                 </div>
             </div>
         </div>
+        @if ($horarios_treino)
+            <div class="w-100 cor-texto-site border border-dark rounded "
+                style="padding-bottom: 30px; margin-top: 40px ; margin-bottom: 10px">
+                <h1 class="d-flex justify-content-center cor-texto-site" style="padding-bottom: 20px">
+                    Horarios de Treino</h1>
+                <hr>
+                @foreach ($horarios_treino as $horario_treino)
+                    <div class="d-flex justify-content-center">
+                        <div class="card text-white bg-primary w-75" style="margin: 10px;">
+                            <div class="card-header"><h5>{{ $horario_treino->dia_da_semana }}</h5></div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <div class="d-flex justify-content-between">
+                                <h5>Horario de Inicio: {{ $horario_treino->horario_inicio }} </h5> <h5>Horario de Término: {{ $horario_treino->horario_fim }}</h5>
+                            </div>
+                                
+                                
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @endif
     @endif
 @endsection

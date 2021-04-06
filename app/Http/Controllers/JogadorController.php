@@ -105,22 +105,6 @@ class JogadorController extends Controller
         $config_cs_jogador = DB::table('config_cs_jogadors') //Buscando dados do computador do jogador
             ->where('id_jogador', $id_jogador)
             ->first();
-        // dd($config_pc_jogador);
-        /*if ($jogador) {
-            $string = $jogador->descricao_perfil_jogador;
-            $count_espacos = 0;
-            $texto_array = explode(" ", $string);
-            $conta = 0;
-
-            for ($i = 0; $i < count($texto_array); $i++) {
-                if ($i > 7 && $i % 8 == 0) {
-                    $texto_array[$i] = $texto_array[$i] . "\r\n";
-                }
-            }
-            $nova_string = implode("+", $texto_array);
-            $nova_string = str_replace("+", " ", $nova_string);
-            $jogador->descricao_perfil_jogador = $nova_string;
-        }*/
         if ($jogador) {
             return view('jogador/show', ['jogador' => $jogador, 'config_pc_jogador' => $config_pc_jogador, 'config_cs_jogador' => $config_cs_jogador]); //Se existir um jogador
         } else {
@@ -235,7 +219,8 @@ class JogadorController extends Controller
             return false;
         }
     }
-    public function search(){
+    public function search()
+    {
         return view('jogador/search-jogador');
     }
 }

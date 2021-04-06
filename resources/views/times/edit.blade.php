@@ -29,7 +29,7 @@
     
 
 </style>
-
+@livewireStyles
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -246,7 +246,10 @@
             </div>
         @endif
     </div>
-
+    <div class="border-azul-site" style="padding: 10px">
+        @livewire('horario-treinos-time', ['time'=>$time->id])
+    </div>
+    @livewireScripts
     <br><br><br>
     <script src="{{ asset('js/nomes_times.js') }}"></script>
 @endsection

@@ -7,8 +7,10 @@ use App\Models\Time;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ImagemTimeController;
+use App\Models\HorarioTreinoTime;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
+
 
 
 
@@ -22,7 +24,7 @@ class TimeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('show', 'index','searchtime');
+        $this->middleware('auth')->except('show', 'index', 'searchtime');
     }
     public function index()
     {
@@ -121,12 +123,15 @@ class TimeController extends Controller
      */
     public function show(Time $time)
     {
+        $horarios_treino = HorarioTreinoTime::where('id_time', $time->id)->get();
+
         if ($time->user_id == Auth::id()) {
             $time_admin = 1;
         } else {
             $time_admin = 0;
         }
-        return view('times/show', ['time' => $time, 'time_admin' => $time_admin]);
+        $time_admin = 1;
+        return view('times/show', ['time' => $time, 'time_admin' => $time_admin, 'horarios_treino' => $horarios_treino]);
     }
 
     /**
@@ -143,6 +148,9 @@ class TimeController extends Controller
             return view('times/edit', ['time' => $time, 'admin' => 2]);
         }
         //Verificar se este usuário é administrador deste time quando for feito os participantes do time
+        else {
+            return redirect('search/times')->with('mensagem', "Ação não permitida!");
+        }
     }
 
     /**
@@ -176,6 +184,6 @@ class TimeController extends Controller
     }
     public function searchtime()
     {
-       return view('times/search');
+        return view('times/search');
     }
 }

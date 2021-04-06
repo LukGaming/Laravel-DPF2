@@ -27,4 +27,11 @@ class Time extends Model
         "caminho_imagem_time",
         "user_id"
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function horarios_treino(){
+        return $this->hasMany(HorarioTreinoTime::class);
+    }
 }

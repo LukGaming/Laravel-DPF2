@@ -36,7 +36,7 @@
             {{ $times->links() }}
         </div>
     @else
-        <div class="row ">
+        <div class="row">
             @if (count($times) > 0)
                 @foreach ($times as $time)
                     <div class="col-sm-4">
@@ -59,7 +59,6 @@
             @else
                 Nenhum Time Encontrado!
             @endif
-
 
         </div>
         <div class="d-flex justify-content-center fixed-bottom" style="margin-top: 50px">
