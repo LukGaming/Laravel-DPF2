@@ -47,8 +47,9 @@
             <button class="btn btn-success" type="submit">Adicionar Horario de Treino</button>
         </div>
     </form>
+    
+    @if (count($horarios_anteriores) > 0)
     <hr>
-    @if ($horarios_anteriores)
         <div class="d-flex justify-content-center">
             <h5>Horários de Treino</h5>
         </div>

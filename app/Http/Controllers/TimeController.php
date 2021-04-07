@@ -7,7 +7,9 @@ use App\Models\Time;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ImagemTimeController;
+use App\Http\Livewire\HorarioTreinosTime;
 use App\Models\HorarioTreinoTime;
+use App\Models\vagasTime;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 
@@ -176,7 +178,11 @@ class TimeController extends Controller
         //Primeiramente remover relacionamentos com demais jogadores
 
         //Removendo time
+        //Removendo horarios de treinos deste time
+        HorarioTreinoTime::where('id_time', $time->id)->delete();
+        vagasTime::where('id_time', $time->id)->delete();
         $time->delete();
+        
         $mensagem = "Time excluido com sucesso!";
         return redirect('/')->with('mensagem', $mensagem);
     }

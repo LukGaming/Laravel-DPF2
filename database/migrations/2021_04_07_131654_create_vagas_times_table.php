@@ -15,6 +15,10 @@ class CreateVagasTimesTable extends Migration
     {
         Schema::create('vagas_times', function (Blueprint $table) {
             $table->id();
+            $table->string('funcao');
+            $table->longText('descricao');
+            $table->unsignedBigInteger("id_time");
+            $table->foreign('id_time')->references('id')->on('times');
             $table->timestamps();
         });
     }

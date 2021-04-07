@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class vagasTime extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        "id",
+        "descricao",
+        "funcao",
+        "id_time",
+        "created_at"
+    ];
 }
