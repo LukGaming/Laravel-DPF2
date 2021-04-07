@@ -3,33 +3,34 @@
 @section('titulo', 'Time')
 
 @section('conteudo')
-<style>
-    .inputfieldsofsite {
-        box-shadow: 0 0 0 0.2rem rgba(95, 90, 230, 1);
-        border: none;
-        border-radius: 5px;
-        margin: 5px;
-    }
+    <style>
+        .inputfieldsofsite {
+            box-shadow: 0 0 0 0.2rem rgba(95, 90, 230, 1);
+            border: none;
+            border-radius: 5px;
+            margin: 5px;
+        }
 
-    .inputfieldsofsite:focus {
-        border: none;
-        outline: none;
-        box-shadow: 0 0 0 0.2rem rgb(236, 5, 5);
-    }
+        .inputfieldsofsite:focus {
+            border: none;
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgb(236, 5, 5);
+        }
 
-    label {
-        font-size: 20px
-    }
-    .border-azul-site{
-        border: 5px solid rgba(95, 90, 230, 1);
-    }
-    .inputfieldsofsite:focus-within::before  {
-       background-color: blue;
-    }
-    
+        label {
+            font-size: 20px
+        }
 
-</style>
-@livewireStyles
+        .border-azul-site {
+            border: 5px solid rgba(95, 90, 230, 1);
+        }
+
+        .inputfieldsofsite:focus-within::before {
+            background-color: blue;
+        }
+
+    </style>
+    @livewireStyles
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -49,8 +50,8 @@
             @method("PATCH")
             <div class="form-group" style="margin-bottom: 10px">
                 <label for="nome">Nome do time </label>
-                <input type="text" class="form-control inputfieldsofsite" id="nome" placeholder="Nome para seu time" name="nome"
-                    value="{{ $time->nome }}">
+                <input type="text" class="form-control inputfieldsofsite" id="nome" placeholder="Nome para seu time"
+                    name="nome" value="{{ $time->nome }}">
             </div>
 
             <span class="nome_igual"></span>
@@ -62,23 +63,24 @@
             </div>
             <div class="form-group">
                 <label for="descricao">Descrição do perfil do Time (Opcional)</label>
-                <textarea class="form-control inputfieldsofsite" id="descricao" rows="3" name="descricao">{{ $time->descricao }}</textarea>
+                <textarea class="form-control inputfieldsofsite" id="descricao" rows="3"
+                    name="descricao">{{ $time->descricao }}</textarea>
             </div>
             <label for="basic-url">Facebook</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend inputfieldsofsite">
                     <span class="input-group-text" id="basic-addon3">facebook.com/</span>
                 </div>
-                <input type="text" class="form-control inputfieldsofsite" id="facebook" placeholder="Link do facebook do seu time (Opcional)"
-                    name="facebook" value="{{ $time->facebook }}">
+                <input type="text" class="form-control inputfieldsofsite" id="facebook"
+                    placeholder="Link do facebook do seu time (Opcional)" name="facebook" value="{{ $time->facebook }}">
             </div>
             <label for="basic-url">Instagram</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend inputfieldsofsite">
                     <span class="input-group-text" id="basic-addon3">instagram.com/</span>
                 </div>
-                <input type="text" class="form-control inputfieldsofsite" id="instagram" placeholder="Link  do Instagram seu time  (Opcional)"
-                    name="instagram" value="{{ $time->instagram }}">
+                <input type="text" class="form-control inputfieldsofsite" id="instagram"
+                    placeholder="Link  do Instagram seu time  (Opcional)" name="instagram" value="{{ $time->instagram }}">
             </div>
             <label for="basic-url">Gamersclub</label>
             <div class="input-group mb-3">
@@ -105,8 +107,8 @@
                 <div class="input-group-prepend inputfieldsofsite">
                     <span class="input-group-text" id="basic-addon3">twitter.com/</span>
                 </div>
-                <input type="text" class="form-control inputfieldsofsite" id="twitter" placeholder="Link do Twitter do seu time (Opcional)"
-                    name="twitter" value="{{ $time->twitter }}">
+                <input type="text" class="form-control inputfieldsofsite" id="twitter"
+                    placeholder="Link do Twitter do seu time (Opcional)" name="twitter" value="{{ $time->twitter }}">
             </div>
 
             <label for="basic-url">Steam</label>
@@ -114,16 +116,16 @@
                 <div class="input-group-prepend inputfieldsofsite">
                     <span class="input-group-text" id="basic-addon3">steamcommunity.com/id/</span>
                 </div>
-                <input type="text" class="form-control inputfieldsofsite" id="steam" placeholder="Link da Steam do seu time (Opcional)"
-                    name="steam" value="{{ $time->steam }}">
+                <input type="text" class="form-control inputfieldsofsite" id="steam"
+                    placeholder="Link da Steam do seu time (Opcional)" name="steam" value="{{ $time->steam }}">
             </div>
             <label for="basic-url">Twitch</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend inputfieldsofsite">
                     <span class="input-group-text" id="basic-addon3">twitch.tv/</span>
                 </div>
-                <input type="text" class="form-control inputfieldsofsite" id="twitch" placeholder="Link da twitch do seu time (Opcional)"
-                    name="twitch" value="{{ $time->twitch }}">
+                <input type="text" class="form-control inputfieldsofsite" id="twitch"
+                    placeholder="Link da twitch do seu time (Opcional)" name="twitch" value="{{ $time->twitch }}">
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
@@ -171,9 +173,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
                 <!-- Removendo Imagem-->
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal-2"
                     style="margin: 10px">
@@ -236,20 +235,24 @@
                 </div>
             @endif
         </div>
-        @if ($admin == 2)
-            <div class="d-flex justify-content-end" style="margin: 10px">
-                <form action="{{route('time.destroy', $time->id)}}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <input type="submit" value="Excluir Time" class="btn btn-danger">
-                </form>
-            </div>
-        @endif
     </div>
-    <div class="border-azul-site" style="padding: 10px">
+    <div class="border-azul-site" style="padding: 10px; margin-bottom: 10px">
         @livewire('horario-treinos-time', ['time'=>$time->id])
     </div>
+
+    <div class="border-azul-site" style="padding: 10px">
+        @livewire('vagas-time', ['time'=>$time->id])
+    </div>
     @livewireScripts
+    @if ($admin == 2)
+        <div class="d-flex justify-content-end" style="margin: 10px">
+            <form action="{{ route('time.destroy', $time->id) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <input type="submit" value="Excluir Time" class="btn btn-danger">
+            </form>
+        </div>
+    @endif
     <br><br><br>
     <script src="{{ asset('js/nomes_times.js') }}"></script>
 @endsection

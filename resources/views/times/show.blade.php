@@ -111,8 +111,6 @@
                                     <div class="d-flex justify-content-between">
                                 <h5>Horario de Inicio: {{ $horario_treino->horario_inicio }} </h5> <h5>Horario de Término: {{ $horario_treino->horario_fim }}</h5>
                             </div>
-                                
-                                
                             </p>
                             </div>
                         </div>

@@ -28,8 +28,7 @@ class TimeController extends Controller
     }
     public function index()
     {
-        $times = Time::paginate(12);
-        return view('times/index', ['times' => $times]);
+        return redirect('search/times');
     }
 
     /**
@@ -130,7 +129,6 @@ class TimeController extends Controller
         } else {
             $time_admin = 0;
         }
-        $time_admin = 1;
         return view('times/show', ['time' => $time, 'time_admin' => $time_admin, 'horarios_treino' => $horarios_treino]);
     }
 
