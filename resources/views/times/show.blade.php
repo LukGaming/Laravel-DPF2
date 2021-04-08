@@ -2,9 +2,10 @@
 
 @section('titulo', 'Home')
     <link href={{ URL::asset('css/icones-social.css') }} rel="stylesheet">
-
+    
 
 @section('conteudo')
+@livewireStyles
     @if ($time)
         <div class="w-100 cor-texto-site border border-dark rounded " style="padding-bottom: 30px; margin-top: 40px ;">
             <h1 class="d-flex justify-content-center cor-texto-site" style="padding-bottom: 20px">
@@ -140,5 +141,7 @@
                 @endforeach
             </div>
         @endif
+ @livewire('inscrevendo-vaga', ['time' => $time->id])
     @endif
+    @livewireScripts
 @endsection
