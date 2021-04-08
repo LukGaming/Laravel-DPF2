@@ -42,7 +42,6 @@
     @endif
     <div class="d-flex justify-content-center">
         <h1>Cadastrando Time</h1>
-
     </div>
     <div class="" style="padding: 10px">
         <form method="POST" action="{{ route('time.update', $time->id) }}" enctype="multipart/form-data">

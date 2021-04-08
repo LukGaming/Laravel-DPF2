@@ -565,7 +565,7 @@
 
         @endif
     </div>
-    </div>
+
 
 
     <div class="d-flex justify-content-end">
@@ -575,6 +575,7 @@
             <button type="submit" class="btn btn-danger" id="btnSalvar">Excluir Perfil de
                 jogador</button>
         </form>
+    </div>
     </div>
     <script src="{{ asset('js/options.js') }}"></script>
     <br><br>

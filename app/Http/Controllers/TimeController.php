@@ -10,6 +10,7 @@ use App\Http\Controllers\ImagemTimeController;
 use App\Http\Livewire\HorarioTreinosTime;
 use App\Models\HorarioTreinoTime;
 use App\Models\subscribeVagaTime;
+use App\Models\User;
 use App\Models\vagasTime;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
@@ -125,15 +126,25 @@ class TimeController extends Controller
      */
     public function show(Time $time)
     {
+
         $horarios_treino = HorarioTreinoTime::where('id_time', $time->id)->get();
         $jogadores_que_se_inscreveram_no_time = subscribeVagaTime::where('id_time', $time->id)->get();
-        
+        if (count($jogadores_que_se_inscreveram_no_time) > 0) {
+            for ($i = 0; $i < count($jogadores_que_se_inscreveram_no_time); $i++) {
+                $usuario = User::where('id', $jogadores_que_se_inscreveram_no_time[$i]->user_id)->first();
+                $jogadores_que_se_inscreveram_no_time[$i]->name = $usuario->name;
+            }
+            for ($j = 0; $j < count($jogadores_que_se_inscreveram_no_time); $j++) {
+                $funcao_vaga = vagasTime::where('id', $jogadores_que_se_inscreveram_no_time[$j]->id_vaga)->first()->funcao;
+                $jogadores_que_se_inscreveram_no_time[$j]->funcao = $funcao_vaga;
+            }
+        }
         if ($time->user_id == Auth::id()) {
             $time_admin = 1;
         } else {
             $time_admin = 0;
         }
-        return view('times/show', ['time' => $time, 'time_admin' => $time_admin, 'horarios_treino' => $horarios_treino, 'inscritos_na_vaga'=>$jogadores_que_se_inscreveram_no_time]);
+        return view('times/show', ['time' => $time, 'time_admin' => $time_admin, 'horarios_treino' => $horarios_treino, 'inscritos_na_vaga' => $jogadores_que_se_inscreveram_no_time]);
     }
 
     /**
@@ -184,7 +195,7 @@ class TimeController extends Controller
         vagasTime::where('id_time', $time->id)->delete();
         subscribeVagaTime::where('id_time', $time->id)->delete();
         $time->delete();
-        
+
         $mensagem = "Time excluido com sucesso!";
         return redirect('/')->with('mensagem', $mensagem);
     }

@@ -19,8 +19,8 @@
                         <div class="d-flex justify-content-start w-30 " style="padding: 15px">
 
                             <pre style="margin-right: 200">
-                                                                        {{ $time->descricao }} 
-                                                                    </pre>
+                                                                                            {{ $time->descricao }} 
+                                                                                        </pre>
                             @if ($time->caminho_imagem_time)
                                 <div class="w-30 justify-content-end ">
                                     <img src="{{ URL::asset($time->caminho_imagem_time) }}" class="w-75"
@@ -97,31 +97,7 @@
                 </div>
             </div>
         </div>
-        @if (count($horarios_treino) > 0)
-            <div class="w-100 cor-texto-site border border-dark rounded "
-                style="padding-bottom: 30px; margin-top: 40px ; margin-bottom: 10px">
-                <h1 class="d-flex justify-content-center cor-texto-site" style="padding-bottom: 20px">
-                    Horarios de Treino</h1>
-                <hr>
-                @foreach ($horarios_treino as $horario_treino)
-                    <div class="d-flex justify-content-center">
-                        <div class="card text-white bg-primary w-75" style="margin: 10px;">
-                            <div class="card-header">
-                                <h5>{{ $horario_treino->dia_da_semana }}</h5>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">
-                                <div class="d-flex justify-content-between">
-                                    <h5>Horario de Inicio: {{ $horario_treino->horario_inicio }} </h5>
-                                    <h5>Horario de Término: {{ $horario_treino->horario_fim }}</h5>
-                                </div>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        @endif
+
         @if (count($horarios_treino) > 0)
             <div class="w-100 cor-texto-site border border-dark rounded "
                 style="padding-bottom: 30px; margin-top: 40px ; margin-bottom: 10px">
@@ -150,9 +126,18 @@
         @auth
             @if ($time_admin == 1)
                 @if (count($inscritos_na_vaga) > 0)
-                    @foreach ($inscritos_na_vaga as $inscrito)
-                        {{ $inscrito }}
-                    @endforeach
+                    <div class="border border-dark rounded" style="padding: 10px">
+                        <div class="d-flex justify-content-center h5">Jogadores Inscritos para suas Vagas</div>
+                        @foreach ($inscritos_na_vaga as $inscrito)
+                            <div class="border border-dark" style="padding: 10px">
+                                <div class="h5">Nome do Jogador: {{ $inscrito->name }}</div>
+                                <div class="h5">Função Inscrita: {{ $inscrito->funcao }}</div>
+                                <button class="btn btn-light"><a href="{{ url('jogador/' . $inscrito->user_id) }}">Ver Perfil de
+                                        Jogador</a></button>
+                            </div>
+
+                        @endforeach
+                    </div>
                 @endif
             @else
                 @livewire('inscrevendo-vaga', ['time' => $time->id])

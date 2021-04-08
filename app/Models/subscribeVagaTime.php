@@ -14,4 +14,7 @@ class subscribeVagaTime extends Model
        "id_time",
        "id_vaga"
     ];
+    public function user(){
+        return $this->hasOne(User::class);
+    }
 }
