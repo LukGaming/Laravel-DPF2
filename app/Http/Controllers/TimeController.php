@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ImagemTimeController;
 use App\Http\Livewire\HorarioTreinosTime;
 use App\Models\HorarioTreinoTime;
+use App\Models\subscribeVagaTime;
 use App\Models\vagasTime;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
@@ -125,13 +126,14 @@ class TimeController extends Controller
     public function show(Time $time)
     {
         $horarios_treino = HorarioTreinoTime::where('id_time', $time->id)->get();
-
+        $jogadores_que_se_inscreveram_no_time = subscribeVagaTime::where('id_time', $time->id)->get();
+        
         if ($time->user_id == Auth::id()) {
             $time_admin = 1;
         } else {
             $time_admin = 0;
         }
-        return view('times/show', ['time' => $time, 'time_admin' => $time_admin, 'horarios_treino' => $horarios_treino]);
+        return view('times/show', ['time' => $time, 'time_admin' => $time_admin, 'horarios_treino' => $horarios_treino, 'inscritos_na_vaga'=>$jogadores_que_se_inscreveram_no_time]);
     }
 
     /**
@@ -176,11 +178,11 @@ class TimeController extends Controller
     public function destroy(Time $time)
     {
         //Primeiramente remover relacionamentos com demais jogadores
-
         //Removendo time
-        //Removendo horarios de treinos deste time
+        //Removendo todos relacionamentos com este time
         HorarioTreinoTime::where('id_time', $time->id)->delete();
         vagasTime::where('id_time', $time->id)->delete();
+        subscribeVagaTime::where('id_time', $time->id)->delete();
         $time->delete();
         
         $mensagem = "Time excluido com sucesso!";

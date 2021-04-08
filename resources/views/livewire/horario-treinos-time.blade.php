@@ -47,9 +47,9 @@
             <button class="btn btn-success" type="submit">Adicionar Horario de Treino</button>
         </div>
     </form>
-    
+
     @if (count($horarios_anteriores) > 0)
-    <hr>
+        <hr>
         <div class="d-flex justify-content-center">
             <h5>Horários de Treino</h5>
         </div>
@@ -58,9 +58,10 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                         <div class="d-flex justify-content-between">
-                        <h6> Dia da Semana: {{ $horarios_treino->dia_da_semana }} </h6>
-                        <button class="btn btn-danger" wire:click="removerHorario({{$horarios_treino->id}})">Remover</button>
-                    </div>
+                            <h6> Dia da Semana: {{ $horarios_treino->dia_da_semana }} </h6>
+                            <button class="btn btn-danger"
+                                wire:click="removerHorario({{ $horarios_treino->id }})">Remover</button>
+                        </div>
                     </li>
 
                     <li class="list-group-item">Horario de Inicio: {{ $horarios_treino->horario_inicio }}</li>
