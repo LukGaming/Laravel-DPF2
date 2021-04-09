@@ -203,4 +203,8 @@ class TimeController extends Controller
     {
         return view('times/search');
     }
+    public function menssagens($time, $jogador)
+    {
+        return view('times/mensagens',['time'=>$time, 'jogador'=>$jogador]);
+    }
 }

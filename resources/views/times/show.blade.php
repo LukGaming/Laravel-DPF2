@@ -19,8 +19,8 @@
                         <div class="d-flex justify-content-start w-30 " style="padding: 15px">
 
                             <pre style="margin-right: 200">
-                                                                                            {{ $time->descricao }} 
-                                                                                        </pre>
+                                                                                                            {{ $time->descricao }} 
+                                                                                                        </pre>
                             @if ($time->caminho_imagem_time)
                                 <div class="w-30 justify-content-end ">
                                     <img src="{{ URL::asset($time->caminho_imagem_time) }}" class="w-75"
@@ -132,10 +132,16 @@
                             <div class="border border-dark" style="padding: 10px">
                                 <div class="h5">Nome do Jogador: {{ $inscrito->name }}</div>
                                 <div class="h5">Função Inscrita: {{ $inscrito->funcao }}</div>
-                                <button class="btn btn-light"><a href="{{ url('jogador/' . $inscrito->user_id) }}">Ver Perfil de
-                                        Jogador</a></button>
+                                <div class="d-flex justify-content-between">
+                                    <a href="{{ url('jogador/' . $inscrito->user_id) }}"> <button
+                                            class="btn btn-secondary">Ver Perfil de
+                                            Jogador</button></a>
+                                    <a href="{{ url('menssagens-time/' . $time->id . '/jogador/' . $inscrito->user_id) }}">
+                                        <button class="btn btn-info">Enviar Mensagem para jogador</button></a>
+                                    <a href="{{ url('jogador/' . $inscrito->user_id) }}"> <button
+                                            class="btn btn-secondary">Convidar Jogador Para o Time</button></a>
+                                </div>
                             </div>
-
                         @endforeach
                     </div>
                 @endif

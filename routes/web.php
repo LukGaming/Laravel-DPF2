@@ -80,3 +80,4 @@ Route::any("search/times", [TimeController::class, "searchtime"])->name("time.se
 Route::any('nometimes', [nomeTimes::class, 'retrieve_team_names']);
 
 Route::any('search/jogador', [JogadorController::class , 'search'])->name('search');
+Route::any('menssagens-time/{time}/jogador/{jogador}', [TimeController::class, 'menssagens'] );
