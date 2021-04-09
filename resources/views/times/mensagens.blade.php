@@ -48,6 +48,8 @@
         .message img {
             border-radius: 50%;
             vertical-align: middle;
+            width: 40px;
+            height: 40px;
         }
 
         /* IMAGE CELL & TIME CELL */
@@ -96,7 +98,6 @@
         }
 
     </style>
-
-    @livewire('mensagens-time-jogador', ['time'=>$time, 'jogador'=>$jogador])
+    @livewire('mensagens',['time'=>$time, 'jogador'=>$jogador])
     @livewireScripts
 @endsection
