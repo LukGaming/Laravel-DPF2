@@ -2,10 +2,18 @@
     <div class="container-fluid" style="padding-top: 40px; margin-bottom: 50px">
         <form method="post">
             <div class="row">
-                <div class="form-group" style="padding-bottom: 10px">
-                    <div class="col-2">
-                        <label for="exampleFormControlSelect1">Selecionar Vagas Por Funcao: </label>
-                        <select class="form-control" id="exampleFormControlSelect1" wire:model="search">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group " style="padding-bottom: 10px">
+                            
+                            <label for="exampleFormControlSelect1">Selecionar Vagas Por Funcao: </label>
+                        
+                    </div>
+                    </div>
+                
+                    <div class="col-3" style="padding-bottom: 10px">
+                        <div class="d-flex justify-content-center">
+                        <select class="form-control inputfieldsofsite custom-select" id="exampleFormControlSelect1" wire:model="search" >
                             <option value="">Todas</option>
                             <option value="Entry Fragger">Entry Fragger</option>
                             <option value="Capitão/IGL">Capitão/IGL</option>
@@ -14,6 +22,7 @@
                             <option value="Rifler">Rifler</option>
                             <option value="Trader">Trader</option>
                         </select>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -93,6 +102,7 @@
         }*/
         //$descricoes[0].val($descricoes[0].text().substr(0, 10));
         //console.log($descricoes[0].innerHTML.length);
+        
 
     </script>
 </div>
