@@ -28,7 +28,7 @@ class TimeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('show', 'index', 'searchtime');
+        $this->middleware('auth')->except('show', 'index', 'searchtime','searchVagas');
     }
     public function index()
     {
@@ -207,4 +207,5 @@ class TimeController extends Controller
     {
         return view('times/mensagens',['time'=>$time, 'jogador'=>$jogador]);
     }
+    
 }

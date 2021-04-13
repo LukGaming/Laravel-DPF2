@@ -8,7 +8,8 @@ use App\Http\Controllers\{
     JogadorController,
     TimeController,
     nomeTimes,
-    ImagemTimeController
+    ImagemTimeController,
+    vagasController
 };
 
 use Illuminate\Support\Facades\Route;
@@ -80,4 +81,5 @@ Route::any("search/times", [TimeController::class, "searchtime"])->name("time.se
 Route::any('nometimes', [nomeTimes::class, 'retrieve_team_names']);
 
 Route::any('search/jogador', [JogadorController::class , 'search'])->name('search');
-Route::any('menssagens-time/{time}/jogador/{jogador}', [TimeController::class, 'menssagens'] );
+Route::any('menssagens-time/{time}/jogador/{jogador}', [TimeController::class, 'menssagens']);
+Route::any('search/vagas', [vagasController::class, 'searchVagas'])->middleware('auth');

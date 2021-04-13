@@ -3,80 +3,87 @@
 
         <div class="border border-dark overflow-auto" id="sobe-overflow" style="height: 80vh;">
             <div class="skype-parent" wire:poll>
-                @if ($old_messages[0]->user_id == Auth::id())
-                    <!--Se for o dono do time!-->
-                    @foreach ($old_messages as $messages)
-                        @if ($messages->user_id == Auth::id())
-                            <!--Verificar se a mensagem é do jogador ou do Time-->
-                            <div class="message user">
-                                <div>
-                                    @if ($imagem_time == null)
-                                        <img src="{{ asset('images/user_without_image.png') }}">
-                                    @else
-                                        <img src="{{ url($imagem_time) }}" sizes="50x50">
-                                    @endif
+                @if (count($old_messages) > 0)
+                    @if ($old_messages[0]->user_id == Auth::id())
+                        <!--Se for o dono do time!-->
+                        @foreach ($old_messages as $messages)
+                            @if ($messages->user_id == Auth::id())
+                                <!--Verificar se a mensagem é do jogador ou do Time-->
+                                <div class="message user">
+                                    <div>
+                                        @if ($imagem_time == null)
+                                            <img src="{{ asset('images/user_without_image.png') }}">
+                                        @else
+                                            <img src="{{ url($imagem_time) }}" sizes="50x50">
+                                        @endif
+                                    </div>
+                                    <div>
+                                        <p>{{ $messages->body }}</p>
+                                    </div>
+                                    <div>{{ \Carbon\Carbon::parse($messages->created_at)->format('H:i:s') }}</div>
                                 </div>
-                                <div>
-                                    <p>{{ $messages->body }}</p>
+                            @endif
+                            @if ($messages->user_id != Auth::id())
+                                <!--Verificar se a mensagem é do jogador ou do Time-->
+                                <div class="message">
+                                    <div>
+                                        @if ($imagem_jogador == null)
+                                            <img src="{{ asset('images/user_without_image.png') }}">
+                                        @else
+                                            <img src="{{ url($imagem_jogador) }}" sizes="50x50">
+                                        @endif
+                                    </div>
+                                    <div>
+                                        <p>{{ $messages->body }}</p>
+                                    </div>
+                                    <div>{{ \Carbon\Carbon::parse($messages->created_at)->format('H:i:s') }}</div>
                                 </div>
-                                <div>{{ \Carbon\Carbon::parse($messages->created_at)->format('H:i:s') }}</div>
-                            </div>
-                        @endif
-                        @if ($messages->user_id != Auth::id())
-                            <!--Verificar se a mensagem é do jogador ou do Time-->
-                            <div class="message">
-                                <div>
-                                    @if ($imagem_jogador == null)
-                                        <img src="{{ asset('images/user_without_image.png') }}">
-                                    @else
-                                        <img src="{{ url($imagem_jogador) }}" sizes="50x50">
-                                    @endif
+                            @endif
+                        @endforeach
+                    @else
+                        <!--Se Não for o dono do time!-->
+                        @foreach ($old_messages as $messages)
+                            @if ($messages->user_id == Auth::id())
+                                <!--Verificar se a mensagem é do jogador ou do Time-->
+                                <div class="message user">
+                                    <div>
+                                        @if ($imagem_jogador == null)
+                                            <img src="{{ asset('images/user_without_image.png') }}">
+                                        @else
+                                            <img src="{{ url($imagem_jogador) }}" sizes="50x50">
+                                        @endif
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <p>{{ $messages->body }}</p>
+                                            <p><button class="btn btn-danger">Excluir Mensagem</button></p>
+                                        </div>
+
+
+                                    </div>
+                                    <div>{{ \Carbon\Carbon::parse($messages->created_at)->format('H:i:s') }}</div>
                                 </div>
-                                <div>
-                                    <p>{{ $messages->body }}</p>
+                            @endif
+                            @if ($messages->user_id != Auth::id())
+                                <!--Verificar se a mensagem é do jogador ou do Time-->
+                                <div class="message">
+                                    <div>
+                                        @if ($imagem_time == null)
+                                            <img src="{{ asset('images/user_without_image.png') }}">
+                                        @else
+                                            <img src="{{ url($imagem_time) }}" sizes="50x50">
+                                        @endif
+                                    </div>
+                                    <div>
+                                        <p>{{ $messages->body }}</p>
+                                    </div>
+                                    <div>{{ \Carbon\Carbon::parse($messages->created_at)->format('H:i:s') }}</div>
                                 </div>
-                                <div>{{ \Carbon\Carbon::parse($messages->created_at)->format('H:i:s') }}</div>
-                            </div>
-                        @endif
-                    @endforeach
-                @else
-                    <!--Se Não for o dono do time!-->
-                    @foreach ($old_messages as $messages)
-                        @if ($messages->user_id == Auth::id())
-                            <!--Verificar se a mensagem é do jogador ou do Time-->
-                            <div class="message user">
-                                <div>
-                                    @if ($imagem_jogador == null)
-                                        <img src="{{ asset('images/user_without_image.png') }}">
-                                    @else
-                                        <img src="{{ url($imagem_jogador) }}" sizes="50x50">
-                                    @endif
-                                </div>
-                                <div><div>
-                                    <p>{{ $messages->body }}</p> 
-                                </div>
-                                </div>
-                                <div>{{ \Carbon\Carbon::parse($messages->created_at)->format('H:i:s') }}</div>
-                            </div>
-                        @endif
-                        @if ($messages->user_id != Auth::id())
-                            <!--Verificar se a mensagem é do jogador ou do Time-->
-                            <div class="message">
-                                <div>
-                                    @if ($imagem_time == null)
-                                        <img src="{{ asset('images/user_without_image.png') }}">
-                                    @else
-                                        <img src="{{ url($imagem_time) }}" sizes="50x50">
-                                    @endif
-                                </div>
-                                <div>
-                                    <p>{{ $messages->body }}</p>
-                                </div>
-                                <div>{{ \Carbon\Carbon::parse($messages->created_at)->format('H:i:s') }}</div>
-                            </div>
-                        @endif
-                    @endforeach
+                            @endif
+                        @endforeach
+                    @endif
                 @endif
+
             </div>
             <div class="fixed-bottom container">
                 <form wire:submit.prevent="">
