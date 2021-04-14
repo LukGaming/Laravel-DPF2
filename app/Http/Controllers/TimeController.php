@@ -192,8 +192,9 @@ class TimeController extends Controller
         //Removendo time
         //Removendo todos relacionamentos com este time
         HorarioTreinoTime::where('id_time', $time->id)->delete();
-        vagasTime::where('id_time', $time->id)->delete();
         subscribeVagaTime::where('id_time', $time->id)->delete();
+        vagasTime::where('id_time', $time->id)->delete();
+       
         $time->delete();
 
         $mensagem = "Time excluido com sucesso!";

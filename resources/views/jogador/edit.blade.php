@@ -3,8 +3,8 @@
 @section('titulo', 'Editando Perfil de Jogador')
 
 @section('conteudo')
-    <div class="border border-dark rounded" style="padding: 10px; margin-top: 20px; padding-bottom: 20px">
-
+    <div class="border border-dark rounded bg-dark text-light"
+        style="padding: 10px; margin-top: 20px; padding-bottom: 20px">
         <h1>Editando Perfil de Jogador</h1>
 
         @if ($errors->any())
@@ -173,101 +173,107 @@
     </div>
     </div>
     </div>
-    <br> <br>
+    </div>
+
     @if ($jogador->caminho_imagem_perfil_jogador)
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal-5">
-            Editar Imagem de Perfil
-        </button>
-        <!-- The Modal -->
-        <div class="modal fade" id="myModal-5">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Sua Imagem</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <form action="{{ route('ImagePerifilJogadorController.editarImagem') }}" method="post"
-                            enctype="multipart/form-data">
-                            @csrf
-                            <label for="imagem_contato">Escolha uma nova imagem para o seu perfil de jogador</label><br>
-                            <br>
+        <div class="bg-dark text-light rounded" style="margin-top: 10px; padding: 10px">
+            <div class="d-flex justify-content-center h5">
+                Editar Imagem do Jogador
+            </div>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal-5">
+                Editar Imagem de Perfil
+            </button>
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal-5">
+                <div class="modal-dialog">
+                    <div class="modal-content bg-dark text-light">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Sua Imagem</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form action="{{ route('ImagePerifilJogadorController.editarImagem') }}" method="post"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <label for="imagem_contato">Escolha uma nova imagem para o seu perfil de jogador</label><br>
+                                <br>
 
-                            <input type="file" name="image" id="imagem_contato">
-                            <button type="submit" class="btn btn-danger"> Enviar</button><br>
-                            <br>
-                        </form>
-                    </div>
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                <input type="file" name="image" id="imagem_contato">
+                                <button type="submit" class="btn btn-danger"> Enviar</button><br>
+                                <br>
+                            </form>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal-2">
-            Remover Imagem de Perfil
-        </button>
-        <!-- The Modal -->
-        <div class="modal fade" id="myModal-2">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Remover sua imagem</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <form action="{{ route('ImagePerifilJogadorController.removerImagem') }}" method="post"
-                            enctype="multipart/form-data">
-                            @csrf
-                            <img src="{{ URL::asset($jogador->caminho_imagem_perfil_jogador) }}" class="w-100">
-                            <br><br>
-                            <div class="d-flex justify-content-center">
-                                <button type="submit" class="btn btn-danger ">Remover</button>
-                            </div>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal-2">
+                Remover Imagem de Perfil
+            </button>
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal-2">
+                <div class="modal-dialog">
+                    <div class="modal-content bg-dark text-light">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Remover sua imagem</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form action="{{ route('ImagePerifilJogadorController.removerImagem') }}" method="post"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <img src="{{ URL::asset($jogador->caminho_imagem_perfil_jogador) }}" class="w-100">
+                                <br><br>
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-danger ">Remover</button>
+                                </div>
 
-                            <br>
-                        </form>
-                    </div>
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                <br>
+                            </form>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    @else
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal-5">
-            Adicionar uma imagem ao seu perfil
-        </button>
-        <!-- The Modal -->
-        <div class="modal fade" id="myModal-5">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Sua Imagem</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <form action="{{ route('ImagePerifilJogadorController.adicionandoImagem') }}" method="post"
-                            enctype="multipart/form-data">
-                            @csrf
-                            <label for="imagem_contato">Escolha uma nova imagem para o seu perfil de jogador</label><br>
-                            <br>
-                            <input type="file" name="image" id="imagem_contato">
-                            <button type="submit" class="btn btn-danger"> Enviar</button><br>
-                            <br>
-                        </form>
-                    </div>
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+        @else
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal-5">
+                Adicionar uma imagem ao seu perfil
+            </button>
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal-5">
+                <div class="modal-dialog">
+                    <div class="modal-content bg-dark text-light">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Sua Imagem</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form action="{{ route('ImagePerifilJogadorController.adicionandoImagem') }}" method="post"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <label for="imagem_contato">Escolha uma nova imagem para o seu perfil de jogador</label><br>
+                                <br>
+                                <input type="file" name="image" id="imagem_contato">
+                                <button type="submit" class="btn btn-danger"> Enviar</button><br>
+                                <br>
+                            </form>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -275,75 +281,85 @@
     @endif
     <br><br>
     </div>
-    <div class="border border-dark rounded" style="padding: 10px; margin-top: 20px; padding-bottom: 20px">
-        <h1>Editando Configurações de computador</h1>
-        <form method="POST" action="{{ route('configpcjogador.update', 'configPcJogador', Auth::id()) }}"
-            enctype="multipart/form-data">
-            @csrf
-            @method('PATCH')
-            <div class="form-group">
-                <label for="monitor">Monitor</label>
-                <input type="text" class="form-control" id="monitor" name="monitor"
-                    value="{{ $config_pc_jogador->monitor }}">
-            </div>
-            <div class="form-group">
-                <label for="teclado">Teclado</label>
-                <input type="text" class="form-control" id="teclado" name="teclado"
-                    value="{{ $config_pc_jogador->teclado }}">
-            </div>
-            <div class="form-group">
-                <label for="mouse">Mouse</label>
-                <input type="text" class="form-control" id="mouse" name="mouse" value="{{ $config_pc_jogador->mouse }}">
-            </div>
-            <div class="form-group">
-                <label for="mousepad">Mousepad</label>
-                <input type="text" class="form-control" id="mousepad" name="mousepad"
-                    value="{{ $config_pc_jogador->mousepad }}">
-            </div>
-            <div class="form-group">
-                <label for="processador">Processador</label>
-                <input type="text" class="form-control" id="processador" name="processador"
-                    value="{{ $config_pc_jogador->processador }}">
-            </div>
-            <div class="form-group">
-                <label for="placa_mae">Placa Mãe</label>
-                <input type="text" class="form-control" id="placa_mae" name="placa_mae"
-                    value="{{ $config_pc_jogador->placa_mae }}">
-            </div>
-            <div class="form-group">
-                <label for="placa_de_video">Placa de Vídeo</label>
-                <input type="text" class="form-control" id="placa_de_video" name="placa_de_video"
-                    value="{{ $config_pc_jogador->placa_de_video }}">
-            </div>
-            <div class="form-group">
-                <label for="memoria_ram">Memória Ram</label>
-                <input type="text" class="form-control" id="memoria_ram" name="memoria_ram"
-                    value="{{ $config_pc_jogador->memoria_ram }}">
-            </div>
-            <div class="form-group">
-                <label for="fonte">Fonte</label>
-                <input type="text" class="form-control" id="fonte" name="fonte" value="{{ $config_pc_jogador->fonte }}">
-            </div>
-            <div class="form-group">
-                <label for="gabinete">Gabinete</label>
-                <input type="text" class="form-control" id="gabinete" name="gabinete"
-                    value="{{ $config_pc_jogador->gabinete }}">
-            </div> <br><br>
-            <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary" id="btnCriar">Atualizar dados de computador</button>
-            </div>
+    <div class="bg-dark text-light">
+        <div class="border border-dark rounded" style="padding: 10px; margin-top: 20px; padding-bottom: 20px">
+            <h1>Editando Configurações de computador</h1>
+            <form method="POST" action="{{ route('configpcjogador.update', 'configPcJogador', Auth::id()) }}"
+                enctype="multipart/form-data">
+                @csrf
+                @method('PATCH')
+                <div class="form-group">
+                    <label for="monitor">Monitor</label>
+                    <input type="text" class="form-control" id="monitor" name="monitor"
+                        value="{{ $config_pc_jogador->monitor }}">
+                </div>
+                <div class="form-group">
+                    <label for="teclado">Teclado</label>
+                    <input type="text" class="form-control" id="teclado" name="teclado"
+                        value="{{ $config_pc_jogador->teclado }}">
+                </div>
+                <div class="form-group">
+                    <label for="mouse">Mouse</label>
+                    <input type="text" class="form-control" id="mouse" name="mouse"
+                        value="{{ $config_pc_jogador->mouse }}">
+                </div>
+                <div class="form-group">
+                    <label for="mousepad">Mousepad</label>
+                    <input type="text" class="form-control" id="mousepad" name="mousepad"
+                        value="{{ $config_pc_jogador->mousepad }}">
+                </div>
+                <div class="form-group">
+                    <label for="processador">Processador</label>
+                    <input type="text" class="form-control" id="processador" name="processador"
+                        value="{{ $config_pc_jogador->processador }}">
+                </div>
+                <div class="form-group">
+                    <label for="placa_mae">Placa Mãe</label>
+                    <input type="text" class="form-control" id="placa_mae" name="placa_mae"
+                        value="{{ $config_pc_jogador->placa_mae }}">
+                </div>
+                <div class="form-group">
+                    <label for="placa_de_video">Placa de Vídeo</label>
+                    <input type="text" class="form-control" id="placa_de_video" name="placa_de_video"
+                        value="{{ $config_pc_jogador->placa_de_video }}">
+                </div>
+                <div class="form-group">
+                    <label for="memoria_ram">Memória Ram</label>
+                    <input type="text" class="form-control" id="memoria_ram" name="memoria_ram"
+                        value="{{ $config_pc_jogador->memoria_ram }}">
+                </div>
+                <div class="form-group">
+                    <label for="fonte">Fonte</label>
+                    <input type="text" class="form-control" id="fonte" name="fonte"
+                        value="{{ $config_pc_jogador->fonte }}">
+                </div>
+                <div class="form-group">
+                    <label for="gabinete">Gabinete</label>
+                    <input type="text" class="form-control" id="gabinete" name="gabinete"
+                        value="{{ $config_pc_jogador->gabinete }}">
+                </div> <br><br>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary" id="btnCriar">Atualizar dados de computador</button>
+                </div>
 
-        </form>
-        <br>
-        <br>
-        @if ($config_pc_jogador->caminho_imagem_pc_jogador)
+            </form>
+            <br>
+            <br>
+        </div>
+    </div>
+    @if ($config_pc_jogador->caminho_imagem_pc_jogador)
+
+        <div class="bg-dark text-light" style="padding: 10px; margin-top: 10px">
+            <div class="d-flex justify-content-center h5">
+                Editando Imagem de Computador
+            </div>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal-8">
                 Editar sua imagem de computador
             </button>
             <!-- The Modal -->
             <div class="modal fade" id="myModal-8">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content bg-dark text-light">
                         <!-- Modal Header -->
                         <div class="modal-header">
                             <h4 class="modal-title">Sua Imagem</h4>
@@ -376,7 +392,7 @@
             <!-- The Modal -->
             <div class="modal fade" id="myModal-9">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content bg-dark text-light">
                         <!-- Modal Header -->
                         <div class="modal-header">
                             <h4 class="modal-title">Remover sua imagem de computador</h4>
@@ -410,7 +426,7 @@
             <!-- The Modal -->
             <div class="modal fade" id="myModal-10">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content bg-dark text-light">
                         <!-- Modal Header -->
                         <div class="modal-header">
                             <h4 class="modal-title">Sua Imagem</h4>
@@ -435,9 +451,9 @@
                     </div>
                 </div>
             </div>
-        @endif
+    @endif
     </div>
-    <div class="border border-dark rounded" style="padding: 10px; margin-top: 20px; padding-bottom: 20px">
+    <div class="border border-dark rounded bg-dark text-light" style="padding: 10px; margin-top: 20px; padding-bottom: 20px">
         <h1>Editando Configuração de jogo</h1>
         <form action="{{ route('configcsjogador.update', 'configPcJogador', Auth::id()) }}" method="post">
             @csrf
@@ -481,7 +497,7 @@
             <!-- The Modal -->
             <div class="modal fade" id="myModal-95">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content bg-dark text-light">
                         <!-- Modal Header -->
                         <div class="modal-header">
                             <h4 class="modal-title">Sua Cfg</h4>
@@ -509,10 +525,10 @@
             <!-- The Modal -->
             <div class="modal fade" id="myModal-99">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content bg-dark text-light ">
                         <!-- Modal Header -->
                         <div class="modal-header">
-                            <h4 class="modal-title">Enviar nova Cfg</h4>
+                            <h4 class="modal-title text-dark">Enviar nova Cfg</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <!-- Modal body -->
@@ -539,7 +555,7 @@
             <!-- The Modal -->
             <div class="modal fade" id="myModal-96">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content bg-dark text-light">
                         <!-- Modal Header -->
                         <div class="modal-header">
                             <h4 class="modal-title">Enviar Nova Cfg</h4>
@@ -560,15 +576,14 @@
                         </div>
                     </div>
                 </div>
-
-
-
+            </div>
+        </div>
         @endif
-    </div>
+    
 
 
 
-    <div class="d-flex justify-content-end">
+    <div class="d-flex justify-content-end ">
         <form action="{{ route('jogador.destroy', $jogador->user_id) }}" method="post">
             @csrf
             @method('DELETE')
@@ -577,6 +592,8 @@
         </form>
     </div>
     </div>
+
+</div>
     <script src="{{ asset('js/options.js') }}"></script>
     <br><br>
 @endsection

@@ -57,7 +57,11 @@
                     </div>
                 @endforeach
             @else
-                Nenhum Time Encontrado!
+            <div class="alert alert-info" role="alert" style="margin: 10px">
+                Nenhum Time encontrado com o resultado da pesquisa!
+              </div>
+              
+
             @endif
 
         </div>

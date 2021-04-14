@@ -97,7 +97,14 @@
             background: #e5f7fd;
         }
 
+        .button-delete-message {
+            max-height: 25px;
+            border: none;
+        }
+
     </style>
-    @livewire('mensagens',['time'=>$time, 'jogador'=>$jogador])
+    <div class="bg-dark text-light rounded" style="margin-top: 20px">
+        @livewire('mensagens',['time'=>$time, 'jogador'=>$jogador])
+    </div>
     @livewireScripts
 @endsection

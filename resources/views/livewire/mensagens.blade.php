@@ -11,14 +11,15 @@
                                 <!--Verificar se a mensagem é do jogador ou do Time-->
                                 <div class="message user">
                                     <div>
-                                        @if ($imagem_time == null)
-                                            <img src="{{ asset('images/user_without_image.png') }}">
-                                        @else
-                                            <img src="{{ url($imagem_time) }}" sizes="50x50">
-                                        @endif
+
                                     </div>
                                     <div>
-                                        <p>{{ $messages->body }}</p>
+                                        <p class="d-flex justify-content-between">{{ $messages->body }}<button
+                                                wire:click="removerMensagem({{ $messages->id }})" type="button"
+                                                class="close button-delete-message" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button></p>
+                                        <p></p>
                                     </div>
                                     <div>{{ \Carbon\Carbon::parse($messages->created_at)->format('H:i:s') }}</div>
                                 </div>
@@ -47,19 +48,17 @@
                                 <!--Verificar se a mensagem é do jogador ou do Time-->
                                 <div class="message user">
                                     <div>
-                                        @if ($imagem_jogador == null)
-                                            <img src="{{ asset('images/user_without_image.png') }}">
-                                        @else
-                                            <img src="{{ url($imagem_jogador) }}" sizes="50x50">
-                                        @endif
+
                                     </div>
                                     <div>
-                                        <div>
-                                            <p>{{ $messages->body }}</p>
-                                            <p><button class="btn btn-danger">Excluir Mensagem</button></p>
+                                        <div class="">
+                                            <p class="d-flex justify-content-between">{{ $messages->body }}<button
+                                                    wire:click="removerMensagem({{ $messages->id }})" type="button"
+                                                    class="close button-delete-message" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button></p>
+                                            <p></p>
                                         </div>
-
-
                                     </div>
                                     <div>{{ \Carbon\Carbon::parse($messages->created_at)->format('H:i:s') }}</div>
                                 </div>

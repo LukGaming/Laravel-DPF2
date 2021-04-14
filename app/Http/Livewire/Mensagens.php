@@ -51,4 +51,7 @@ class Mensagens extends Component
     {
         return  Jogador::where('user_id', $this->jogador)->first()->caminho_imagem_perfil_jogador;
     }
+    public function removerMensagem($id_mensagem){
+        mensagensTimeJogador::where('id', $id_mensagem)->delete();
+    }
 }

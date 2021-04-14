@@ -5,12 +5,9 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group " style="padding-bottom: 10px">
-                            
                             <label for="exampleFormControlSelect1">Selecionar Vagas Por Funcao: </label>
-                        
                     </div>
                     </div>
-                
                     <div class="col-3" style="padding-bottom: 10px">
                         <div class="d-flex justify-content-center">
                         <select class="form-control inputfieldsofsite custom-select" id="exampleFormControlSelect1" wire:model="search" >
@@ -80,9 +77,12 @@
                         </div>
                     @endforeach
                 @else
+                <div class="alert alert-info" role="alert" style="margin: 10px">
                     Nenhuma Vaga Encontrada!
-                @endif
 
+                  </div>
+                @endif
+                
             </div>
             <div class="d-flex justify-content-center fixed-bottom" style="margin-top: 50px">
                 @if (count($vagas))
@@ -92,17 +92,5 @@
         @endif
     </div>
 
-    <script>
-        /*$descricoes = $(".descricoes");
-        for ($i = 0; $i < $descricoes.length; $i++) {
-            if ($descricoes[$i].innerHTML.length > 10) {
-                 $descricoes[$i].innerHTML = $descricoes[$i].innerHTML.substr(0, 400) + "...";
-            }
 
-        }*/
-        //$descricoes[0].val($descricoes[0].text().substr(0, 10));
-        //console.log($descricoes[0].innerHTML.length);
-        
-
-    </script>
 </div>
