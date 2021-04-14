@@ -3,22 +3,24 @@
 namespace App\Http\Livewire;
 
 use App\Models\Jogador;
+use App\Models\mensagensPermitidas;
 use Livewire\Component;
 use App\Models\mensagensTimeJogador;
 use App\Models\Time;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-
-
 class Mensagens extends Component
 {
     public $time;
     public $jogador;
     public $body;
+    public $permissao_jogador;
+    public $permissao_mensagem;
     public function render()
-    {
-        return view('livewire.mensagens', ['old_messages' => $this->oldMessages(), 'dono_time' => $this->verificaSeSouJogadorOuTime(), 'imagem_time' => $this->imagemTime(), 'imagem_jogador' => $this->imagemJogador()]);
+    {   
+        
+        return view('livewire.mensagens', ['old_messages' => $this->oldMessages(), 'dono_time' => $this->verificaSeSouJogadorOuTime(), 'imagem_time' => $this->imagemTime(), 'imagem_jogador' => $this->imagemJogador(), 'permissao_mensagens'=>$this->verificaPermissaoMensagem()]);
     }
     public function sendMessage()
     {
@@ -53,5 +55,17 @@ class Mensagens extends Component
     }
     public function removerMensagem($id_mensagem){
         mensagensTimeJogador::where('id', $id_mensagem)->delete();
+    }
+    public function habilitarMensagens($id_time, $id_jogador){
+        $permissao_mensagens = mensagensPermitidas::where('id_time', $id_time)->where('id_jogador', $id_jogador)->first();
+        $permissao_mensagens->update(['permissao'=>1]);
+    }
+    public function desabilitarMensagens($id_time, $id_jogador){
+        $permissao_mensagens = mensagensPermitidas::where('id_time', $id_time)->where('id_jogador', $id_jogador)->first();
+        $permissao_mensagens->update(['permissao'=>0]);
+    }
+    public function verificaPermissaoMensagem(){
+        $permissao_mensagens = mensagensPermitidas::where('id_time', $this->time)->where('id_jogador', $this->jogador)->first();
+        return $permissao_mensagens->permissao;
     }
 }

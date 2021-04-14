@@ -79,23 +79,7 @@
 
         /* ARROWS */
 
-        .message>div:nth-child(2):after {
-            position: absolute;
-            content: "";
-            width: 8px;
-            height: 8px;
-            background: #c7edfc;
-            left: 0;
-            top: 18px;
-            margin-left: -4px;
-            transform: rotate(45deg);
-            -webkit-transform: rotate(45deg);
-        }
-
-        .message.user>div:nth-child(2):after {
-            left: 100%;
-            background: #e5f7fd;
-        }
+        
 
         .button-delete-message {
             max-height: 25px;
@@ -103,8 +87,8 @@
         }
 
     </style>
-    <div class="bg-dark text-light rounded" style="margin-top: 20px">
-        @livewire('mensagens',['time'=>$time, 'jogador'=>$jogador])
+    <div class="" style="margin-top: 20px">
+        @livewire('mensagens',['time'=>$time, 'jogador'=>$jogador, 'permissao_jogador'=>$permissao_jogador])
     </div>
     @livewireScripts
 @endsection

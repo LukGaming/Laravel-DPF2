@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ImagemTimeController;
 use App\Http\Livewire\HorarioTreinosTime;
 use App\Models\HorarioTreinoTime;
+use App\Models\mensagensPermitidas;
 use App\Models\subscribeVagaTime;
 use App\Models\User;
 use App\Models\vagasTime;
@@ -28,7 +29,7 @@ class TimeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('show', 'index', 'searchtime','searchVagas');
+        $this->middleware('auth')->except('show', 'index', 'searchtime', 'searchVagas');
     }
     public function index()
     {
@@ -194,7 +195,7 @@ class TimeController extends Controller
         HorarioTreinoTime::where('id_time', $time->id)->delete();
         subscribeVagaTime::where('id_time', $time->id)->delete();
         vagasTime::where('id_time', $time->id)->delete();
-       
+
         $time->delete();
 
         $mensagem = "Time excluido com sucesso!";
@@ -206,7 +207,18 @@ class TimeController extends Controller
     }
     public function menssagens($time, $jogador)
     {
-        return view('times/mensagens',['time'=>$time, 'jogador'=>$jogador]);
+        //Verificando se já existem permissoes de mensagens entre este time e jogador
+        $searchTimeJogador = mensagensPermitidas::where('id_time', $time)->where('id_jogador', $jogador)->first();
+        if ($searchTimeJogador) {
+            if ($searchTimeJogador->permissao == 1) {
+                return view('times/mensagens', ['time' => $time, 'jogador' => $jogador, 'permissao_jogador' => 1]);
+            }
+            if ($searchTimeJogador->permissao == 0) {
+                return view('times/mensagens', ['time' => $time, 'jogador' => $jogador, 'permissao_jogador' => 0]);
+            }
+        } else {
+            mensagensPermitidas::create(['id_time' => $time, 'id_jogador' => $jogador, 'permissao' => 1]);
+            return view('times/mensagens', ['time' => $time, 'jogador' => $jogador, 'permissao_jogador' => 1]);
+        }
     }
-    
 }
