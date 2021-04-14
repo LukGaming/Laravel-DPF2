@@ -19,19 +19,18 @@
             style="height: 80vh;">
 
             <div class="skype-parent" wire:poll>
-
                 @if (count($old_messages) > 0)
                     @if ($old_messages[0]->user_id == Auth::id())
                         <!--Se for o dono do time!-->
                         @foreach ($old_messages as $messages)
                             @if ($messages->user_id == Auth::id())
                                 <!--Verificar se a mensagem é do jogador ou do Time-->
-                                <div class="message user">
-                                    <div>
+                                <div class="message user" >
+                                    <div style="vertical-align: bottom">
 
                                     </div>
                                     <div>
-                                        <p class="d-flex justify-content-between">{{ $messages->body }}<button
+                                        <p class="d-flex justify-content-between" >{{ $messages->body }}<button
                                                 wire:click="removerMensagem({{ $messages->id }})" type="button"
                                                 class="close button-delete-message" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>

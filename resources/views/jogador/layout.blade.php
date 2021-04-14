@@ -21,11 +21,13 @@
         }
 
     </style>
+    @livewireStyles
 </head>
 @php
 use App\Http\Controllers\JogadorController;
 $user_has_jogador = JogadorController::VerificaSeUsuarioTemJogador();
 @endphp
+
 
 <body>
     @if (Route::has('login'))
@@ -33,38 +35,39 @@ $user_has_jogador = JogadorController::VerificaSeUsuarioTemJogador();
             <nav class="navbar navbar-expand-md navbar-dark border border-dark corBtnNav">
                 <a class="navbar-brand " href="{{ route('jogador.index') }}"
                     style="padding-left: 10px;color: black;">Home</a>
-                <button class="navbar-toggler corBtnNav" type="button" data-toggle="collapse" data-target="#navbarNav">
-                    <span class="navbar-toggler-icon corBtnNav" style="color: black; background-color: black;"></span>
+                <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav">
+                    <span class="navbar-toggler-icon " style="color: black; background-color: black;"></span>
                 </button>
-                <div class="collapse navbar-collapse corBtnNav" id="navbarNav">
-                    <ul class="navbar-nav mr-auto">
+                <div class="collapse navbar-collapse " id="navbarNav">
+                    <ul class="navbar-nav mr-auto bg-primary rounded " style="margin-right: 10px">
                         @if (Auth::user())
                             @if ($user_has_jogador)
-                                <a class="dropdown-item corBtnNav" href="{{ '/jogador/' . Auth::id() }}">Seu Perfil de
-                                    jogador</a>
+                                <a class="dropdown-item" href="{{ '/jogador/' . Auth::id() }}"><button
+                                        class="btn  rounded text-light">Seu Perfil
+                                        de
+                                        jogador</button></a>
                             @else
-                                <a class="dropdown-item corBtnNav" href="{{ route('jogador.create') }}">
-                                    Criar um Perfil de jogador</a>
+                                <a class="dropdown-item  " href="{{ '/jogador/' . Auth::id() }}"><button
+                                        class="btn rounded text-light">Criar perfil de jogador</button></a>
                             @endif
                         @endif
-
                     </ul>
-                    <div class="collapse navbar-collapse justify-content-end corBtnNav" id="navbarCollapse">
+                    @livewire('alert-mensagens', ['id_usuario' => Auth::id()])
+                    <div class="collapse navbar-collapse justify-content-end " id="navbarCollapse">
                         <ul class="navbar-nav">
-                            <li class="nav-item dropdown corBtnNav">
-                                <a class="dropdown-toggle navbar-brand corBtnNav" href="http://example.com"
+                            <li class="nav-item dropdown ">
+                                <a class="dropdown-toggle navbar-brand " href="http://example.com"
                                     id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false" style="color: black">
                                     {{ Auth::user()->name }}
                                 </a>
-                                <div class="dropdown-menu corBtnNav border border-dark"
-                                    aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item  corBtnNav" href="#">Configurações</a>
-                                    <a class="dropdown-item  corBtnNav" href="#">Another
+                                <div class="dropdown-menu  border border-dark" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item  " href="#">Configurações</a>
+                                    <a class="dropdown-item  " href="#">Another
                                         action</a>
                                     <form action="{{ route('logout') }}" method="post">
                                         @csrf
-                                        <button class="dropdown-item corBtnNav">Sair</button>
+                                        <button class="dropdown-item ">Sair</button>
                                     </form>
                                 </div>
                             </li>
@@ -72,14 +75,7 @@ $user_has_jogador = JogadorController::VerificaSeUsuarioTemJogador();
                     </div>
                 </div>
             @else
-
-
-
-
-            
-                @endauth
-
-
+            @endauth
     @endif
     </nav>
 
@@ -98,7 +94,7 @@ $user_has_jogador = JogadorController::VerificaSeUsuarioTemJogador();
         @yield('conteudo')
 
     </div>
-
+    @livewireScripts
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"

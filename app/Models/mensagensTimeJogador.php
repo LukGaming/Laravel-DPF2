@@ -13,6 +13,8 @@ class mensagensTimeJogador extends Model
         "body",
         "id_time",
         "id_jogador",
-        "user_id"
+        "user_id",
+        'visualizado_pelo_time',
+        'visualizado_pelo_jogador'
     ];
 }

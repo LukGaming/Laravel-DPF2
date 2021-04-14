@@ -19,6 +19,8 @@ class CreateMensagensTimeJogadorsTable extends Migration
             $table->bigInteger("id_time");
             $table->bigInteger("id_jogador");
             $table->bigInteger('user_id');
+            $table->integer('visualizado_pelo_time');
+            $table->integer('visualizado_pelo_jogador');
             $table->timestamps();
         });
     }
