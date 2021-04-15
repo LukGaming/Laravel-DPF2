@@ -33,9 +33,6 @@ class Mensagens extends Component
             mensagensTimeJogador::create(['body' => $this->body, 'id_time' => $this->time, 'id_jogador' => $this->jogador, 'user_id' => Auth::id(), 'visualizado_pelo_time' => 0, 'visualizado_pelo_jogador' => 1]);
             $this->body = "";
         }
-
-
-
         $this->dispatchBrowserEvent('mensagem_enviada');
     }
     public function oldMessages()
@@ -55,7 +52,6 @@ class Mensagens extends Component
             for ($i = 0; $i < count($todas_as_mensagens); $i++) {
                 $todas_as_mensagens[$i]->update(['visualizado_pelo_jogador' => 1]);
             }
-
         }
         return  DB::table('mensagens_time_jogadors')->where('id_time', $this->time)->where('id_jogador', $this->jogador)->get();
     }

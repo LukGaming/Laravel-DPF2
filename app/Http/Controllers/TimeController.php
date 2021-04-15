@@ -221,4 +221,7 @@ class TimeController extends Controller
             return view('times/mensagens', ['time' => $time, 'jogador' => $jogador, 'permissao_jogador' => 1]);
         }
     }
+    public function mensagens(){
+        return view('times/todas-mensagens');
+    }
 }

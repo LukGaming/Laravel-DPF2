@@ -47,7 +47,6 @@ $user_has_jogador = JogadorController::VerificaSeUsuarioTemJogador();
                                     Criar um Perfil de jogador</a>
                             @endif
                         @endif
-
                     </ul>
                     <div class="collapse navbar-collapse justify-content-end corBtnNav" id="navbarCollapse">
                         <ul class="navbar-nav">
@@ -72,10 +71,6 @@ $user_has_jogador = JogadorController::VerificaSeUsuarioTemJogador();
                     </div>
                 </div>
             @else
-
-
-
-
             
                 @endauth
 
