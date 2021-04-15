@@ -1,4 +1,30 @@
 <div>
+<style>
+.style-overflow::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.style-overflow::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+.style-overflow::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: green;
+}
+</style>
+
+
+
+
+
     @if ($dono_time == 1)
         @if ($permissao_mensagens == 1)
             <div class="d-flex justify-content-end" style="margin-top: 10px">
@@ -6,7 +32,7 @@
             </div>
         @endif
         @if ($permissao_mensagens == 0)
-            <div class="d-flex justify-content-end" style="margin-top: 10px">
+            <div class="d-flex justify-content-end" style="margin-top: 10px; " >
                 <button class="btn btn-success" wire:click="habilitarMensagens({{$time}}, {{$jogador}})">Habilitar as mensagens para este usuário</button>
             </div>
         @endif
@@ -15,9 +41,8 @@
 
     <div style="padding: 10px">
 
-        <div class="border border-dark overflow-auto bg-dark text-light rounded" id="sobe-overflow"
-            style="height: 80vh;">
-
+        <div class="border border-dark overflow-auto bg-dark text-light rounded style-overflow" id="sobe-overflow"
+            style="height: 75vh;">
             <div class="skype-parent" wire:poll>
                 @if (count($old_messages) > 0)
                     @if ($old_messages[0]->user_id == Auth::id())
@@ -35,7 +60,6 @@
                                                 class="close button-delete-message" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button></p>
-
                                     </div>
                                     <div>{{ \Carbon\Carbon::parse($messages->created_at)->format('H:i:s') }}</div>
                                 </div>
