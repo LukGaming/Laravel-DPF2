@@ -209,6 +209,8 @@ class TimeController extends Controller
     {
         //Verificando se já existem permissoes de mensagens entre este time e jogador
         $searchTimeJogador = mensagensPermitidas::where('id_time', $time)->where('id_jogador', $jogador)->first();
+        //Verificando qual é o ID do meu time!
+        
         if ($searchTimeJogador) {
             if ($searchTimeJogador->permissao == 1) {
                 return view('times/mensagens', ['time' => $time, 'jogador' => $jogador, 'permissao_jogador' => 1]);
@@ -221,7 +223,8 @@ class TimeController extends Controller
             return view('times/mensagens', ['time' => $time, 'jogador' => $jogador, 'permissao_jogador' => 1]);
         }
     }
-    public function mensagens(){
+    public function mensagens()
+    {
         return view('times/todas-mensagens');
     }
 }

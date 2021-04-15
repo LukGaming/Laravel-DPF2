@@ -30,6 +30,9 @@ class Mensagens extends Component
                 $this->body = "";
             }
         } else { //Se for jogador
+            if (!$this->body) {
+                return;
+            }
             mensagensTimeJogador::create(['body' => $this->body, 'id_time' => $this->time, 'id_jogador' => $this->jogador, 'user_id' => Auth::id(), 'visualizado_pelo_time' => 0, 'visualizado_pelo_jogador' => 1]);
             $this->body = "";
         }
@@ -57,20 +60,28 @@ class Mensagens extends Component
     }
     public function verificaSeSouJogadorOuTime()
     {
-        $jogador_dono_do_time = Time::where('id', $this->time)->first()->user_id; //Procurando o jogador
-        if ($jogador_dono_do_time == Auth::id()) {
-            return 1;
+
+        $jogador_dono_do_time = Time::where('id', $this->time)->first();
+        if ($jogador_dono_do_time) {
+            if ($jogador_dono_do_time->user_id == Auth::id()) {
+                return 1;
+            } else {
+                return 0;
+            }
         } else {
             return 0;
         }
     }
     public function imagemTime()
     {
-        return Time::where('id', $this->time)->first()->caminho_imagem_time;
+        $time = Time::where('id', $this->time)->first();
+        return $time->caminho_imagem_time;
     }
     public function imagemJogador()
     {
-        return  Jogador::where('user_id', $this->jogador)->first()->caminho_imagem_perfil_jogador;
+        $caminho_imagem_jogador = Jogador::where('user_id', $this->jogador)->first()->caminho_imagem_perfil_jogador;
+
+        return  $caminho_imagem_jogador;
     }
     public function removerMensagem($id_mensagem)
     {
