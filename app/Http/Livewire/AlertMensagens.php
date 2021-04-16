@@ -29,8 +29,8 @@ class AlertMensagens extends Component
                 return $ultimas_mensagens;//dd($ultimas_mensagens);
             }
         } else {
-            $ultimas_mensagens = mensagensTimeJogador::where('user_id', Auth::id())->orWhere('id_jogador', Auth::id())->where('visualizado_pelo_jogador',0)->get();
-            return $ultimas_mensagens;//dd($ultimas_mensagens);
+            $ultimas_mensagens = mensagensTimeJogador::where('visualizado_pelo_jogador',0)->Where('id_jogador', Auth::id())->get();
+            return  $ultimas_mensagens;//dd($ultimas_mensagens);
         }
     }
 }

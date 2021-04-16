@@ -20,11 +20,6 @@
 	background-color: green;
 }
 </style>
-
-
-
-
-
     @if ($dono_time == 1)
         @if ($permissao_mensagens == 1)
             <div class="d-flex justify-content-end" style="margin-top: 10px">

@@ -134,7 +134,7 @@
                                             class="btn btn-secondary">Ver
                                             Perfil de
                                             Jogador</button></a>
-                                    <a href="{{ url('menssagens-time/' . $time->id . '/jogador/' . $inscrito->user_id) }}">
+                                    <a href="{{ url('mens   agens-time/' . $time->id . '/jogador/' . $inscrito->user_id) }}">
                                         <button class="btn btn-info">Enviar Mensagem para jogador</button></a>
                                     <a href="{{ url('jogador/' . $inscrito->user_id) }}"> <button
                                             class="btn btn-secondary">Convidar Jogador Para o Time</button></a>
