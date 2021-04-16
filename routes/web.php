@@ -15,9 +15,7 @@ use App\Http\Controllers\{
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('jogador/index');
-});
+Route::any('/', [JogadorController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

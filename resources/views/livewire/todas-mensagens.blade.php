@@ -7,10 +7,10 @@
                     <div class="d-flex justify-content-between">
                         @if ($mensagem['imagem'])
                             <img src="{{ asset($mensagem['imagem']) }}" class="img-thumbnail" width="50px"
-                                height="50px">
+                                height="50px" style="border-radius: 50%">
                         @else
                             <img src="{{ asset('images/user_without_image.png') }}" class="img-thumbnail" width="50px"
-                                height="50px">
+                                height="50px" style="border-radius: 50%">
                         @endif
                         <div style="margin: auto 0; margin-left: 20px" class="h5">{{ $mensagem['nome'] }}</div>
                         @if ($mensagem['ultima_mensagem'])

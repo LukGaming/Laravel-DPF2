@@ -18,7 +18,7 @@ class JogadorController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except('show', 'search');
+        $this->middleware('auth')->except('show', 'search', 'index');
     }
     /**
      * Display a listing of the resource.
@@ -26,8 +26,9 @@ class JogadorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('jogador/index');
+    {   
+        //Verificando se este jogador faz parte de algum time
+        return view('jogador/index', ['tem_jogador' => $this->verificaSeUsuarioTemPerfilJogadorCriado()]);
     }
 
     /**
@@ -222,5 +223,23 @@ class JogadorController extends Controller
     public function search()
     {
         return view('jogador/search-jogador');
+    }
+    public function verificaSeUsuarioTemPerfilJogadorCriado()
+    {
+        $verifica_se_tem_jogador_criado = Jogador::where('user_id', Auth::id())->first();
+        if ($verifica_se_tem_jogador_criado) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+    public function verificaSeJogadorFazParteDeAlgumTime(){
+        if($this->verificaSeUsuarioTemPerfilJogadorCriado()){//verificando se este jogador tem time
+            //$time_jogador = Time::where('user_id')
+            //Fazer essa funcao quando fizermos os jogadores de times
+        }
+        else{
+            return 0;
+        }
     }
 }
