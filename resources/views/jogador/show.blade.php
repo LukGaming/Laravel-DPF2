@@ -1,15 +1,17 @@
 @extends('jogador/layout')
 
-@section('titulo', 'Home')
+@section('titulo', 'Visualizando Perfil')
     <link href={{ URL::asset('css/icones-social.css') }} rel="stylesheet">
 
 
 @section('conteudo')
     <style>
-.accordion-button::after{
-    background-color: white;
-}
+        .accordion-button::after {
+            background-color: white;
+        }
+
     </style>
+    @livewireStyles
     @if ($jogador)
         <div class="w-100 text-light bg-dark border border-light rounded " style="padding-bottom: 30px; margin-top: 40px ;">
             <h1 class="d-flex justify-content-center text-light " style="padding-bottom: 20px">
@@ -101,6 +103,11 @@
                             <p class="h5"> Contato: {{ $jogador->email_contato }}</p>
                         @endif
                     </div>
+                    @if ($convidar_jogador)
+                        @if ($convidar_jogador == 1)
+                            @livewire('convidar-jogador-para-time', ['jogador' => $jogador->user_id])
+                        @endif
+                    @endif
                 </div>
             </div>
         </div>
@@ -191,4 +198,5 @@
         </div>
         <button type="button" class="btn btn-info">Buscar outros jogadores</button>
     @endif
+    @livewireScripts
 @endsection

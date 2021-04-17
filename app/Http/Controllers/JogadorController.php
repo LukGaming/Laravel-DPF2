@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ImagePerifilJogadorController;
 use App\Http\Controllers\ConfigPcJogadorController;
 use App\Models\configCsJogador;
+use App\Models\Time;
+
+
 
 class JogadorController extends Controller
 {
@@ -26,7 +29,7 @@ class JogadorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         //Verificando se este jogador faz parte de algum time
         return view('jogador/index', ['tem_jogador' => $this->verificaSeUsuarioTemPerfilJogadorCriado()]);
     }
@@ -95,6 +98,7 @@ class JogadorController extends Controller
      */
     public function show($id_jogador) //Não é obrigatório estar logado para acessar essa rota!!!!
     {
+
         $jogador = DB::table('jogadors') //Buscando dados do jogador
             ->where('user_id', $id_jogador)
             ->first();
@@ -107,7 +111,18 @@ class JogadorController extends Controller
             ->where('id_jogador', $id_jogador)
             ->first();
         if ($jogador) {
-            return view('jogador/show', ['jogador' => $jogador, 'config_pc_jogador' => $config_pc_jogador, 'config_cs_jogador' => $config_cs_jogador]); //Se existir um jogador
+            //Verificar se este jogador já faz parte de um time futuramente
+
+
+            //Verificar se eu sou dono de um  time
+            $tenho_time = Time::where('user_id', Auth::id())->first();
+            if($tenho_time){
+                $convidar_jogador = 1;
+            }
+            else{
+                $convidar_jogador = 0;
+            }
+            return view('jogador/show', ['jogador' => $jogador, 'config_pc_jogador' => $config_pc_jogador, 'config_cs_jogador' => $config_cs_jogador, 'convidar_jogador'=>$convidar_jogador]); //Se existir um jogador
         } else {
             $mensagem = "Este jogador não está cadastrado em nosso sistema";
             return view('jogador/show', ['jogador' => $jogador]);
@@ -233,12 +248,12 @@ class JogadorController extends Controller
             return 0;
         }
     }
-    public function verificaSeJogadorFazParteDeAlgumTime(){
-        if($this->verificaSeUsuarioTemPerfilJogadorCriado()){//verificando se este jogador tem time
+    public function verificaSeJogadorFazParteDeAlgumTime()
+    {
+        if ($this->verificaSeUsuarioTemPerfilJogadorCriado()) { //verificando se este jogador tem time
             //$time_jogador = Time::where('user_id')
             //Fazer essa funcao quando fizermos os jogadores de times
-        }
-        else{
+        } else {
             return 0;
         }
     }
