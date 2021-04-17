@@ -116,13 +116,12 @@ class JogadorController extends Controller
 
             //Verificar se eu sou dono de um  time
             $tenho_time = Time::where('user_id', Auth::id())->first();
-            if($tenho_time){
+            if ($tenho_time) {
                 $convidar_jogador = 1;
-            }
-            else{
+            } else {
                 $convidar_jogador = 0;
             }
-            return view('jogador/show', ['jogador' => $jogador, 'config_pc_jogador' => $config_pc_jogador, 'config_cs_jogador' => $config_cs_jogador, 'convidar_jogador'=>$convidar_jogador]); //Se existir um jogador
+            return view('jogador/show', ['jogador' => $jogador, 'config_pc_jogador' => $config_pc_jogador, 'config_cs_jogador' => $config_cs_jogador, 'convidar_jogador' => $convidar_jogador]); //Se existir um jogador
         } else {
             $mensagem = "Este jogador não está cadastrado em nosso sistema";
             return view('jogador/show', ['jogador' => $jogador]);
@@ -137,8 +136,6 @@ class JogadorController extends Controller
     public function edit($id_jogador)
     {
         if ($id_jogador == Auth::id()) {
-
-
             $jogador = DB::table('jogadors')
                 ->where('user_id', Auth::id())
                 ->first();
@@ -256,5 +253,8 @@ class JogadorController extends Controller
         } else {
             return 0;
         }
+    }
+    public function convites(){
+        return view('jogador/convites');
     }
 }

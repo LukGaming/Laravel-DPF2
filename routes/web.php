@@ -71,3 +71,4 @@ Route::any('search/jogador', [JogadorController::class, 'search'])->name('search
 Route::any('mensagens-time/{time}/jogador/{jogador}', [TimeController::class, 'menssagens']);
 Route::any('search/vagas', [vagasController::class, 'searchVagas'])->middleware('auth');
 Route::any('mensagens', [TimeController::class, 'mensagens'])->middleware('auth');
+Route::any('convites', [JogadorController::class, 'convites'])->middleware('auth');

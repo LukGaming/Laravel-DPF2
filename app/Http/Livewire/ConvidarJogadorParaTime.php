@@ -33,7 +33,6 @@ class ConvidarJogadorParaTime extends Component
     }
     public function removerConvite()
     {
-
         $remover_convite = conviteJogadoresTime::where('id_jogador', $this->jogador)->where('id_time', $this->idDoMeuTime())->delete();
     }
 }

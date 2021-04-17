@@ -122,6 +122,7 @@
     @auth
         @if ($time_admin == 1)
             @if (count($inscritos_na_vaga) > 0)
+               
                 <div class="bg-dark text-light">
                     <div class="border border-light rounded" style="padding: 10px">
                         <div class="d-flex justify-content-center h5">Jogadores Inscritos para suas Vagas</div>
@@ -134,10 +135,11 @@
                                             class="btn btn-secondary">Ver
                                             Perfil de
                                             Jogador</button></a>
-                                    <a href="{{ url('mens   agens-time/' . $time->id . '/jogador/' . $inscrito->user_id) }}">
+                                    <a href="{{ url('mensagens-time/' . $time->id . '/jogador/' . $inscrito->user_id) }}">
                                         <button class="btn btn-info">Enviar Mensagem para jogador</button></a>
-                                    <a href="{{ url('jogador/' . $inscrito->user_id) }}"> <button
-                                            class="btn btn-secondary">Convidar Jogador Para o Time</button></a>
+                                    @livewire('convidando-jogador-inscrito-na-vaga-para-time', ['id_jogador' =>
+                                    $inscrito->user_id])
+
                                 </div>
                             </div>
                         @endforeach

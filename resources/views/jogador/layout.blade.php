@@ -53,6 +53,7 @@ $user_has_jogador = JogadorController::VerificaSeUsuarioTemJogador();
                         @endif
                     </ul>
                     @livewire('alert-mensagens', ['id_usuario' => Auth::id()])
+                    @livewire('alert-convites', ['id_usuario' => Auth::id()])
                     <div class="collapse navbar-collapse justify-content-end " id="navbarCollapse">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown ">
