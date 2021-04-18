@@ -26,21 +26,11 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="d-flex justify-content-between">
-                        <a href="{{ url('time/'.$convite->id_time) }}">
-                        <button class="btn btn-success">Visualizar Perfil de Time</button>
-                    </a>
-                        <button class="btn btn-primary">Aceitar Convite</button>
-                        <button class="btn btn-primary">Recusar Convite</button>
+                    
+                        @livewire('aceita-recusa-convite', ['user_id'=>Auth::id(), 'id_time'=>$convite->id_time, 'nome_time'=>$convite['nome_time'], 'id_convite'=>$convite->id])
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
         @endforeach
     @else
         Nenhum Convite Até o momento.

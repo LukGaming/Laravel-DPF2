@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateConviteJogadoresTimesTable extends Migration
+class CreateJogadoresParticipantesTimesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateConviteJogadoresTimesTable extends Migration
      */
     public function up()
     {
-        Schema::create('convite_jogadores_times', function (Blueprint $table) {
+        Schema::create('jogadores_participantes_times', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_time');
             $table->unsignedBigInteger('id_jogador');
             $table->foreign('id_time')->references('id')->on('times');
             $table->foreign('id_jogador')->references('user_id')->on('jogadors');
-            $table->integer("recusado")->default(0);
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateConviteJogadoresTimesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('convite_jogadores_times');
+        Schema::dropIfExists('jogadores_participantes_times');
     }
 }

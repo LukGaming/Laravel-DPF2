@@ -16,7 +16,7 @@ class ShowConvites extends Component
     public function showingConvites()
     {
         //Preciso retornar o nome do time
-        $convites = conviteJogadoresTime::where('id_jogador', Auth::id())->get();
+        $convites = conviteJogadoresTime::where('id_jogador', Auth::id())->where('recusado', 0)->get();
         if (count($convites) > 0) {
             for ($i = 0; $i < count($convites); $i++) {
                 $time = Time::where('id', $convites[$i]->id_time)->first();

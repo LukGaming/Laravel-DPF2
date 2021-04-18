@@ -15,7 +15,7 @@ class AlertConvites extends Component
     }
     public function notificaConvites()
     {
-        $convites = conviteJogadoresTime::where('id_jogador', Auth::id())->get();
+        $convites = conviteJogadoresTime::where('id_jogador', Auth::id())->where('recusado', 0)->get();
         if (count($convites) > 0) {
             return count($convites);
         } else {
