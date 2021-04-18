@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ImagemTimeController;
 use App\Http\Livewire\HorarioTreinosTime;
 use App\Models\HorarioTreinoTime;
+use App\Models\Jogador;
+use App\Models\jogadoresParticipantesTime;
 use App\Models\mensagensPermitidas;
 use App\Models\subscribeVagaTime;
 use App\Models\User;
@@ -127,7 +129,14 @@ class TimeController extends Controller
      */
     public function show(Time $time)
     {
-
+        $jogadores_deste_time = jogadoresParticipantesTime::where('id_time', $time->id)->get();
+        $dados_jogadores = array();
+        for ($i = 0; $i < count($jogadores_deste_time); $i++) {
+            $jogador = Jogador::where('user_id', $jogadores_deste_time[$i]->id_jogador)->first();
+            $dados_jogadores[$i]['id_jogador'] = $jogador->user_id;
+            $dados_jogadores[$i]['nome'] = $jogador->nick_jogador;
+            $dados_jogadores[$i]['imagem'] = $jogador->caminho_imagem_perfil_jogador;
+        }
         $horarios_treino = HorarioTreinoTime::where('id_time', $time->id)->get();
         $jogadores_que_se_inscreveram_no_time = subscribeVagaTime::where('id_time', $time->id)->get();
         if (count($jogadores_que_se_inscreveram_no_time) > 0) {
@@ -145,7 +154,7 @@ class TimeController extends Controller
         } else {
             $time_admin = 0;
         }
-        return view('times/show', ['time' => $time, 'time_admin' => $time_admin, 'horarios_treino' => $horarios_treino, 'inscritos_na_vaga' => $jogadores_que_se_inscreveram_no_time]);
+        return view('times/show', ['time' => $time, 'time_admin' => $time_admin, 'horarios_treino' => $horarios_treino, 'inscritos_na_vaga' => $jogadores_que_se_inscreveram_no_time, 'jogadores_do_time'=>$dados_jogadores]);
     }
 
     /**
@@ -210,7 +219,7 @@ class TimeController extends Controller
         //Verificando se já existem permissoes de mensagens entre este time e jogador
         $searchTimeJogador = mensagensPermitidas::where('id_time', $time)->where('id_jogador', $jogador)->first();
         //Verificando qual é o ID do meu time!
-        
+
         if ($searchTimeJogador) {
             if ($searchTimeJogador->permissao == 1) {
                 return view('times/mensagens', ['time' => $time, 'jogador' => $jogador, 'permissao_jogador' => 1]);

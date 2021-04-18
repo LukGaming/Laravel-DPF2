@@ -5,6 +5,22 @@
 
 
 @section('conteudo')
+    <style>
+        .centered {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: crimson;
+        }
+
+        .div-image {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+    </style>
     @livewireStyles
     <div class="bg-dark text-light" style="margin-bottom: 10px">
         @if ($time)
@@ -20,9 +36,13 @@
                             <div class="d-flex justify-content-around" style="padding: 15px">
                                 <pre>{{ $time->descricao }}</pre>
                                 @if ($time->caminho_imagem_time)
-                                    <img src="{{ URL::asset($time->caminho_imagem_time) }}" class="w-25"
-                                        class="border border-dark rounded" style="border-radius: 50%">
-                                @endif
+                                <img src=" {{ url($time->caminho_imagem_time) }}" alt=""
+                                    class="img-thumbnail img-fluid" width="200px" style="border-radius: 50%">
+                                    @else 
+                                    <img src="  {{ asset('images/user_without_image.png') }} " alt=""
+                                    class="img-thumbnail img-fluid" width="200px" style="border-radius: 50%">
+
+                            @endif
                             </div>
                         </div>
                     </div>
@@ -93,7 +113,23 @@
                     </div>
                 </div>
             </div>
+            @if ($jogadores_do_time)
+                <div class="d-flex justify-content-center">
+                    <div class="h5"> Jogadores deste Time</div>
+                </div>
+                <div class="d-flex justify-content-center ">
+                @foreach ($jogadores_do_time as $jogador)
+                <div style="margin: 5px" class="div-image">
+                        <img src="{{ asset($jogador['imagem']) }}" class="img-fluid" width="150px"
+                            style="border-radius: 50%">
+                        <div class="h5 centered">{{ $jogador['nome'] }}</div>
+                    </div>
+                @endforeach
+            </div>
+
+            @endif
     </div>
+
     @if (count($horarios_treino) > 0)
         <div class="w-100  border border-dark rounded bg-dark text-light"
             style="padding-bottom: 30px; margin-top: 10px ; margin-bottom: 10px">
@@ -122,7 +158,7 @@
     @auth
         @if ($time_admin == 1)
             @if (count($inscritos_na_vaga) > 0)
-               
+
                 <div class="bg-dark text-light">
                     <div class="border border-light rounded" style="padding: 10px">
                         <div class="d-flex justify-content-center h5">Jogadores Inscritos para suas Vagas</div>

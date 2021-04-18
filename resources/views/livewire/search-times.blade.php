@@ -25,8 +25,8 @@
                             @if ($time->caminho_imagem_time)
                                 <img src=" {{ url($time->caminho_imagem_time) }}" alt=""
                                     class="img-thumbnail img-fluid" width="200px">
-                                    @else 
-                                    <img src="  {{ asset('images/user_without_image.png') }} " alt=""
+                            @else
+                                <img src="  {{ asset('images/user_without_image.png') }} " alt=""
                                     class="img-thumbnail img-fluid" width="200px">
 
                             @endif
@@ -46,35 +46,35 @@
             {{ $times->links() }}
         </div>
     @else
-    <div class="row " style="margin-top: 20px">
+        <div class="row " style="margin-top: 20px">
             @if (count($times) > 0)
                 @foreach ($times as $time)
-                <div class="col-sm-4">
-                    <div class="card text-white  card-itens card-title " style=" padding: 3px">
-                        <h3 class="card-title mx-auto h5 " style="">{{ $time->nome }}</h3>
-                        <div class=" bg-light text-dark d-flex justify-content-center ">
-                            <p class="card-text h5">
-                                {{ $time->frase }}</p>
-                        </div>
-                        <div class="d-flex justify-content-center bg-light" style="margin: 5px">
-                            @if ($time->caminho_imagem_time)
-                                <img src=" {{ url($time->caminho_imagem_time) }}" alt=""
-                                    class="img-thumbnail img-fluid" width="200px">
-                                    @else 
+                    <div class="col-sm-4">
+                        <div class="card text-white  card-itens card-title " style=" padding: 3px">
+                            <h3 class="card-title mx-auto h5 " style="">{{ $time->nome }}</h3>
+                            <div class=" bg-light text-dark d-flex justify-content-center ">
+                                <p class="card-text h5">
+                                    {{ $time->frase }}</p>
+                            </div>
+                            <div class="d-flex justify-content-center bg-light" style="margin: 5px">
+                                @if ($time->caminho_imagem_time)
+                                    <img src=" {{ url($time->caminho_imagem_time) }}" alt=""
+                                        class="img-thumbnail img-fluid" width="200px">
+                                @else
                                     <img src="  {{ asset('images/user_without_image.png') }} " alt=""
-                                    class="img-thumbnail img-fluid" width="200px">
+                                        class="img-thumbnail img-fluid" width="200px">
 
-                            @endif
-                        </div>
-                        <a href="{{ url('time/' . $time->id) }}"
-                            class="btn  stretched-link text-dark card-button-link" style="padding: 4px;  border-style: solid;
+                                @endif
+                            </div>
+                            <a href="{{ url('time/' . $time->id) }}"
+                                class="btn  stretched-link text-dark card-button-link" style="padding: 4px;  border-style: solid;
                             border-style: outset;
                             border-color: #3E872E;
                             border-width: 3px;">
-                            <h5>Ir para perfil do time</h5>
-                        </a>
+                                <h5>Ir para perfil do time</h5>
+                            </a>
+                        </div>
                     </div>
-                </div>
                 @endforeach
             @else
                 <div class="alert alert-info" role="alert" style="margin: 10px">
