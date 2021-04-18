@@ -1,6 +1,6 @@
 @extends('jogador/layout')
 
-@section('titulo', 'Home')
+@section('titulo', 'Criar')
 
 @section('conteudo')
     @if ($errors->any())
@@ -12,7 +12,7 @@
             </ul>
         </div>
     @endif
-    <div class="bg-dark text-light" style="padding: 10px">
+    <div class="bg-dark text-light rounded" style="padding: 10px; margin-top: 20px">
         <h1>Cadastrando Perfil de Jogador</h1>
         <form method="POST" action="{{ route('jogador.store') }}" enctype="multipart/form-data">
             @csrf
@@ -149,9 +149,10 @@
                         <button type="submit" class="btn btn-primary" id="btnCriar">Criar Perfil de
                             Jogador</button>
                     </div>
+                </div>
+            </div>
         </form>
     </div>
-</div>
 
 
     <br><br><br>

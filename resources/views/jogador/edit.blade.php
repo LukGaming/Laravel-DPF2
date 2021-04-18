@@ -1,6 +1,6 @@
 @extends('jogador/layout')
 
-@section('titulo', 'Editando Perfil de Jogador')
+@section('titulo', 'Editar')
 
 @section('conteudo')
     <div class="border border-dark rounded bg-dark text-light"

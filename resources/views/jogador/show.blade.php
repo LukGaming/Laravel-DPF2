@@ -1,6 +1,6 @@
 @extends('jogador/layout')
 
-@section('titulo', 'Visualizando Perfil')
+@section('titulo', 'Visualizar')
     <link href={{ URL::asset('css/icones-social.css') }} rel="stylesheet">
 
 
@@ -144,11 +144,12 @@
                                 {{ $config_pc_jogador->placa_mae }} </h5>
                             <h5 class="text-light  border border-light rounded" style="padding: 5px">Fonte :
                                 {{ $config_pc_jogador->fonte }} </h5>
-
-                            <div class=" justify-content-end">
-                                <img src="{{ URL::asset($config_pc_jogador->caminho_imagem_pc_jogador) }}"
-                                    class="border border-light rounded w-50" style="padding: 5px">
-                            </div>
+                            @if ($config_pc_jogador->caminho_imagem_pc_jogador)
+                                <div class=" justify-content-end">
+                                    <img src="{{ URL::asset($config_pc_jogador->caminho_imagem_pc_jogador) }}"
+                                        class="border border-light rounded w-50" style="padding: 5px">
+                                </div>
+                            @endif
                         @endif
 
                     </div>

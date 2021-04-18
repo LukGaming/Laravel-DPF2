@@ -1,6 +1,6 @@
 @extends('jogador/layout')
 
-@section('titulo', 'Home')
+@section('titulo', 'Buscar')
 
 @section('conteudo')
     <style>

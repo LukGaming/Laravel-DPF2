@@ -1,6 +1,6 @@
 @extends('jogador/layout')
 
-@section('titulo', 'Home')
+@section('titulo', 'Criar')
 
 @section('conteudo')
     @if ($errors->any())

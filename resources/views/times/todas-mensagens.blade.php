@@ -1,6 +1,6 @@
 @extends('jogador/layout')
 
-@section('titulo', 'Time')
+@section('titulo', 'Mensagens')
 
 @section('conteudo')
     @livewireStyles
