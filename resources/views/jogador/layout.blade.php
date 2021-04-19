@@ -76,7 +76,29 @@ $user_has_jogador = JogadorController::VerificaSeUsuarioTemJogador();
                     </div>
                 </div>
             @else
-            @endauth
+                <nav class="navbar navbar-expand-md navbar-dark border border-dark corBtnNav">
+                    <a class="navbar-brand " href="{{ route('jogador.index') }}"
+                        style="padding-left: 10px;color: black;">Home</a>
+                    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav">
+                        <span class="navbar-toggler-icon " style="color: black; background-color: black;"></span>
+                    </button>
+                    <div class="collapse navbar-collapse " id="navbarNav">
+                        <div class="d-flex justify-content-end">
+                            <ul class="navbar-nav mr-auto  rounded " style="margin-right: 10px">
+                                <ul class="navbar-nav">
+                                    <a href="{{ url('login') }}" style="margin-right: 10px">
+                                        <button class="btn btn-primary ">Logar-se</button>
+                                    </a>
+                                </ul>
+                                <ul class="navbar-nav">
+                                    <a href="{{ url('register') }}">
+                                        <button class="btn btn-primary ">Registrar-se</button>
+                                    </a>
+                                </ul>
+                            </ul>
+                        </div>
+                    </div>
+                @endauth
     @endif
     </nav>
 
