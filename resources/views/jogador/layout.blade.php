@@ -42,13 +42,11 @@ $user_has_jogador = JogadorController::VerificaSeUsuarioTemJogador();
                     <ul class="navbar-nav mr-auto bg-primary rounded " style="margin-right: 10px">
                         @if (Auth::user())
                             @if ($user_has_jogador)
-                                <a class="dropdown-item" href="{{ '/jogador/' . Auth::id() }}"><button
-                                        class="btn  rounded text-light">Seu Perfil
-                                        de
-                                        jogador</button></a>
+                                <a class="btn btn-primary rounded text-light" href="{{ '/jogador/' . Auth::id() }}"
+                                    style="padding: 10px">Visualizar perfil de jogador</a>
                             @else
-                                <a class="dropdown-item" href="{{ '/jogador/create' }}"><button
-                                        class="btn rounded text-light">Criar perfil de jogador</button></a>
+                                <a class="btn btn-primary rounded text-light" href="{{ '/jogador/create' }}"
+                                    style="padding: 10px">Criar perfil de jogador</a>
                             @endif
                         @endif
                     </ul>

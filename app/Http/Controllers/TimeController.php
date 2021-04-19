@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ImagemTimeController;
 use App\Http\Livewire\HorarioTreinosTime;
+use App\Models\conviteJogadoresTime;
 use App\Models\HorarioTreinoTime;
 use App\Models\Jogador;
 use App\Models\jogadoresParticipantesTime;
@@ -154,7 +155,7 @@ class TimeController extends Controller
         } else {
             $time_admin = 0;
         }
-        return view('times/show', ['time' => $time, 'time_admin' => $time_admin, 'horarios_treino' => $horarios_treino, 'inscritos_na_vaga' => $jogadores_que_se_inscreveram_no_time, 'jogadores_do_time'=>$dados_jogadores]);
+        return view('times/show', ['time' => $time, 'time_admin' => $time_admin, 'horarios_treino' => $horarios_treino, 'inscritos_na_vaga' => $jogadores_que_se_inscreveram_no_time, 'jogadores_do_time' => $dados_jogadores]);
     }
 
     /**
@@ -204,7 +205,8 @@ class TimeController extends Controller
         HorarioTreinoTime::where('id_time', $time->id)->delete();
         subscribeVagaTime::where('id_time', $time->id)->delete();
         vagasTime::where('id_time', $time->id)->delete();
-
+        conviteJogadoresTime::where('id_time', $time->id)->delete();
+        jogadoresParticipantesTime::where('id_time', $time->id)->delete();
         $time->delete();
 
         $mensagem = "Time excluido com sucesso!";

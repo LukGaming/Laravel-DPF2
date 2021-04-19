@@ -20,6 +20,6 @@ class ConfigPcJogador extends Model
         "fonte",
         "gabinete",
         "caminho_imagem_pc_jogador",
-        'id_jogador'
+        "id_jogador"
     ];
 }

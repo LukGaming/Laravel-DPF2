@@ -14,9 +14,11 @@ use App\Http\Controllers\ImagePerifilJogadorController;
 use App\Http\Controllers\ConfigPcJogadorController;
 use App\Models\configCsJogador;
 use App\Models\jogadoresParticipantesTime;
+use App\Models\mensagensPermitidas;
+use App\Models\mensagensTimeJogador;
 use App\Models\Time;
-
-
+use App\Models\vagasTime;
+use Illuminate\Support\Facades\Storage;
 
 class JogadorController extends Controller
 {
@@ -206,12 +208,47 @@ class JogadorController extends Controller
     public function destroy($id_jogador)
     {
         if ($id_jogador == Auth::id()) {
-            configCsJogador::where('id_jogador', $id_jogador)->delete();
-            ConfigPcJogador::where('id_jogador', $id_jogador)->delete(); //Primeiro eu removo a configuração
-            Jogador::where('user_id', $id_jogador)->delete(); //Depois eu removo o perfil
+            $config_cs_jogador = configCsJogador::where('id_jogador', $id_jogador)->first();
+            $caminho_cfg_cs = $config_cs_jogador->caminho_cfg;
+            if(file_exists( $caminho_cfg_cs)){
+                unlink($caminho_cfg_cs);//Removendo a CFG
+                Storage::delete( $caminho_cfg_cs);//Removendo a CFG
+            }
+            $config_cs_jogador->delete();//Removendo os dados do Cs do jogador
+            //////////////////////////////////////////////////////////
+            $ConfigPcJogador = ConfigPcJogador::where('id_jogador', Auth::id())->first();
+            $caminho_da_imagem_pc_jogador = $ConfigPcJogador->caminho_imagem_pc_jogador;
+            if(file_exists($caminho_da_imagem_pc_jogador)){
+                unlink($caminho_da_imagem_pc_jogador);
+                Storage::delete( $caminho_da_imagem_pc_jogador);
+            }
+            $ConfigPcJogador = ConfigPcJogador::where('id_jogador', Auth::id())->delete();
+            //////////////////////////////////////////////////////////
+            $jogador =  Jogador::where('user_id', $id_jogador)->first(); //Depois remove-se o perfil
+            $caminho_imagem_perfil_jogador = $jogador->caminho_imagem_perfil_jogador;
+            if(file_exists($caminho_imagem_perfil_jogador)){
+                Storage::delete($caminho_imagem_perfil_jogador);
+                unlink($caminho_imagem_perfil_jogador);
+               
+            }
+            Jogador::where('user_id', $id_jogador)->delete();
+            //////////////////////////////////////////////////////////
+            jogadoresParticipantesTime::where('id_jogador', Auth::id())->delete();
+            vagasTime::where('id_jogador', Auth::id())->delete();
+            mensagensPermitidas::where('id_jogador', Auth::id())->delete();
+            mensagensTimeJogador::where('id_jogador', Auth::id())->delete();
+            
+
+
+
+
+
+
+
+
 
             $mensagem = "Perfil de jogador excluido com sucesso!";
-            return redirect('/jogador')->with('mensagem', $mensagem);
+            return redirect('/')->with('mensagem', $mensagem);
         } else {
             $mensagem = "Voce não tem permissão para acessar essa rota!";
             return redirect('/jogador')->with('mensagem', $mensagem);

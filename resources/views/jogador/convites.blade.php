@@ -85,7 +85,6 @@
             max-height: 25px;
             border: none;
         }
-
     </style>
     @livewire('show-convites', ['user_id' => Auth::id()])
     @livewireScripts
