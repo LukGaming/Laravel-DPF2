@@ -105,9 +105,11 @@
                     </div>
                     @if ($convidar_jogador)
                         @if ($convidar_jogador == 1)
-                            @livewire('convidar-jogador-para-time', ['jogador' => $jogador->user_id])
+                            @if ($participa_de_time == 0)
+                                @livewire('convidar-jogador-para-time', ['jogador' => $jogador->user_id])
+                            @endif
+                            @endif
                         @endif
-                    @endif
                 </div>
             </div>
         </div>

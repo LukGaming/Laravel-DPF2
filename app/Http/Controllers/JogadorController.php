@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ImagePerifilJogadorController;
 use App\Http\Controllers\ConfigPcJogadorController;
 use App\Models\configCsJogador;
+use App\Models\jogadoresParticipantesTime;
 use App\Models\Time;
 
 
@@ -118,10 +119,19 @@ class JogadorController extends Controller
             $tenho_time = Time::where('user_id', Auth::id())->first();
             if ($tenho_time) {
                 $convidar_jogador = 1;
+                //Verificando se este jogador já faz parte de algum time
+                $jogador_time = jogadoresParticipantesTime::where('id_jogador', $jogador->user_id)->first();
+                if ($jogador_time) {
+                    $este_jogador_tem_time = 1;
+                } else {
+                    $convidar_jogador = 1;
+                    $este_jogador_tem_time = 0;
+                }
             } else {
                 $convidar_jogador = 0;
+                $este_jogador_tem_time = 0;
             }
-            return view('jogador/show', ['jogador' => $jogador, 'config_pc_jogador' => $config_pc_jogador, 'config_cs_jogador' => $config_cs_jogador, 'convidar_jogador' => $convidar_jogador]); //Se existir um jogador
+            return view('jogador/show', ['jogador' => $jogador, 'config_pc_jogador' => $config_pc_jogador, 'config_cs_jogador' => $config_cs_jogador, 'convidar_jogador' => $convidar_jogador ,'participa_de_time'=>$este_jogador_tem_time]); //Se existir um jogador
         } else {
             $mensagem = "Este jogador não está cadastrado em nosso sistema";
             return view('jogador/show', ['jogador' => $jogador]);
@@ -254,7 +264,8 @@ class JogadorController extends Controller
             return 0;
         }
     }
-    public function convites(){
+    public function convites()
+    {
         return view('jogador/convites');
     }
 }
