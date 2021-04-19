@@ -22,7 +22,7 @@
 
     </style>
     @livewireStyles
-    <div class="bg-dark text-light" style="margin-bottom: 10px">
+    <div class="bg-dark text-light rounded" style="margin-bottom: 10px">
         @if ($time)
             <div class="w-100  border border-dark rounded " style="padding-bottom: 30px; margin-top: 40px ;">
                 <h1 class="d-flex justify-content-center " style="padding-bottom: 20px">
@@ -114,7 +114,7 @@
                 </div>
             </div>
             @if ($jogadores_do_time)
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center ">
                     <div class="h5"> Jogadores deste Time</div>
                 </div>
                 <div class="d-flex justify-content-center ">
@@ -165,8 +165,8 @@
         @if ($time_admin == 1)
             @if (count($inscritos_na_vaga) > 0)
 
-                <div class="bg-dark text-light">
-                    <div class="border border-light rounded" style="padding: 10px">
+                <div class="bg-dark text-light  rounded" style="margin-bottom: 10px">
+                    <div class=" rounded" style="padding: 10px">
                         <div class="d-flex justify-content-center h5">Jogadores Inscritos para suas Vagas</div>
                         @foreach ($inscritos_na_vaga as $inscrito)
                             <div class="border border-light" style="padding: 10px">
