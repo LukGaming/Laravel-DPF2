@@ -112,6 +112,13 @@
                     @endif
                 </div>
             </div>
+            @if ($usuario_jogador == 1)
+                <div class="d-flex justify-content-end" style="margin: 10px">
+                    <a href="{{ url('jogador/' . Auth::id() . '/edit') }}">
+                        <button class="btn btn-success">Editar Perfil de Jogador</button>
+                    </a>
+                </div>
+            @endif
         </div>
         <div class="accordion accordion-flush text-light  bg-dark border border-light rounded" id="accordionFlushExample">
             <div class="accordion-item bg-dark">
@@ -157,6 +164,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
         <div class="accordion accordion-flush text-light  border border-light rounded" id="accordionFlushExample2">
@@ -194,6 +202,7 @@
             </div>
         </div>
         <br><br>
+
         </div>
     @else
         <div class="alert alert-warning" role="alert" style="margin-top: 30px">
