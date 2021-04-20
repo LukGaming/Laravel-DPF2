@@ -249,8 +249,8 @@
     <div class="bg-dark text-light rounded" style="padding: 10px">
         @livewire('vagas-time', ['time'=>$time->id])
     </div>
-    
-    remover-jogador-time
+    @livewire('remover-jogador-time', ['time'=>$time->id])
+
     @if ($admin == 2)
         <div class="d-flex justify-content-end" style="margin: 10px">
             <form action="{{ route('time.destroy', $time->id) }}" method="post">
@@ -260,6 +260,7 @@
             </form>
         </div>
     @endif
+
     <br><br><br>
     @livewireScripts
     <script src="{{ asset('js/nomes_times.js') }}"></script>

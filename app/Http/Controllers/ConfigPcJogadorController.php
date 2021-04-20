@@ -55,14 +55,11 @@ class ConfigPcJogadorController extends Controller
         } else {
             $request["caminho_imagem_pc_jogador"] = null; //Se nao tiver imagem
         }
-
         $request['id_jogador'] = Auth::id(); //Colocando id do jogador        
         ConfigPcJogador::create($request->all());
         $mensagem = "Salvo! Agora adiciona a configuração de jogo!"; //Mudar mensagem
         return redirect("configcsjogador/create")->with('mensagem',  $mensagem); //Redirecionar para a página de criar configuração de cs
-
     }
-
     /**
      * Display the specified resource.
      *
