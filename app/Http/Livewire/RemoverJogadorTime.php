@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Jogador;
 use App\Models\jogadoresParticipantesTime;
+use Illuminate\Contracts\Session\Session;
 use Livewire\Component;
 
 class RemoverJogadorTime extends Component
@@ -27,5 +28,6 @@ class RemoverJogadorTime extends Component
     }
     public function removerJogador($id_jogador){
         jogadoresParticipantesTime::where('id_jogador', $id_jogador)->delete();
+        session()->flash('jogador_removido', "Jogador Removido com Sucesso!");
     }
 }

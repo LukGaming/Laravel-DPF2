@@ -120,17 +120,23 @@
                 <div class="d-flex justify-content-center ">
                     @foreach ($jogadores_do_time as $jogador)
                         <div style="margin: 5px" class="div-image">
-                            <img src="{{ asset($jogador['imagem']) }}" class="img-fluid" width="150px"
-                                style="border-radius: 50%">
-                            <div class="h5 centered">{{ $jogador['nome'] }}</div>
+                            @if ($jogador['imagem'])
+                                <img src="{{ asset($jogador['imagem']) }}" class="img-fluid" width="150px"
+                                    style="border-radius: 50%">
+                                <div class="h5 centered">{{ $jogador['nome'] }}</div>
+                            @else
+                                <img src="{{ asset('images/user_without_image.png') }}" class="img-fluid" width="150px"
+                                    style="border-radius: 50%">
+                                <div class="h5 centered">{{ $jogador['nome'] }}</div>
+                            @endif
                         </div>
 
                     @endforeach
                 </div>
                 @foreach ($jogadores_do_time as $jogador)
                     @if ($jogador['id_jogador'] == Auth::id())
-                    @livewire('sair-do-time', ['id_time'=>$time->id, 'id_jogador'=>$jogador['id_jogador']])
-                        
+                        @livewire('sair-do-time', ['id_time'=>$time->id, 'id_jogador'=>$jogador['id_jogador']])
+
                     @endif
                 @endforeach
             @endif

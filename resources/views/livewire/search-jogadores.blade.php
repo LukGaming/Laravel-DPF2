@@ -1,6 +1,5 @@
 <div>
     <form wire:submit.prevent="searchJogador()" method="GET">
-
         <div class="row" style="padding-left: 10px">
             <label for="nometime" style="padding-left: 10px">Buscar Jogadores</label>
             <input type="text" class="col-7 inputfieldsofsite" id="nometime" aria-describedby="emailHelp"
@@ -20,8 +19,13 @@
                         <div class=" bg-light text-dark">
                             <p class="card-text ">
                             <div class="d-flex justify-content-center">
-                                <img src=" {{ url($jogador->caminho_imagem_perfil_jogador) }}" alt=""
+                                @if($jogador->caminho_imagem_perfil_jogador)
+                                <img src=" {{ asset($jogador->caminho_imagem_perfil_jogador) }}" alt=""
                                     class="img-thumbnail img-fluid" width="200px">
+                                    @else 
+                                    <img src=" {{ asset("images/user_without_image.png") }}" alt=""
+                                    class="img-thumbnail img-fluid" width="200px">
+                                @endif
                             </div>
                             </p>
                         </div>

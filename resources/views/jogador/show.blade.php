@@ -30,9 +30,15 @@
                 </div>
                 <div class="border-top border-light"></div>
 
+
                 <div class="d-flex justify-content-center ">
-                    <img src="{{ URL::asset($jogador->caminho_imagem_perfil_jogador) }}" class="w-25"
-                        style="border-radius: 50%  ; border: solid black; margin: 10px">
+                    @if ($jogador->caminho_imagem_perfil_jogador)
+                        <img src="{{ URL::asset($jogador->caminho_imagem_perfil_jogador) }}" class="w-25"
+                            style="border-radius: 50%  ; border: solid black; margin: 10px">
+                    @else
+                        <img src="{{ URL::asset('images/user_without_image.png') }}" class="w-25"
+                            style="border-radius: 50%  ; border: solid black; margin: 10px">
+                    @endif
                 </div>
                 <div class="border-top border-light"></div>
                 <div class="col" style="margin: 10px">
@@ -47,55 +53,74 @@
                         @endif
                     </p>
                 </div>
-                <div class="col">
+                <div class="row">
                     <h3 class="d-flex justify-content-center">Sociais do jogador</h3>
                     <div class="d-flex justify-content-center " style="padding-top: 20px">
+
                         @if ($jogador->facebook)
-                            <a href="https://gamersclub.com.br/jogador/{{ $jogador->facebook }}" target="_blank">
-                                <img src="{{ URL::asset('images/logos/facebook.png') }}" alt=""
-                                    class="fa border border-light rounded "
-                                    style="background-color: #3B5998; padding: 5px; width: 50px; height: 60px;">
-                            </a>
+                        <div class="col-sm">
+                            
+                        </div>
+                            <div class="col-sm">
+                                <a href="https://facebook.com/{{ $jogador->facebook }}" target="_blank">
+                                    <img src="{{ URL::asset('images/logos/facebook.png') }}" alt=""
+                                        class="fa border border-light rounded "
+                                        style="background-color: #3B5998; padding: 5px; width: 50px; height: 60px;">
+                                </a>
+                            </div>
                         @endif
                         @if ($jogador->twitter)
-                            <a href="https://gamersclub.com.br/jogador/{{ $jogador->twitter }}" target="_blank">
-                                <img src="{{ URL::asset('images/logos/twitter.png') }}" alt=""
-                                    class="fa border border-light rounded "
-                                    style="background-color: #1DA1F2; padding: 5px; width: 50px; height: 60px;">
-                            </a>
+                            <div class="col-sm">
+                                <a href="https://twitter.com/{{ $jogador->twitter }}" target="_blank">
+                                    <img src="{{ URL::asset('images/logos/twitter.png') }}" alt=""
+                                        class="fa border border-light rounded "
+                                        style="background-color: #1DA1F2; padding: 5px; width: 50px; height: 60px;">
+                                </a>
+                            </div>
                         @endif
                         @if ($jogador->twitch)
-                            <a href="https://gamersclub.com.br/jogador/{{ $jogador->twitch }}" target="_blank">
-                                <img src="{{ URL::asset('images/logos/twitch.png') }}" alt=""
-                                    class="fa border border-light rounded "
-                                    style="background-color: #503484; padding: 5px; width: 50px; height: 60px;">
-                            </a>
+                            <div class="col-sm">
+                                <a href="https://twitch.tv/{{ $jogador->twitch }}" target="_blank">
+                                    <img src="{{ URL::asset('images/logos/twitch.png') }}" alt=""
+                                        class="fa border border-light rounded "
+                                        style="background-color: #503484; padding: 5px; width: 50px; height: 60px;">
+                                </a>
+                            </div>
                         @endif
                         @if ($jogador->instagram)
-                            <a href="https://gamersclub.com.br/jogador/{{ $jogador->instagram }}" target="_blank">
-                                <img src="{{ URL::asset('images/logos/instagram.png') }}" alt=""
-                                    class="fa border border-light rounded "
-                                    style="background-color: #125688; padding: 5px; width: 50px; height: 60px;">
-                            </a>
+                            <div class="col-sm">
+                                <a href="https:/instagram.com/{{ $jogador->instagram }}" target="_blank">
+                                    <img src="{{ URL::asset('images/logos/instagram.png') }}" alt=""
+                                        class="fa border border-light rounded "
+                                        style="background-color: #125688; padding: 5px; width: 50px; height: 60px;">
+                                </a>
+                            </div>
                         @endif
                         @if ($jogador->gamersclub)
-                            <a href="https://gamersclub.com.br/jogador/{{ $jogador->gamersclub }}" target="_blank">
-                                <img src="{{ URL::asset('images/logos/gamersclub.png') }}" alt=""
-                                    class="fa border border-light rounded "
-                                    style="background-color: #34458a; padding: 5px; width: 50px; height: 60px;">
-                            </a>
+                            <div class="col-sm">
+                                <a href="https://gamersclub.com.br/jogador/{{ $jogador->gamersclub }}" target="_blank">
+                                    <img src="{{ URL::asset('images/logos/gamersclub.png') }}" alt=""
+                                        class="fa border border-light rounded "
+                                        style="background-color: #34458a; padding: 5px; width: 50px; height: 60px;">
+                                </a>
+                            </div>
                         @endif
+
                         @if ($jogador->faceit)
-                            <a href="https://www.faceit.com/en/players/{{ $jogador->faceit }}" target="_blank"><img
-                                    src="{{ URL::asset('images/logos/faceit.png') }}"
-                                    class="fa border border-light rounded "
-                                    style="background-color: #fd5c00; padding: 5px; width: 50px; height: 60px;"></a>
+                            <div class="col-sm">
+                                <a href="https://www.faceit.com/en/players/{{ $jogador->faceit }}" target="_blank"><img
+                                        src="{{ URL::asset('images/logos/faceit.png') }}"
+                                        class="fa border border-light rounded "
+                                        style="background-color: #fd5c00; padding: 5px; width: 50px; height: 60px;"></a>
+                            </div>
                         @endif
                         @if ($jogador->steam)
-                            <a href="https://steamcommunity.com/id/{{ $jogador->steam }}" target="_blank"><img
-                                    src="{{ URL::asset('images/logos/steam.png') }}" alt=""
-                                    class="fa border border-light rounded border border-light rounded"
-                                    style="background-color: #231f20; padding: 10px; width: 50px; height: 60px;"></a>
+                            <div class="col-sm">
+                                <a href="https://steamcommunity.com/id/{{ $jogador->steam }}" target="_blank"><img
+                                        src="{{ URL::asset('images/logos/steam.png') }}" alt=""
+                                        class="fa border border-light rounded border border-light rounded"
+                                        style="background-color: #231f20; padding: 10px; width: 50px; height: 60px;"></a>
+                            </div>
                         @endif
                     </div>
                     <div class="d-flex justify-content-center" style="padding-top: 20px">
