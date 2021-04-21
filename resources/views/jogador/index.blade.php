@@ -37,9 +37,9 @@
                     </div>
 
                     <a href="{{ url('jogador/create') }}" class="btn  stretched-link text-dark card-button-link" style="padding: 4px;  border-style: solid;
-                            border-style: outset;
-                            border-color: #3E872E;
-                            border-width: 3px;">
+                                border-style: outset;
+                                border-color: #3E872E;
+                                border-width: 3px;">
                         <h5>Criar um Perfil de Jogador</h5>
                     </a>
                 </div>
@@ -54,9 +54,9 @@
                         </p>
                     </div>
                     <a href="{{ url('jogador/create') }}" class="btn  stretched-link text-dark card-button-link" style="padding: 4px;  border-style: solid;
-                            border-style: outset;
-                            border-color: #3E872E;
-                            border-width: 3px;">
+                                border-style: outset;
+                                border-color: #3E872E;
+                                border-width: 3px;">
                         <h5>Ir para seu perfil de jogador</h5>
                     </a>
                 </div>
@@ -71,9 +71,9 @@
                     </p>
                 </div>
                 <a href="{{ url('search/jogador') }}" class="btn  stretched-link text-dark card-button-link" style="padding: 4px;  border-style: solid;
-                        border-style: outset;
-                        border-color: #3E872E;
-                        border-width: 3px;">
+                            border-style: outset;
+                            border-color: #3E872E;
+                            border-width: 3px;">
                     <h5>Buscar Jogadores</h5>
                 </a>
             </div>
@@ -87,9 +87,9 @@
                     </p>
                 </div>
                 <a href="{{ url('search/times') }}" class="btn  stretched-link text-dark card-button-link" style="padding: 4px;  border-style: solid;
-                        border-style: outset;
-                        border-color: #3E872E;
-                        border-width: 3px;">
+                            border-style: outset;
+                            border-color: #3E872E;
+                            border-width: 3px;">
                     <h5>Buscar Times</h5>
                 </a>
             </div>
@@ -103,31 +103,17 @@
                     </p>
                 </div>
                 <a href="{{ url('search/vagas') }}" class="btn  stretched-link text-dark card-button-link" style="padding: 4px;  border-style: solid;
-                        border-style: outset;
-                        border-color: #3E872E;
-                        border-width: 3px;
-                       ">
+                            border-style: outset;
+                            border-color: #3E872E;
+                            border-width: 3px;
+                           ">
                     <h5>Buscar Vagas</h5>
                 </a>
             </div>
         </div>
-        <div class="col-sm-4">
-            <div class="card text-white  card-itens card-title " style=" padding: 3px; ">
-                <h3 class="card-title mx-auto h4 ">Seu time</h3>
-                <div class=" bg-light text-dark" style="height: 300px">
-                    <p class="card-text h5 text-center alinhando-texto-dos-cards">
-                        Parece que voce já faz parte de um time!
-                    </p>
-                </div>
-                <a href="{{ url('search/vagas') }}" class="btn  stretched-link text-dark card-button-link" style="padding: 4px;  border-style: solid;
-                        border-style: outset;
-                        border-color: #3E872E;
-                        border-width: 3px;
-                       ">
-                    <h5>Visualizar Perfil de Time</h5>
-                </a>
-            </div>
-        </div>
+        @auth
+        @livewire('verifica-se-jogador-faz-parte-de-time')
+        @endauth
     </div>
 
     <!--Verificar se este usuário tem um perfil de jogador-->
