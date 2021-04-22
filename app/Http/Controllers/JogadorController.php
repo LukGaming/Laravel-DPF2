@@ -61,6 +61,7 @@ class JogadorController extends Controller
      */
     public function store(StoreUpdateJogador $request) //É obrigatório estar logado 
     {
+        $request->validate(["imagem_perfil_jogador"=>"nullable|mimes:jpg,bmp,png"]);
         if (count($request->files) > 0) { //Salvando imagem do usuário
             $cria_imagem = new ImagePerifilJogadorController();
             $upload = $cria_imagem->salvandoImagem($request->imagem_perfil_jogador);

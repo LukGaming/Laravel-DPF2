@@ -40,7 +40,7 @@ class JogadorFactory extends Factory
             "twitch"=>"twitter",
             "email_contato"=>"email@gmail.com",
             "caminho_imagem_perfil_jogador"=>"images/jogador/WSlLTYe6VHOhtrYiyVDu4VIoj8YVJETqblXwHWHp.jpg",
-            "user_id"=>rand(100,500),
+            "user_id"=>rand(1000,5000),
             "funcao_primaria"=>"Entry Fragger",
             "funcao_secundaria"=>"Awper",
             "funcao_adicional"=>"Capitao/IGL",

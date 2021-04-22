@@ -34,7 +34,8 @@ class StoreUpdateJogador extends FormRequest
             'twitter' => 'nullable|max:20',
             'steam' => 'nullable|max:20',
             'twitch' => 'nullable|max:20',
-            'email_contato' => 'nullable'
+            'email_contato' => 'nullable',
+            'imagem_perfil_jogador'=> 'nullable|mimes:jpg,bmp,png'
         ];
     }
 }

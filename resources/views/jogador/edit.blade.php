@@ -173,7 +173,7 @@
     </div>
     </div>
     </div>
-    </div>
+    
 
     @if ($jogador->caminho_imagem_perfil_jogador)
         <div class="bg-dark text-light rounded" style="margin-top: 10px; padding: 10px">
@@ -279,9 +279,10 @@
             </div>
         </div>
     @endif
+</div>
     <br><br>
-    </div>
-    <div class="bg-dark text-light">
+   
+    <div class="bg-dark text-light container" >
         <div class="border border-dark rounded" style="padding: 10px; margin-top: 20px; padding-bottom: 20px">
             <h1>Editando Configurações de computador</h1>
             <form method="POST" action="{{ route('configpcjogador.update', 'configPcJogador', Auth::id()) }}"
@@ -345,10 +346,10 @@
             </form>
             <br>
             <br>
-        </div>
-    </div>
+        
+   
+    
     @if ($config_pc_jogador->caminho_imagem_pc_jogador)
-
         <div class="bg-dark text-light" style="padding: 10px; margin-top: 10px">
             <div class="d-flex justify-content-center h5">
                 Editando Imagem de Computador
@@ -420,6 +421,7 @@
                 </div>
             </div>
         @else
+            <div class="container">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal-10">
                 Adicionar uma imagem do seu computador
             </button>
@@ -451,9 +453,13 @@
                     </div>
                 </div>
             </div>
+        </div>
     @endif
+</div>
+</div>
     </div>
-    <div class="border border-dark rounded bg-dark text-light" style="padding: 10px; margin-top: 20px; padding-bottom: 20px">
+    <div class="border border-dark rounded bg-dark text-light container"
+        style="padding: 10px; margin-top: 20px; padding-bottom: 20px">
         <h1>Editando Configuração de jogo</h1>
         <form action="{{ route('configcsjogador.update', 'configPcJogador', Auth::id()) }}" method="post">
             @csrf
@@ -490,6 +496,7 @@
                 <button type="submit" class="btn btn-primary" id="btnSalvar">Salvar Configuração de Jogo</button>
             </div>
         </form>
+
         @if ($config_cs_jogador->caminho_cfg)
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal-95">
                 Remover Cfg
@@ -577,13 +584,13 @@
                     </div>
                 </div>
             </div>
-        </div>
-        @endif
-    
+    </div>
+    @endif
 
 
 
-    <div class="d-flex justify-content-end ">
+
+    <div class="d-flex justify-content-end container" style="margin-top: 10px">
         <form action="{{ route('jogador.destroy', $jogador->user_id) }}" method="post">
             @csrf
             @method('DELETE')
@@ -593,7 +600,7 @@
     </div>
     </div>
 
-</div>
+    </div>
     <script src="{{ asset('js/options.js') }}"></script>
     <br><br>
 @endsection

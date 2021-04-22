@@ -19,7 +19,7 @@
                         <div class=" bg-light text-dark">
                             <p class="card-text ">
                             <div class="d-flex justify-content-center">
-                                @if($jogador->caminho_imagem_perfil_jogador)
+                                @if($jogador->caminho_imagem_perfil_jogador != null)
                                 <img src=" {{ asset($jogador->caminho_imagem_perfil_jogador) }}" alt=""
                                     class="img-thumbnail img-fluid" width="200px">
                                     @else 
@@ -53,8 +53,13 @@
                             <div class=" bg-light text-dark">
                                 <p class="card-text ">
                                 <div class="d-flex justify-content-center">
-                                    <img src=" {{ url($jogador->caminho_imagem_perfil_jogador) }}" alt=""
+                                    @if($jogador->caminho_imagem_perfil_jogador != null)
+                                    <img src=" {{ asset($jogador->caminho_imagem_perfil_jogador) }}" alt=""
                                         class="img-thumbnail img-fluid" width="200px">
+                                        @else 
+                                        <img src=" {{ asset("images/user_without_image.png") }}" alt=""
+                                        class="img-thumbnail img-fluid" width="200px">
+                                    @endif
                                 </div>
                                 </p>
                             </div>

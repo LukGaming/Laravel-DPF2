@@ -34,12 +34,14 @@ class configCsJogadorController extends Controller
     public function salvandoCfg($request)
     {
         $path = 'images/jogador/cfg';
-        //Preciso salvar na public como .cfg
-        $upload = $request->cfg->storeAs($path, "jogador" . Auth::id() . ".cfg");
-        //dd($upload); //Adicionando Imagem no disco
-        $request->cfg->move(public_path($path), $upload);
-        //Movendo para diretório publico
-        return $upload;
+        if ($request->cfg) {
+            //Preciso salvar na public como .cfg
+            $upload = $request->cfg->storeAs($path, "jogador" . Auth::id() . ".cfg");
+            //dd($upload); //Adicionando Imagem no disco
+            $request->cfg->move(public_path($path), $upload);
+            //Movendo para diretório publico
+            return $upload;
+        }
     }
     public function update(Request $request)
     {
@@ -62,46 +64,48 @@ class configCsJogadorController extends Controller
         $caminho_cfg_para_deletar = $config_cs_jogador->caminho_cfg;
         //dd($config_cs_jogador->caminho_cfg);
         Storage::delete($caminho_cfg_para_deletar);
-        if (file_exists($caminho_cfg_para_deletar)) {            
+        if (file_exists($caminho_cfg_para_deletar)) {
             unlink($caminho_cfg_para_deletar);
         }
         configCsJogador::where('id_jogador', Auth::id())->update([
             "caminho_cfg" => null
         ]);
         $mensagem = "Cfg removida com sucesso!";
-        return redirect('jogador/' . Auth::id().'/edit')->with('mensagem', $mensagem);        
+        return redirect('jogador/' . Auth::id() . '/edit')->with('mensagem', $mensagem);
     }
-    public function adicionarcfgjogador(Request $request){
+    public function adicionarcfgjogador(Request $request)
+    {
         $caminho_cfg = $this->salvandoCfg($request);
         $request['id_jogador'] = Auth::id();
         configCsJogador::where('id_jogador', Auth::id())->update([
-           "caminho_cfg"=>$caminho_cfg
+            "caminho_cfg" => $caminho_cfg
         ]);
         $mensagem = "Cfg Adicionada com sucesso!";
-        return redirect('jogador/'.Auth::id()."/edit")->with('mensagem', $mensagem);       
+        return redirect('jogador/' . Auth::id() . "/edit")->with('mensagem', $mensagem);
     }
-    public function editarcfgjogador(Request $request){
+    public function editarcfgjogador(Request $request)
+    {
         //Removendo Cfg Antiga
         $config_cs_jogador = configCsJogador::where('id_jogador', Auth::id())->first();
         $caminho_cfg_para_deletar = $config_cs_jogador->caminho_cfg;
         //dd($config_cs_jogador->caminho_cfg);
         Storage::delete($caminho_cfg_para_deletar);
-        if (file_exists($caminho_cfg_para_deletar)) {            
+        if (file_exists($caminho_cfg_para_deletar)) {
             unlink($caminho_cfg_para_deletar);
         }
         $caminho_cfg = $this->salvandoCfg($request);
         $request['id_jogador'] = Auth::id();
         configCsJogador::where('id_jogador', Auth::id())->update([
-           "caminho_cfg"=>$caminho_cfg
+            "caminho_cfg" => $caminho_cfg
         ]);
         $mensagem = "Cfg Editada com sucesso!";
-        return redirect('jogador/'.Auth::id()."/edit")->with('mensagem', $mensagem); 
+        return redirect('jogador/' . Auth::id() . "/edit")->with('mensagem', $mensagem);
     }
-    public function downloadcfg($id_jogador){
-        $filename = "images/jogador/cfg/jogador".$id_jogador.".cfg";
-        if(file_exists($filename)){
-            return Response()->download( $filename);
+    public function downloadcfg($id_jogador)
+    {
+        $filename = "images/jogador/cfg/jogador" . $id_jogador . ".cfg";
+        if (file_exists($filename)) {
+            return Response()->download($filename);
         }
     }
-
 }

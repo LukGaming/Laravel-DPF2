@@ -140,8 +140,9 @@
                             placeholder="Email para que outros usuários possam ver e entrarem em contato."
                             name="email_contato" value="{{ old('email_contato') }}">
                     </div>
-
+                    <span class="badge badge-danger bg-danger" id="erro-extensao-imagem"></span>
                     <br>
+                   
                     <label for="imagem_perfil_jogador" class="h5">Selecione uma imagem para seu perfil de
                         jogador</label><br>
                     <input type="file" id="imagem_perfil_jogador" name="imagem_perfil_jogador">
@@ -153,7 +154,21 @@
             </div>
         </form>
     </div>
-
+    <script>
+        $('#imagem_perfil_jogador').change(function(event) {
+            $caminho_do_input = $('#imagem_perfil_jogador');
+            $valor_do_input = $caminho_do_input.val(); 
+            $extensao_do_arquivo = $valor_do_input.split('.')[1];
+            if($extensao_do_arquivo == "png" || $extensao_do_arquivo == "jpg" || $extensao_do_arquivo == "jpeg"){
+                $("#erro-extensao-imagem").html("");
+            }
+            else{
+                $caminho_do_input.val("");
+                $("#erro-extensao-imagem").html("Somente Imagens com extesão Jpg, Png e Jpeg são permitidas!");
+                event.preventDefault();
+            }
+        });
+    </script>
 
     <br><br><br>
     <script src="{{ asset('js/options.js') }}"></script>
